@@ -5,7 +5,8 @@ DROP TABLE IF EXISTS user, event, hours, message, event_volunteer, admin CASCADE
 CREATE TABLE user(
 	user_id SERIAL PPRIMARY KEY,
 	first_name varchar (50),
-	last_name varchar(50),
+	last_name varchar (50),
+	org_name varchar (50),
 	email varchar (50) NOT NULL UNIQUE,
 	birth_date date,
 	phone_number varchar (15),
@@ -39,12 +40,12 @@ CREATE TABLE message (
 	archive boolean, --what data type?
 );
 CREATE TABLE event_volunteer (
-	volunteer_id int REFERENCES volunteer (volunteer_id),
+	user_id int REFERENCES user (user_id),
 	event_id int REFERENCES event (event_id),
 	approval_status boolean
 );
 CREATE TABLE hours (
-	volunteer_id int REFERENCES volunteer (volunteer_id),
+	user_id int REFERENCES user (user_id),
 	event_id int REFERENCES event (event_id),
 	hours int,
 	approval_status boolean,
