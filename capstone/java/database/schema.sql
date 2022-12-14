@@ -15,7 +15,7 @@ CREATE TABLE user(
 	password_hash varchar(200) NOT NULL,
 	organization boolean,
 	verified boolean,
-	minor boolean
+	minor boolean,
 	role varchar(50) NOT NULL
 );
 CREATE TABLE event (
