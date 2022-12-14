@@ -3,7 +3,7 @@ BEGIN TRANSACTION;
 DROP TABLE IF EXISTS user, event, hours, message, event_volunteer, admin CASCADE;
 
 CREATE TABLE user(
-	user_id SERIAL PPRIMARY KEY,
+	user_id SERIAL PRIMARY KEY,
 	first_name varchar (50),
 	last_name varchar(50),
 	username varchar (50) NOT NULL UNIQUE, --username is gonna be email!!!!!
@@ -12,7 +12,7 @@ CREATE TABLE user(
 	address varchar (100),
 	profile_pic bytea(1gb),
 	hero_banner bytea(1gb),
-	password_hash varhcar(200) NOT NULL,
+	password_hash varchar(200) NOT NULL,
 	organization boolean,
 	verified boolean,
 	minor boolean
@@ -32,7 +32,7 @@ CREATE TABLE event (
 CREATE TABLE message (
 	message_id SERIAL PRIMARY KEY,
 	sender_id SERIAL NOT NULL,
-	reciever_id SERIAL NOT NULL,
+	receiver_id SERIAL NOT NULL,
 	time_stamp smalldatetime NOT NULL,
 	message_text varchar (300) NOT NULL,
 	attachment bytea(1gb),
