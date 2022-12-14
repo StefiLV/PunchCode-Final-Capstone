@@ -10,6 +10,7 @@ CREATE TABLE user(
 	username varchar (50), NOT NULL UNIQUE, --username is gonna be email!!!!!
 	birth_date date,
 	phone_number varchar (15),
+	description varchar(Max),
 	address varchar (100),
 	profile_pic varchar(300),
 	hero_banner varchar(300),
@@ -27,7 +28,7 @@ CREATE TABLE event (
 	end_date date NOT NULL,
 	start_time time NOT NULL,
 	end_time time NOT NULL,
-	description varchar (300),
+	description varchar(Max),
 	user_counter varchar (200), 
 );
 CREATE TABLE message (

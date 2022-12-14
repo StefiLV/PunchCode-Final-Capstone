@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="48641c7b-9c6a-401c-a5bb-7b449d72c1f2" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/capstone.iml" afterDir="false" />
@@ -102,6 +103,7 @@
       <change afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/JdbcEventDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/main/java/com/techelevator/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/model/Event.java" afterDir="false" />
     </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,6 +114,7 @@
       <list>
         <option value="Class" />
         <option value="Interface" />
+
       </list>
     </option>
   </component>
@@ -157,6 +160,7 @@
       <option name="presentableId" value="Default" />
       <updated>1670978945069</updated>
     </task>
+
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
