@@ -4,92 +4,84 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.techelevator.model.UserNotFoundException;
-import org.springframework.dao.EmptyResultDataAccessException;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.model.User;
+import com.techelevator.model.Event;
+
 
 @Component
 public class JdbcEventDao implements EventDao {
 
-    private final JdbcTemplate jdbcEventTemplate;
+    private JdbcTemplate jdbcEventTemplate;
+
 
     public JdbcEventDao(JdbcTemplate jdbcEventTemplate) {
         this.jdbcEventTemplate = jdbcEventTemplate;
     }
 
     @Override
-    public int findIdByName(String name) {
-        if (name == null) throw new IllegalArgumentException("Name cannot be null");
-
-        int eventId;
-        try {
-            eventId = jdbcEventTemplate.queryForObject("select event_id from event where name = ?", int.class, name);
-        } catch (EmptyResultDataAccessException e) {
-            throw new UsernameNotFoundException("User " + name + " was not found.");
-        }
-
-        return eventId;
-    }
-
-    @Override
-    public Event getEventById(int eventId) {
-        String sql = "SELECT * FROM event WHERE event_id = ?";
-        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql, eventId);
-        if (results.next()) {
-            return mapRowToUser(results);
-        } else {
-            throw new UserNotFoundException();
-        }
-    }
-
-    @Override
-    public List<Event> findAll() {
+    public List<Event> list() {
         List<Event> events = new ArrayList<>();
-        String sql = "select * from event";
+        String sql = "SELECT * FROM event ";
 
         SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql);
-        while (results.next()) {
-            User user = mapRowToUser(results);
-            event.add(event);
+        while(results.next()) {
+            Event event = mapRowToEvent(results);
+            events.add(event);
         }
-
         return events;
     }
-
     @Override
-    public User findByUsername(String username) {
-        if (username == null) throw new IllegalArgumentException("Username cannot be null");
-
-        for (User user : this.findAll()) {
-            if (user.getUsername().equalsIgnoreCase(username)) {
-                return user;
-            }
+    public Event findById(int id){
+        Event event = null;
+        String sql = "SELECT * FROM event WHERE event_id = ? ";
+        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql, id);
+        if(results.next()){
+            event = mapRowToEvent(results);
+        } else {
+            throw new EventNotFoundException();
         }
-        throw new UsernameNotFoundException("User " + username + " was not found.");
+        return event;
     }
-
     @Override
-    public boolean create(String username, String password, String role) {
-        String insertUserSql = "insert into users (username,password_hash,role) values (?,?,?)";
-        String password_hash = new BCryptPasswordEncoder().encode(password);
-        String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
+    public Event findByName(String name){
+        Event event = null;
+        String sql = "SELECT * FROM event WHERE name = ? ";
+        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql, name);
+        if(results.next()){
+            event = mapRowToEvent(results);
+        } else {
+            throw new EventNotFoundException();
+        }
+        return event;
+    }
+    @Override
+    public boolean updateEvent(int id, Event updatedEvent){
+        String sql = "UPDATE event SET name = ?, address = ?, start_date = ?, end_date = ?, start_time = ?, end_time = ?, description = ?, counter = ? ";
+        return jdbcEventTemplate.update(sql, updatedEvent.getName(), updatedEvent.getAdress(), updatedEvent.getStartDate(), updatedEvent.getEndDate(), updatedEvent.getStartTime(), updatedEvent.getEndTime(), updatedEvent.getDescription(), updatedEvent.getCounter(), id) == 1;
+    }
+    @Override
+    public boolean createEvent(Event eventToCreate){
+        String sql = "INSERT INTO event (event_id, name, address, start_date, end_date, start_time, end_time, description, counter) VALUES ( DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
+        return jdbcEventTemplate.update(sql,)
+    }
 
-        return jdbcEventTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
-    }
-    private User mapRowToUser(SqlRowSet rs) {
-        User user = new User();
-        user.setId(rs.getInt("user_id"));
-        user.setUsername(rs.getString("username"));
-        user.setPassword(rs.getString("password_hash"));
-        user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
-        user.setActivated(true);
-        return user;
-    }
+
+    private Event mapRowToEvent(SqlRowSet rs) {
+        Event ev = new Event();
+        ev.setEventId(rs.getInt("event_id"));
+        ev.setName(rs.getString("name"));
+        ev.setAddress(rs.getString("address"));
+        ev.setStartDate(rs.getString("start_date"));
+        ev.setEndDate(rs.getString("end_date"));
+        ev.setStartTime(rs.getString("start_time"));
+        ev.setEndTime(rs.getString("end_time"));
+        ev.setDescription(rs.getString("description"));
+        ev.setCounter(rs.getInt("counter"));
+        return ev;
+    };
 
 }
