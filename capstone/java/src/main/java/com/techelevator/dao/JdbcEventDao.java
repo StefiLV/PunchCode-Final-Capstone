@@ -2,7 +2,7 @@ package com.techelevator.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 import com.techelevator.model.EventNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -56,20 +56,21 @@ public class JdbcEventDao implements EventDao {
         return event;
     }
     @Override
-    public boolean updateEvent(int id, Event updatedEvent){
+    public Event updateEvent(int id, Event updatedEvent){
         String sql = "UPDATE event SET name = ?, address = ?, start_date = ?, end_date = ?, start_time = ?, end_time = ?, description = ?, counter = ? ";
-        return jdbcEventTemplate.update(sql, updatedEvent.getName(), updatedEvent.getAdress(), updatedEvent.getStartDate(), updatedEvent.getEndDate(), updatedEvent.getStartTime(), updatedEvent.getEndTime(), updatedEvent.getDescription(), updatedEvent.getCounter(), id) == 1;
+       jdbcEventTemplate.update(sql, updatedEvent.getName(), updatedEvent.getAdress(), updatedEvent.getStartDate(), updatedEvent.getEndDate(), updatedEvent.getStartTime(), updatedEvent.getEndTime(), updatedEvent.getDescription(), updatedEvent.getCounter(), id);
+        return updatedEvent;
     }
     @Override
-    public boolean createEvent(Event eventToCreate){
+    public void createEvent(Event eventToCreate){
         String sql = "INSERT INTO event (event_id, name, address, start_date, end_date, start_time, end_time, description, counter) VALUES ( DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
-        return jdbcEventTemplate.update(sql, eventToCreate.getName(), eventToCreate.getAdress(), eventToCreate.getStartDate(), eventToCreate.getEndDate(), eventToCreate.getStartTime(), eventToCreate.getEndTime(), eventToCreate.getDescription(), eventToCreate.getCounter()) == 1;
+        jdbcEventTemplate.update(sql, eventToCreate.getName(), eventToCreate.getAdress(), eventToCreate.getStartDate(), eventToCreate.getEndDate(), eventToCreate.getStartTime(), eventToCreate.getEndTime(), eventToCreate.getDescription(), eventToCreate.getCounter());
     }
 
     @Override
-    public boolean deleteEvent(int id) {
+    public void deleteEvent(int id) {
         String sql = "DELETE FROM event WHERE event_id = ? ";
-        return jdbcEventTemplate.update(sql, id) == 1;
+        jdbcEventTemplate.update(sql, id);
     }
 
     private Event mapRowToEvent(SqlRowSet rs) {
