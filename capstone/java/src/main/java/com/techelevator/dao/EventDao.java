@@ -10,12 +10,12 @@ public interface EventDao {
 
     Event findById(int eventId);
 
-    Event findByName(String name);
+//    Event findByName(String name);
 
-    boolean updateEvent(int id, Event event);
+    boolean updateEvent(Event event, int id);
 
-    boolean createEvent(Event eventToCreate);
+    void createEvent(Event eventToCreate);
 
-    boolean deleteEvent(int id);
+    void deleteEvent(int id);
 }
 
