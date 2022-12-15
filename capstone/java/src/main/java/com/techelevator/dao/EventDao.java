@@ -1,5 +1,3 @@
-
-
 package com.techelevator.dao;
 
 import com.techelevator.model.Event;
@@ -20,3 +18,4 @@ public interface EventDao {
 
     boolean deleteEvent(int id);
 }
+
