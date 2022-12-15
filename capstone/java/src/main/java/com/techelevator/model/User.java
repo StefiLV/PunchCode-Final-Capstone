@@ -113,10 +113,12 @@ public class User {
    }
 
    @Override
+   //do I add an organization variable to this one at the end?
    public int hashCode() {
       return Objects.hash(userId, username, password, activated, authorities);
    }
 
+   //do I add all the other variables to this?
    @Override
    public String toString() {
       return "User{" +

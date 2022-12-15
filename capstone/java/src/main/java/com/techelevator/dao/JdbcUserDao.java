@@ -16,7 +16,6 @@ import com.techelevator.model.User;
 
 @Component
 public class JdbcUserDao implements UserDao {
-
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
@@ -47,18 +46,18 @@ public class JdbcUserDao implements UserDao {
 		}
 	}
 
-    @Override
-    public List<User> findAll() {
-        List<User> users = new ArrayList<>();
-        String sql = "select * from user where organization = ?";
-
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-        while (results.next()) {
-            User user = mapRowToUser(results);
-            users.add(user);
-        }
-        return users;
-    }
+//    @Override
+//    public List<User> findAll() {
+//        List<User> users = new ArrayList<>();
+//        String sql = "select * from user where organization = ?";
+//
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+//        while (results.next()) {
+//            User user = mapRowToUser(results);
+//            users.add(user);
+//        }
+//        return users;
+//    }
 
     @Override
     public List<User> findAllVols() {
@@ -87,27 +86,26 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public User findByUsername(String username) {               //change the username to email?
-        if (username == null) throw new IllegalArgumentException("Email cannot be null");
+//    public User findByUsername(String username) {
+//        if (username == null) throw new IllegalArgumentException("Email cannot be null");
+//
+//        for (User user : this.findAll()) {
+//            if (user.getUsername().equalsIgnoreCase(username)) {
+//                return user;
+//            }
+//        }
+//        throw new UsernameNotFoundException("User " + username + " was not found.");
+//   }
 
-        for (User user : this.findAll()) {
-            if (user.getUsername().equalsIgnoreCase(username)) {
-                return user;
-            }
-        }
-        throw new UsernameNotFoundException("User " + username + " was not found.");
-   }
-
-    @Override
-    public boolean create(String username, String password, String role) {
-        String insertUserSql = "insert into user  (username,password_hash,role, organization) values (?,?,?, ?)";
+    @Override // I've added organization boolean
+    public boolean create(String username, String password, String role, boolean organization) {
+        String insertUserSql = "insert into user  (username,password_hash,role,organization) values (?,?,?, ?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole, organization) == 1;
     }
 
-    //I added setters for the variables that are in our user table, but not in the original template
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setUserId(rs.getInt("user_id"));
