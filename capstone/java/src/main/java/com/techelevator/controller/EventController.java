@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/events")
 public class EventController {
 
-    private EventDao eventDao;
+    private final EventDao eventDao;
 
     public EventController(EventDao eventDao) {
         this.eventDao = eventDao;
