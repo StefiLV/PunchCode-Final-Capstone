@@ -43,18 +43,18 @@ public class JdbcEventDao implements EventDao {
         }
         return event;
     }
-    @Override
-    public Event findByName(String name){
-        Event event = null;
-        String sql = "SELECT * FROM event WHERE name = ? ";
-        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql, name);
-        if(results.next()){
-            event = mapRowToEvent(results);
-        } else {
-            throw new EventNotFoundException();
-        }
-        return event;
-    }
+//    @Override
+//    public Event findByName(String name){
+//        Event event = null;
+//        String sql = "SELECT * FROM event WHERE name = ? ";
+//        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql, name);
+//        if(results.next()){
+//            event = mapRowToEvent(results);
+//        } else {
+//            throw new EventNotFoundException();
+//        }
+//        return event;
+//    }
     @Override
     public Event updateEvent(int id, Event updatedEvent){
         String sql = "UPDATE event SET name = ?, address = ?, start_date = ?, end_date = ?, start_time = ?, end_time = ?, description = ?, counter = ? ";
