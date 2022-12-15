@@ -6,7 +6,7 @@ CREATE TABLE user(
 	user_id SERIAL PPRIMARY KEY,
 	first_name varchar (50),
 	last_name varchar(50),
-	email varchar (50) NOT NULL UNIQUE,
+	username varchar (50) NOT NULL UNIQUE,
 	birth_date date,
 	phone_number varchar (15),
 	address varchar (100),

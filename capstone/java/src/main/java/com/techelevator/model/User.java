@@ -8,8 +8,19 @@ import java.util.Set;
 
 public class User {
 
-   private int id;
+   private int userId;
+   private String name;
    private String username;
+   private String birthDate;
+   private String phoneNumber;
+   private String address;
+   private String profilePic;
+   private String heroBanner;
+   private boolean organization;
+   private boolean verified;
+
+   //Question about the password variable.
+   // We have password_hash in the table, how does this relate to our password variable?
    @JsonIgnore
    private String password;
    @JsonIgnore
@@ -18,50 +29,65 @@ public class User {
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities) {
-      this.id = id;
+   public User(int userId, String name, String username, String birthDate, String phoneNumber, String address, String profilePic, String heroBanner, boolean organization, boolean verified, String password, String authorities) {
+      this.userId = userId;
+      this.name = name;
       this.username = username;
+      this.birthDate = birthDate;
+      this.phoneNumber = phoneNumber;
+      this.address = address;
+      this.profilePic = profilePic;
+      this.heroBanner = heroBanner;
+      this.organization = organization;
+      this.verified = verified;
       this.password = password;
       if(authorities != null) this.setAuthorities(authorities);
       this.activated = true;
    }
-
-   public int getId() {
-      return id;
-   }
-
-   public void setId(int id) {
-      this.id = id;
-   }
-
+// defining getters and setters for all the variables
+   public int getUserId() {
+      return userId;
+   }                                                     //userId get
+   public void setUserId(int userId) {
+      this.userId = userId;
+   }                                   //userId set
+   public String getName() { return name; }                                                       //get a name
+   public void setName(String name) { this.name = name; }                                         //set a name
    public String getUsername() {
       return username;
-   }
-
+   }                                               //username get
    public void setUsername(String username) {
       this.username = username;
-   }
-
+   }                       //username set
+   public String getBirthDate() { return birthDate; }                                           //birthdate get
+   public void setBirthDate(String birthDate) { this.birthDate = birthDate; }                   //birthdate set
+   public String getPhoneNumber() { return phoneNumber; }                                       //phone number get
+   public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }           //phone number set
+   public String getAddress() { return address; }                                               //address get
+   public void setAddress(String address) { this.address = address; }                           //address set
+   public String getProfilePic() { return profilePic; }                                         //profile pic get
+   public void setProfilePic(String profilePic) { this.profilePic = profilePic; }               //profile pic set
+   public String getHeroBanner() { return heroBanner; }                                         //hero banner get
+   public void setHeroBanner(String heroBanner) { this.heroBanner = heroBanner; }               //hero banner set
+   public boolean isOrganization() { return organization; }                                     //organization is/get
+   public void setOrganization(boolean organization) { this.organization = organization; }      //organization set
+   public boolean isVerified() { return verified; }                                             //verified is
+   public void setVerified(boolean verified) { this.verified = verified; }                      //verified set
    public String getPassword() {
       return password;
-   }
-
+   }                                             //password get
    public void setPassword(String password) {
       this.password = password;
-   }
-
+   }                       //password set
    public boolean isActivated() {
       return activated;
    }
-
    public void setActivated(boolean activated) {
       this.activated = activated;
    }
-
    public Set<Authority> getAuthorities() {
       return authorities;
    }
-
    public void setAuthorities(Set<Authority> authorities) {
       this.authorities = authorities;
    }
@@ -79,7 +105,7 @@ public class User {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       User user = (User) o;
-      return id == user.id &&
+      return userId == user.userId &&
               activated == user.activated &&
               Objects.equals(username, user.username) &&
               Objects.equals(password, user.password) &&
@@ -88,13 +114,13 @@ public class User {
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, username, password, activated, authorities);
+      return Objects.hash(userId, username, password, activated, authorities);
    }
 
    @Override
    public String toString() {
       return "User{" +
-              "id=" + id +
+              "user_id=" + userId +
               ", username='" + username + '\'' +
               ", activated=" + activated +
               ", authorities=" + authorities +
