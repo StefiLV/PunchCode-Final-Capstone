@@ -1,17 +1,8 @@
 <template>
   <div id="regOrg" class="text-center">
-    <div id="regOrgNav">
-      <div id="to-go-box" v-on:click="openBurger">
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
-      </div>
-    </div>
+    <div id="regOrgNav"></div>
 
-    <div id="regOrgLogo">
-      <img id="main-logo" src="../img/AppLogo.png" alt="" />
-      <h2>Organization Sign Up</h2>
-    </div>
+    <div id="regOrgLogo"></div>
 
     <div id="regOrgBody">
       <div id="regOrgForm">
@@ -20,7 +11,7 @@
             type="text"
             id="username"
             class="form-control"
-            placeholder="EMAIL"
+            placeholder="USERNAME"
             v-model="user.username"
             required
             autofocus
@@ -45,7 +36,7 @@
             type="orgName"
             id="orgName"
             class="form-control"
-            placeholder="ORGANIZATION NAME"
+            placeholder="ORGANIZATION"
             v-model="user.orgName"
             required
           /><br />
@@ -82,11 +73,10 @@
             required
           /><br />
           <button
-            id="regOrgBtn"
             class="btn btn-lg btn-primary btn-block"
             type="submit"
           >
-            SUBMIT
+            Create Account
           </button>
         </form>
       </div>
@@ -151,29 +141,18 @@ export default {
 <style scoped>
 #regOrgNav {
   height: 5vh;
+  background: red;
 }
 
 #regOrgLogo {
   height: 25vh;
 }
 
-#main-logo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 265px;
-}
-
-h2 {
-  text-align: center;
-  text-decoration: underline;
-}
-
 #regOrgBody {
   height: 70vh;
   background-image: url("../img/RegBG.png");
   background-repeat: no-repeat;
-  background-position: 43% 30%;
+  background-position: 43% 25%;
 }
 
 #regOrgForm {
@@ -185,8 +164,8 @@ h2 {
 
 .form-control {
   width: 65vw;
-  height: 35px;
-  margin-bottom: 30px;
+  height: 40px;
+  margin-bottom: 20px;
   border-radius: 5px;
   border: 1px solid white;
 }
@@ -199,27 +178,5 @@ h2 {
   color: black;
   letter-spacing: 4px;
   padding-left: 10px;
-}
-
-#regOrgBtn {
-  background: #0045b8;
-  border: 1px solid #0045b8;
-  color: white;
-  width: 35vw;
-  height: 45px;
-  border-radius: 5px;
-  margin-bottom: 25px;
-}
-
-#to-go-box {
-  float: right;
-  margin-right: 10px;
-}
-
-.hamburger {
-  width: 35px;
-  height: 5px;
-  background-color: black;
-  margin: 6px 0;
 }
 </style>

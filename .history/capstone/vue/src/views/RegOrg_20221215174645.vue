@@ -10,7 +10,7 @@
 
     <div id="regOrgLogo">
       <img id="main-logo" src="../img/AppLogo.png" alt="" />
-      <h2>Organization Sign Up</h2>
+      <h1>Organization Sign Up</h1>
     </div>
 
     <div id="regOrgBody">
@@ -161,10 +161,10 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 265px;
+  width: 250px;
 }
 
-h2 {
+h1 {
   text-align: center;
   text-decoration: underline;
 }

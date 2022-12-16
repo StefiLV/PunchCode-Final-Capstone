@@ -1,12 +1,6 @@
 <template>
   <div id="regOrg" class="text-center">
-    <div id="regOrgNav">
-      <div id="to-go-box" v-on:click="openBurger">
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
-      </div>
-    </div>
+    <div id="regOrgNav"></div>
 
     <div id="regOrgLogo">
       <img id="main-logo" src="../img/AppLogo.png" alt="" />
@@ -151,6 +145,7 @@ export default {
 <style scoped>
 #regOrgNav {
   height: 5vh;
+  background: red;
 }
 
 #regOrgLogo {
@@ -161,12 +156,7 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 265px;
-}
-
-h2 {
-  text-align: center;
-  text-decoration: underline;
+  width: 250px;
 }
 
 #regOrgBody {
@@ -209,17 +199,5 @@ h2 {
   height: 45px;
   border-radius: 5px;
   margin-bottom: 25px;
-}
-
-#to-go-box {
-  float: right;
-  margin-right: 10px;
-}
-
-.hamburger {
-  width: 35px;
-  height: 5px;
-  background-color: black;
-  margin: 6px 0;
 }
 </style>

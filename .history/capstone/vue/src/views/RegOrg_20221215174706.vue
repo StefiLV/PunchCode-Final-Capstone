@@ -161,7 +161,7 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 265px;
+  width: 250px;
 }
 
 h2 {
