@@ -1,5 +1,3 @@
-
-
 package com.techelevator.dao;
 
 import com.techelevator.model.Event;
@@ -14,9 +12,11 @@ public interface EventDao {
 
 //    Event findByName(String name);
 
-    Event updateEvent(int id, Event event);
+    boolean updateEvent(Event event, int id);
 
     void createEvent(Event eventToCreate);
 
     void deleteEvent(int id);
+
+    List<Event> usersForEvent();
 }

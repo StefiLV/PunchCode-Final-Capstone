@@ -12,6 +12,8 @@ public class RegisterUserDTO {
     private String confirmPassword;
     @NotEmpty(message = "Please select a role for this user.")
     private String role;
+    @NotEmpty
+    private boolean organization;
 
     public String getUsername() {
         return username;
@@ -44,4 +46,13 @@ public class RegisterUserDTO {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public boolean isOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(boolean organization) {
+        this.organization = organization;
+    }
 }
+

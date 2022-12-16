@@ -1,10 +1,9 @@
-
-
 package com.techelevator.controller;
 import com.techelevator.model.Event;
 import java.util.List;
 import com.techelevator.dao.EventDao;
 import com.techelevator.model.EventNotFoundException;
+import com.techelevator.model.Message;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -43,15 +42,8 @@ public class EventController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
-        public Event update(@Valid @RequestBody Event event, @Valid @PathVariable int id){
-          Event updatedEvent = eventDao.updateEvent(id, event);
-        if (updatedEvent == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Bad Event");
-        }else if (id <= 0){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Bad Id");
-        }else {
-            return updatedEvent;
-        }
+    public void update(@Valid @RequestBody Event event, @Valid @PathVariable int id) {
+        eventDao.updateEvent(event, id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -59,4 +51,7 @@ public class EventController {
     public void delete(@PathVariable int id){
         eventDao.deleteEvent(id);
     }
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Event> usersForEvent(){ return eventDao.usersForEvent(); }
 }
