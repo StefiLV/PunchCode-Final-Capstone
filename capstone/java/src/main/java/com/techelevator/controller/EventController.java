@@ -54,4 +54,7 @@ public class EventController {
 
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Event> usersForEvent(){ return eventDao.usersForEvent(); }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Event> eventsByCause() { return eventDao.eventsByCause(); }
 }

@@ -19,4 +19,6 @@ public interface EventDao {
     void deleteEvent(int id);
 
     List<Event> usersForEvent();
+
+    List<Event> eventsByCause();
 }

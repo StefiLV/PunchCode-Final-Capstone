@@ -83,6 +83,17 @@ public class JdbcEventDao implements EventDao {
         }
         return allVols;
     }
+    @Override
+    public List<Event> eventsByCause(){
+        List<Event> allEventsByCause = new ArrayList<>();
+        String sql = "SELECT * FROM event " +
+                "JOIN cause ON cause.id = event.id ";
+        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql);
+        while(results.next()){
+            eventsByCause().add(mapRowToEvent(results));
+        }
+        return allEventsByCause;
+    }
 
 
     private Event mapRowToEvent(SqlRowSet rs) {
