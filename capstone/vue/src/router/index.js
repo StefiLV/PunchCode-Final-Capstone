@@ -6,6 +6,7 @@ import Logout from "../views/Logout.vue";
 import Register from "../views/Register.vue";
 import RegOrg from "../views/RegOrg.vue";
 import store from "../store/index";
+import HomeOrg from "../views/HomeOrg.vue";
 
 Vue.use(Router);
 
@@ -62,6 +63,14 @@ const router = new Router({
         requiresAuth: false,
       },
     },
+    {
+      path: "/homeOrg", 
+      name: "homeOrg", 
+      component: HomeOrg, 
+      meta: {
+        requiresAuth: false,
+      },
+    }
   ],
 });
 
