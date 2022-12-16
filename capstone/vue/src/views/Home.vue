@@ -6,7 +6,7 @@
       <div id="home-nav-bar">
         <img src="" alt="">
 
-        <h1>App Name</h1>
+        <img src="../img/AppLogo.png" id="main-logo" alt="logo">
 
         <div id="to-go-box" v-on:click="openBurger">
           <div class="hamburger"></div>
@@ -31,15 +31,25 @@
       <div id="vol-events">
 
         <div class="event-box">
-          <h1>Code For Vegas</h1>
+          <img id="Punch-Code-Logo" src="../img/PunchCodeLogo.png"/>
+          <h3>Instructor Assistant</h3>
+          <h4>PunchCode</h4>
+          <h4>401 S. 4th St</h4>
         </div>
 
         <div class="event-box">
-          <h1>PunchCode</h1>
+          <img id="Innovate-For-Vegas" src="../img/InnovateForVegas.png"/>
+          <h3>Software Developer</h3>
+          <h4>Innovate For Vegas</h4>
+          <h4>4th St and Lewis Ave</h4>
+
         </div>
 
         <div class="event-box">
-          <h1>FoodBank</h1>
+          <img id="Three-Square" src="../img/ThreeSquareLogo.png"/>
+          <h3>Helper</h3>
+          <h4>Three Square</h4>
+          <h4>4190 N Pecos Rd</h4>
         </div>
 
       </div>
@@ -65,13 +75,14 @@ export default {
 #to-go-box {
   float: right;
   margin-right: 10px;
+  padding-top: 10px;
 }
 
 .hamburger {
-    width: 35px;
-    height: 5px;
-    background-color: black;
-    margin: 6px 0;
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
 }
 
 #home-body {
@@ -94,9 +105,41 @@ img {
 .event-box {
   width: 85vw;
   height: 15vh;
-  margin: auto;
   border: 1px solid black;
   margin: 30px;
+  text-align: left;
+  padding-left: 15px;
 }
 
+.expanded-box {
+  height: 30vh;
+}
+
+#main-logo {
+  display: block;
+  margin-right: auto;
+  width: 15%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#Punch-Code-Logo {
+  width: 50%;
+  float: right;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+#Innovate-For-Vegas {
+  width: 25%;
+  float: right;
+  padding-right: 50px; 
+}
+
+#Three-Square {
+  width: 50%;
+  float: right;
+  padding-top: 10px;
+  padding-right: 10px;
+}
 </style>
