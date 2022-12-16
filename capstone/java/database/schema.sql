@@ -39,17 +39,17 @@ CREATE TABLE message (
 	archive boolean, --what data type?
 );
 CREATE TABLE event_user(
-	id PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	user_id int REFERENCES user (user_id),
 	id int REFERENCES event (id),
-	approval_status boolean,
+	approval_status varchar(10),
 );
 CREATE TABLE hours (
 	id SERIAL PRIMARY KEY,
 	user_id int REFERENCES user (user_id),
 	id int REFERENCES event (id),
 	hours int,
-	approval_status boolean,
+	approval_status varchar(10),
 );
 CREATE TABLE cause(
 	id SERIAL PRIMARY KEY,
