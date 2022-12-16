@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserDao {
 
-    //List<User> findAll();
+    List<User> findAll();
 
     List<User> findAllVols();
 
@@ -21,5 +21,5 @@ public interface UserDao {
     boolean create(String username, String password, String role, boolean organization);
 
     //added a new functions/methods that would enable a search for organization by its name
-    String findOrgByOrgName(String orgName);
+    //String findOrgByOrgName(String orgName);
 }

@@ -22,42 +22,42 @@ public class JdbcUserDao implements UserDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
-    public int findIdByUsername(String username) {
-        if (username == null) throw new IllegalArgumentException("Email cannot be null");
-
-        int userId;
-        try {
-            userId = jdbcTemplate.queryForObject("select user_id from user where username = ?", int.class, username);
-        } catch (EmptyResultDataAccessException e) {
-            throw new UsernameNotFoundException("User " + username + " was not found.");
-        }
-        return userId;
-    }
-
-	@Override
-	public User getUserById(int userId) {
-		String sql = "SELECT * FROM user WHERE user_id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-		if (results.next()) {
-			return mapRowToUser(results);
-		} else {
-			throw new UserNotFoundException();
-		}
-	}
-
 //    @Override
-//    public List<User> findAll() {
-//        List<User> users = new ArrayList<>();
-//        String sql = "select * from user where organization = ?";
+//    public int findIdByUsername(String username) {
+//        if (username == null) throw new IllegalArgumentException("Email cannot be null");
 //
-//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-//        while (results.next()) {
-//            User user = mapRowToUser(results);
-//            users.add(user);
+//        int userId;
+//        try {
+//            userId = jdbcTemplate.queryForObject("select user_id from user where username = ?", int.class, username);
+//        } catch (EmptyResultDataAccessException e) {
+//            throw new UsernameNotFoundException("User " + username + " was not found.");
 //        }
-//        return users;
+//        return userId;
 //    }
+
+//	@Override
+//	public User getUserById(int userId) {
+//		String sql = "SELECT * FROM user WHERE user_id = ?";
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+//		if (results.next()) {
+//			return mapRowToUser(results);
+//		} else {
+//			throw new UserNotFoundException();
+//		}
+//	}
+
+    @Override
+    public List<User> findAll() {
+        List<User> users = new ArrayList<>();
+        String sql = "select * from user";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            User user = mapRowToUser(results);
+            users.add(user);
+        }
+        return users;
+    }
 
     @Override
     public List<User> findAllVols() {
@@ -86,16 +86,16 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-//    public User findByUsername(String username) {
-//        if (username == null) throw new IllegalArgumentException("Email cannot be null");
-//
-//        for (User user : this.findAll()) {
-//            if (user.getUsername().equalsIgnoreCase(username)) {
-//                return user;
-//            }
-//        }
-//        throw new UsernameNotFoundException("User " + username + " was not found.");
-//   }
+    public User findByUsername(String username) {
+        if (username == null) throw new IllegalArgumentException("Email cannot be null");
+
+        for (User user : this.findAll()) {
+            if (user.getUsername().equalsIgnoreCase(username)) {
+                return user;
+            }
+        }
+        throw new UsernameNotFoundException("User " + username + " was not found.");
+   }
 
     @Override // I've added organization boolean
     public boolean create(String username, String password, String role, boolean organization) {
