@@ -22,11 +22,11 @@ public class MessageController {
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public Message get(@PathVariable int msgId){
-        Message message = messageDao.findById(msgId);
+        Message message = messageDao.getById(msgId);
         if(message == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Message not found. ");
         }else {
-            return messageDao.findById(msgId);
+            return messageDao.getById(msgId);
         }
     }
     @ResponseStatus(HttpStatus.CREATED)

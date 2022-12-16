@@ -9,6 +9,7 @@ public class Message {
     private String attachment;
     private boolean archive;
 
+
     public Message(){ }
 
     public Message(int msgId, int senderId, int receiverId, String timeStamp, String text, String attachment, boolean archive){
@@ -27,7 +28,7 @@ public class Message {
     public int getSenderId(){ return senderId; }
     public void setSenderId(int senderId){ this.senderId = senderId; }
 
-    public int getReceiverId(){ return senderId; }
+    public int getReceiverId(){ return receiverId; }
     public void setReceiverId(int receiverId){ this.receiverId = receiverId; }
 
     public String getTimeStamp(){ return timeStamp; }

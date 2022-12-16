@@ -10,7 +10,7 @@ public interface MessageDao {
 
     List<Message> list();
 
-    Message findById(int msgId);
+    Message getById(int msgId);
 
     boolean updateMsg(Message msg, int msgId);
 
