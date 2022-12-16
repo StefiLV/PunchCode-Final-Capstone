@@ -3,6 +3,7 @@ BEGIN TRANSACTION;
 DROP TABLE IF EXISTS user, event, hours, message, event_user, cause CASCADE;
 
 CREATE TABLE user(
+
 	user_id SERIAL PRIMARY KEY,
 	name varchar(100),
 	username varchar (50), NOT NULL UNIQUE, --username is gonna be email!!!!!

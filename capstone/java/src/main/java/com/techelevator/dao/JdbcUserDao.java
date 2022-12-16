@@ -16,55 +16,78 @@ import com.techelevator.model.User;
 
 @Component
 public class JdbcUserDao implements UserDao {
-
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
-    public int findIdByUsername(String username) {
-        if (username == null) throw new IllegalArgumentException("Username cannot be null");
+//    @Override
+//    public int findIdByUsername(String username) {
+//        if (username == null) throw new IllegalArgumentException("Email cannot be null");
+//
+//        int userId;
+//        try {
+//            userId = jdbcTemplate.queryForObject("select user_id from user where username = ?", int.class, username);
+//        } catch (EmptyResultDataAccessException e) {
+//            throw new UsernameNotFoundException("User " + username + " was not found.");
+//        }
+//        return userId;
+//    }
 
-        int userId;
-        try {
-            userId = jdbcTemplate.queryForObject("select user_id from users where username = ?", int.class, username);
-        } catch (EmptyResultDataAccessException e) {
-            throw new UsernameNotFoundException("User " + username + " was not found.");
-        }
-
-        return userId;
-    }
-
-	@Override
-	public User getUserById(int userId) {
-		String sql = "SELECT * FROM users WHERE user_id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-		if (results.next()) {
-			return mapRowToUser(results);
-		} else {
-			throw new UserNotFoundException();
-		}
-	}
+//	@Override
+//	public User getUserById(int userId) {
+//		String sql = "SELECT * FROM user WHERE user_id = ?";
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+//		if (results.next()) {
+//			return mapRowToUser(results);
+//		} else {
+//			throw new UserNotFoundException();
+//		}
+//	}
 
     @Override
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        String sql = "select * from users";
+        String sql = "select * from user";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
             User user = mapRowToUser(results);
             users.add(user);
         }
+        return users;
+    }
 
+    @Override
+    public List<User> findAllVols() {
+        List<User> users = new ArrayList<>();
+        String sql = "select * from user where organization = false";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            User user = mapRowToUser(results);
+            users.add(user);
+        }
+        return users;
+    }
+
+    @Override
+    public List<User> findAllOrgs() {
+        List<User> users = new ArrayList<>();
+        String sql = "select * from user where organization = true";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            User user = mapRowToUser(results);
+            users.add(user);
+        }
         return users;
     }
 
     @Override
     public User findByUsername(String username) {
-        if (username == null) throw new IllegalArgumentException("Username cannot be null");
+        if (username == null) throw new IllegalArgumentException("Email cannot be null");
 
         for (User user : this.findAll()) {
             if (user.getUsername().equalsIgnoreCase(username)) {
@@ -72,21 +95,29 @@ public class JdbcUserDao implements UserDao {
             }
         }
         throw new UsernameNotFoundException("User " + username + " was not found.");
-    }
+   }
 
-    @Override
-    public boolean create(String username, String password, String role) {
-        String insertUserSql = "insert into users (username,password_hash,role) values (?,?,?)";
+    @Override // I've added organization boolean
+    public boolean create(String username, String password, String role, boolean organization) {
+        String insertUserSql = "insert into user  (username,password_hash,role,organization) values (?,?,?, ?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole, organization) == 1;
     }
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
-        user.setId(rs.getInt("user_id"));
+        user.setUserId(rs.getInt("user_id"));
         user.setUsername(rs.getString("username"));
+        user.setName(rs.getString("name"));
+        user.setBirthDate(rs.getString("birth_date"));
+        user.setPhoneNumber(rs.getString("phone_number"));
+        user.setPhoneNumber(rs.getString("address"));
+        user.setProfilePic(rs.getString("profile_pic"));
+        user.setHeroBanner(rs.getString("hero_banner"));
+        user.setOrganization(rs.getBoolean("organization"));
+        user.setVerified(rs.getBoolean("verified"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
         user.setActivated(true);
