@@ -1,7 +1,7 @@
 <template>
   <div id="regOrg" class="text-center">
     <div id="regOrgNav">
-      <div id="to-go-box" v-on:click="openBurger">
+      <div id="to-go-box">
         <div class="hamburger"></div>
         <div class="hamburger"></div>
         <div class="hamburger"></div>
@@ -82,13 +82,11 @@
             v-model="user.dateBirth"
             required
           /><br />
-          <button
-            id="regOrgBtn"
-            class="btn btn-lg btn-primary btn-block"
-            type="submit"
-          >
-            SUBMIT
-          </button>
+          <input
+            id="regVolBtn"
+            type="submit" 
+            value="SUBMIT"
+            />
         </form>
       </div>
     </div>
@@ -107,6 +105,7 @@ export default {
         password: "",
         confirmPassword: "",
         role: "user",
+        organization: false,
       },
       registrationErrors: false,
       registrationErrorMsg:

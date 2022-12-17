@@ -18,7 +18,7 @@ public interface UserDao {
 
     int findIdByUsername(String username);
 
-    boolean create(String username, String password, String role, boolean organization);
+    boolean create(String name, String username, String password, String role, boolean organization, String address, String birthDate);
 
     //added a new functions/methods that would enable a search for organization by its name
     //String findOrgByOrgName(String orgName);

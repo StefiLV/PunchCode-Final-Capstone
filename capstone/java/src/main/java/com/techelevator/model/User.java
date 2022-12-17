@@ -29,7 +29,7 @@ public class User {
 
    public User() { }
 
-   public User(int userId, String name, String username, String birthDate, String phoneNumber, String address, String profilePic, String heroBanner, boolean organization, boolean verified, String password, String authorities) {
+   public User(int userId, String name, String username, String birthDate, String phoneNumber, String address, String profilePic, String heroBanner, boolean organization, boolean verified, String password, String authorities, boolean activated) {
       this.userId = userId;
       this.name = name;
       this.username = username;
