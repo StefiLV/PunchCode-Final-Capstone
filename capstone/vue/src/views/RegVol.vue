@@ -80,13 +80,11 @@
             v-model="user.dateBirth"
             required
           /><br />
-          <button
-            id="regOrgBtn"
-            class="btn btn-lg btn-primary btn-block"
-            type="submit"
-          >
-            SUBMIT
-          </button>
+          <input
+            id="regVolBtn"
+            type="submit" 
+            value="SUBMIT"
+            />
         </form>
       </div>
     </div>
@@ -105,6 +103,7 @@ export default {
         password: "",
         confirmPassword: "",
         role: "user",
+        organization: false,
       },
       registrationErrors: false,
       registrationErrorMsg:

@@ -98,12 +98,12 @@ public class JdbcUserDao implements UserDao {
    }
 
     @Override // I've added organization boolean
-    public boolean create(String username, String password, String role, boolean organization) {
-        String insertUserSql = "insert into users  (username,password_hash,role,organization) values (?,?,?,?)";
+    public boolean create(String name, String username, String password, String role, boolean organization, String address, String birthDate) {
+        String insertUserSql = "insert into users  (name,username,password_hash,role,organization,address,birth_date) values (?,?,?,?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole, organization) == 1;
+        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole, organization, address, birthDate) == 1;
     }
 
     private User mapRowToUser(SqlRowSet rs) {
