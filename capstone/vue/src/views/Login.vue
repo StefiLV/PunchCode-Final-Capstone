@@ -2,11 +2,7 @@
   <div id="login-page" class="text-center">
 
     <div id="sign-in-nav">
-      <div id="to-go-box" v-on:click="openBurger">
-          <div class="hamburger"></div>
-          <div class="hamburger"></div>
-          <div class="hamburger"></div>
-      </div>
+      <img src="../img/Hamburger.png" id="hamburger">
     </div>  
 
     <div id="sign-in-head">
@@ -170,5 +166,11 @@ export default {
   color: white;
 }
 
+#hamburger {
+  width: 6%;
+  float: right;
+  padding-top: 15px;
+  padding-right: 10px;
+}
 
 </style>

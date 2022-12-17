@@ -5,6 +5,7 @@ import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import RegVol from "../views/RegVol.vue";
 import RegOrg from "../views/RegOrg.vue";
+import VolHome from "../views/VolHome.vue";
 import store from "../store/index";
 
 Vue.use(Router);
@@ -61,6 +62,14 @@ const router = new Router({
       meta: {
         requiresAuth: false,
       },
+    },
+    {
+      path: "/volHome",
+      name: "volHome",
+      component: VolHome,
+      meta: {
+        requiresAuth: false, //This will need to be changed to true. 
+    },                       //False allows us to get around login. - Gabe
     },
   ],
 });
