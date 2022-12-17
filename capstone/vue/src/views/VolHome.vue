@@ -9,6 +9,8 @@
         <img src="../img/AppLogo.png" id="main-logo" alt="logo">
 
         <div id="to-go-box" v-on:click="openBurger">
+          <img src="../img/Message.png" id="message" class="nav-icons">
+          <img src="../img/Bell.png" id="bell" class="nav-icons">
           <img src="../img/Hamburger.png" id="hamburger" class="nav-icons">
 
         </div>
@@ -24,8 +26,7 @@
       
       <form action="" id="search-bar">
         <input type="text" placeholder="SEARCH">
-        <input type="text" placeholder="ZIP CODE">
-        <button>Radius (mi)</button>
+        <button>Filter</button>
       </form>
 
       <div id="vol-events">
@@ -35,9 +36,6 @@
           <h3>Instructor Assistant</h3>
           <h4>PunchCode</h4>
           <h4>401 S. 4th St</h4>
-          <div class="event-date">
-            <h4>Nov. 1, 2022 - Dec. 23, 2022</h4>
-          </div>
         </div>
 
         <div class="event-box">
@@ -45,6 +43,7 @@
           <h3>Software Developer</h3>
           <h4>Innovate For Vegas</h4>
           <h4>4th St and Lewis Ave</h4>
+
         </div>
 
         <div class="event-box">
@@ -59,6 +58,7 @@
           <h3>Software Developer</h3>
           <h4>Innovate For Vegas</h4>
           <h4>4th St and Lewis Ave</h4>
+
         </div>
 
         <div class="event-box">
@@ -98,7 +98,10 @@ export default {
 
 #to-go-box {
   float: right;
-  padding-top: 15px;
+  display: flex;
+  width: 110px;
+  justify-content: space-between;
+  align-items: center;
   padding-right: 10px;
 }
 
@@ -148,11 +151,6 @@ img {
   margin-bottom: 15px;
 }
 
-.event-date {
-  float: right;
-  
-}
-
 .expanded-box {
   height: 30vh;
 }
@@ -189,10 +187,6 @@ img {
   border-top: 2px solid black;
   height: 5vh;
   padding-top: 15px;
-}
-
-h3 {
-  text-decoration: underline;
 }
 
 </style>
