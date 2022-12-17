@@ -2,9 +2,7 @@
   <div id="regOrg" class="text-center">
     <div id="regOrgNav">
       <div id="to-go-box" v-on:click="openBurger">
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
+        <img src="../img/Hamburger.png" id="hamburger" />
       </div>
     </div>
 
@@ -213,13 +211,13 @@ h2 {
 
 #to-go-box {
   float: right;
-  margin-right: 10px;
+  padding-top: 15px;
+  padding-right: 10px;
 }
 
-.hamburger {
-  width: 35px;
-  height: 5px;
-  background-color: black;
-  margin: 6px 0;
+#hamburger {
+  width: 6%;
+  float: right;
+  margin-top: 5px;
 }
 </style>
