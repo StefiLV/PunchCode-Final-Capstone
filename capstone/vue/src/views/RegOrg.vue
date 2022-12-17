@@ -1,7 +1,7 @@
 <template>
   <div id="regOrg" class="text-center">
     <div id="regOrgNav">
-      <div id="to-go-box" v-on:click="openBurger">
+      <div id="to-go-box">
         <div class="hamburger"></div>
         <div class="hamburger"></div>
         <div class="hamburger"></div>
@@ -81,13 +81,11 @@
             v-model="user.zipCode"
             required
           /><br />
-          <button
+          <input
             id="regOrgBtn"
-            class="btn btn-lg btn-primary btn-block"
-            type="submit"
-          >
-            SUBMIT
-          </button>
+            type="submit" 
+            value="SUBMIT"
+            />
         </form>
       </div>
     </div>
@@ -106,6 +104,7 @@ export default {
         password: "",
         confirmPassword: "",
         role: "user",
+        organization: true,
       },
       registrationErrors: false,
       registrationErrorMsg:
@@ -115,6 +114,7 @@ export default {
   methods: {
     register() {
       if (this.user.password != this.user.confirmPassword) {
+        console.log("this shit didnt work");
         this.registrationErrors = true;
         this.registrationErrorMsg =
           "Password & Confirm Password do not match.";
@@ -122,6 +122,7 @@ export default {
         authService
           .register(this.user)
           .then((response) => {
+            console.log("this shit work");
             if (response.status == 201) {
               this.$router.push({
                 path: "/login",

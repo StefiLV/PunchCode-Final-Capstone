@@ -12,11 +12,11 @@ public interface UserDao {
 
     List<User> findAllOrgs();
 
-    //User getUserById(int userId);
+    User getUserById(int userId);
 
     User findByUsername(String username);
 
-//    int findIdByUsername(String username);
+    int findIdByUsername(String username);
 
     boolean create(String username, String password, String role, boolean organization);
 

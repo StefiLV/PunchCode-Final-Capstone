@@ -85,7 +85,7 @@ public class AuthenticationController {
             this.token = token;
         }
 
-        @JsonProperty("user")
+        @JsonProperty("users")
 		public User getUser() {
 			return user;
 		}
