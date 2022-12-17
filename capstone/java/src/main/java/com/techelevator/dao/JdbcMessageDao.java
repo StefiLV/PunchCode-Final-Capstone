@@ -32,7 +32,7 @@ public class JdbcMessageDao implements MessageDao {
         return msgs;
     }
     @Override
-    public Message getbyId(int msgId){
+    public Message getById(int msgId){
         Message message = null;
         String sql = "SELECT * FROM message WHERE id = ? ";
         SqlRowSet results = jdbcMsgTemplate.queryForRowSet(sql, msgId);

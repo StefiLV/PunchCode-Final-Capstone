@@ -43,7 +43,7 @@ public class JdbcEventDao implements EventDao {
         }
         return event;
     }
-//    @Override
+    //    @Override
 //    public Event findByName(String name){
 //        Event event = null;
 //        String sql = "SELECT * FROM event WHERE name = ? ";
@@ -58,7 +58,7 @@ public class JdbcEventDao implements EventDao {
     @Override
     public boolean updateEvent(Event event, int id){
         String sql = "UPDATE event SET name = ?, address = ?, start_date = ?, end_date = ?, start_time = ?, end_time = ?, description = ?, counter = ? WHERE id = ? ";
-       return jdbcEventTemplate.update(sql, event.getName(), event.getAddress(), event.getStartDate(), event.getEndDate(), event.getStartTime(), event.getEndTime(), event.getDescription(), event.getCounter(), id) == 1;
+        return jdbcEventTemplate.update(sql, event.getName(), event.getAddress(), event.getStartDate(), event.getEndDate(), event.getStartTime(), event.getEndTime(), event.getDescription(), event.getCounter(), id) == 1;
     }
 
     @Override
@@ -69,7 +69,30 @@ public class JdbcEventDao implements EventDao {
     @Override
     public void deleteEvent(int id) {
         String sql = "DELETE FROM event WHERE id = ? ";
-         jdbcEventTemplate.update(sql, id);
+        jdbcEventTemplate.update(sql, id);
+    }
+    @Override
+    public List<Event> usersForEvent() {
+        List<Event> allVols = new ArrayList<>();
+        String sql = "SELECT * FROM event " +
+                "JOIN event_user ON id.user_id = user.user_id " +
+                "JOIN user ON user.user_id = event_user.id";
+        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql);
+        while(results.next()){
+            usersForEvent().add(mapRowToEvent(results));
+        }
+        return allVols;
+    }
+    @Override
+    public List<Event> eventsByCause(){
+        List<Event> allEventsByCause = new ArrayList<>();
+        String sql = "SELECT * FROM event " +
+                "JOIN cause ON cause.id = event.id ";
+        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql);
+        while(results.next()){
+            eventsByCause().add(mapRowToEvent(results));
+        }
+        return allEventsByCause;
     }
 
 

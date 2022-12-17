@@ -3,10 +3,18 @@ BEGIN TRANSACTION;
 DROP TABLE IF EXISTS user, event, hours, message, event_user, cause CASCADE;
 
 CREATE TABLE user(
+<<<<<<< HEAD
+	user_id SERIAL PPRIMARY KEY,
+	first_name varchar (50),
+	last_name varchar (50),
+	org_name varchar (50),
+	email varchar (50) NOT NULL UNIQUE,
+=======
 
 	user_id SERIAL PRIMARY KEY,
 	name varchar(100),
 	username varchar (50), NOT NULL UNIQUE, --username is gonna be email!!!!!
+>>>>>>> 8c3a98edb1af45bc752c9b765303290aaf4102a3
 	birth_date date,
 	phone_number varchar (15),
 	description varchar(Max),
@@ -39,6 +47,16 @@ CREATE TABLE message (
 	attachment varchar(300),
 	archive boolean, --what data type?
 );
+<<<<<<< HEAD
+CREATE TABLE event_volunteer (
+	user_id int REFERENCES user (user_id),
+	event_id int REFERENCES event (event_id),
+	approval_status boolean
+);
+CREATE TABLE hours (
+	user_id int REFERENCES user (user_id),
+	event_id int REFERENCES event (event_id),
+=======
 CREATE TABLE event_user(
 	id SERIAL PRIMARY KEY,
 	user_id int REFERENCES user (user_id),
@@ -49,6 +67,7 @@ CREATE TABLE hours (
 	id SERIAL PRIMARY KEY,
 	user_id int REFERENCES user (user_id),
 	id int REFERENCES event (id),
+>>>>>>> 8c3a98edb1af45bc752c9b765303290aaf4102a3
 	hours int,
 	approval_status varchar(10),
 );

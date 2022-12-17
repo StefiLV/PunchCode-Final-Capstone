@@ -17,5 +17,8 @@ public interface EventDao {
     void createEvent(Event eventToCreate);
 
     void deleteEvent(int id);
-}
 
+    List<Event> usersForEvent();
+
+    List<Event> eventsByCause();
+}
