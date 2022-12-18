@@ -72,14 +72,14 @@
             placeholder="ZIP CODE"
             v-model="user.zipCode"
             required
-          /><br />
-          <input
+          /><br />  
+          <input 
             type="text"
             onfocus="(this.type='date')"
             id="dateBirth"
             class="form-control"
             placeholder="DATE OF BIRTH"
-            v-model="user.dateBirth"
+            v-model="user.birthDate"
             required
           /><br />
           <input
