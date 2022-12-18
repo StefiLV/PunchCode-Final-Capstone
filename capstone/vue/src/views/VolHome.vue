@@ -81,7 +81,7 @@
 
 <script>
 export default {
-  name: "home"
+  name: "volHome"
 };
 </script>
 
