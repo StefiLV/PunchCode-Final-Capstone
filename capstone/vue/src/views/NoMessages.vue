@@ -19,7 +19,7 @@
     <div id="no-msg-body">
       
       <div id="msg-title">
-        <h2 id="msg-h2">MESSAGES</h2>
+        <h1 id="msg-h1">MESSAGES</h1>
       </div>
 
       <div id="msg-envLogo">
@@ -30,18 +30,13 @@
         <h2 id="no-msg">There are no messages!</h2>
       </div>
 
-      <div id="msg-body2">
-        <div>
-          <input id="msg-input" type="text">
-          <button id="msg-btn">SEND</button>
-        </div>
-      </div>
+    
 
     </div>
   
 
     <div id="no-msg-footer"> 
-      COPYRIGHT © 2022 PUNCHCODE COHORT 3
+      <p>COPYRIGHT © 2022 PUNCHCODE COHORT 3</p>
     </div>
 
   </div>
@@ -64,21 +59,13 @@ export default {
 }
 
 #no-msg-body {
-  height: 80vh;
+  height: 77vh;
   display: grid;
   grid-template-areas:
   msg-title
   msg-envLogo
   noMsgs
-  msg-body2
   no-msg-footer
-}
-
-#no-msg-footer {
-  border-top: 2px solid black;
-  height: 5vh;
-  padding-top: 20px;
-  text-align: center;
 }
 
 #home-nav-bar {
@@ -88,8 +75,8 @@ export default {
 
 #to-go-box {
   float: right;
-  padding-top: 15px;
-  padding-right: 10px;
+  margin-top: 15px;
+  margin-right: 10px;
 }
 
 .nav-icons {
@@ -113,7 +100,8 @@ export default {
 #msg-title {
   height: 15%;
   text-align: center;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+  text-decoration: underline;
 }
 
 #noMsgs{
@@ -138,18 +126,13 @@ export default {
 
 }
 
-#msg-input {
-  width: 60vw;
-  height: 50px;
-
-}
-
-#msg-btn {
-  width: 30vw;
-  height: 56px;
-  background: #0663CB;
-  color: white;
-  letter-spacing: 2px;
+#no-msg-footer {
+  display: grid;
+  border-top: 2px solid black;
+  height: 5vh;
+  padding-top: 20px;
+  justify-items: center;
+  align-items: center;
 }
 
 </style>
