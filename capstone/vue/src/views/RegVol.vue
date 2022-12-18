@@ -15,6 +15,14 @@
       <div id="regOrgForm">
         <form class="form-register" @submit.prevent="register">
           <input
+            type="name"
+            id="name"
+            class="form-control"
+            placeholder="NAME"
+            v-model="user.name"
+            required
+          /><br />
+          <input
             type="text"
             id="username"
             class="form-control"
@@ -172,7 +180,7 @@ h2 {
   height: 70vh;
   background-image: url("../img/RegBG.png");
   background-repeat: no-repeat;
-  background-position: 43% 30%;
+  background-position: 43% 40%;
 }
 
 #regOrgForm {
@@ -185,7 +193,7 @@ h2 {
 .form-control {
   width: 65vw;
   height: 35px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   border-radius: 5px;
   border: 1px solid white;
 }
