@@ -6,13 +6,19 @@ import java.util.List;
 
 public interface EventDao {
 
-    List<Event> findAll();
+    List<Event> list();
 
-    Event getEventById(int eventId);
+    Event findById(int eventId);
 
-    Event findByName(String name);
+//    Event findByName(String name);
 
-    int findIdByName(String name);
+    boolean updateEvent(Event event, int id);
 
-    boolean create(String name, String address, String startDate, String endDate, String startTime, String endTime, String description);
+    void createEvent(Event eventToCreate);
+
+    void deleteEvent(int id);
+
+
+
+//    List<Event> eventsByCause();
 }

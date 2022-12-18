@@ -8,11 +8,18 @@ public interface UserDao {
 
     List<User> findAll();
 
+    List<User> findAllVols();
+
+    List<User> findAllOrgs();
+
     User getUserById(int userId);
 
     User findByUsername(String username);
 
     int findIdByUsername(String username);
+//add name to create method
+    boolean create(String username, String password, String role, boolean organization, String address, String birthDate);
 
-    boolean create(String username, String password, String role);
+    //added a new functions/methods that would enable a search for organization by its name
+    //String findOrgByOrgName(String orgName);
 }
