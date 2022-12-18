@@ -22,34 +22,34 @@ public class JdbcUserDao implements UserDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-//    @Override
-//    public int findIdByUsername(String username) {
-//        if (username == null) throw new IllegalArgumentException("Email cannot be null");
-//
-//        int userId;
-//        try {
-//            userId = jdbcTemplate.queryForObject("select user_id from user where username = ?", int.class, username);
-//        } catch (EmptyResultDataAccessException e) {
-//            throw new UsernameNotFoundException("User " + username + " was not found.");
-//        }
-//        return userId;
-//    }
+    @Override
+    public int findIdByUsername(String username) {
+        if (username == null) throw new IllegalArgumentException("Email cannot be null");
 
-//	@Override
-//	public User getUserById(int userId) {
-//		String sql = "SELECT * FROM user WHERE user_id = ?";
-//		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-//		if (results.next()) {
-//			return mapRowToUser(results);
-//		} else {
-//			throw new UserNotFoundException();
-//		}
-//	}
+        int userId;
+        try {
+            userId = jdbcTemplate.queryForObject("select user_id from user where username = ?", int.class, username);
+        } catch (EmptyResultDataAccessException e) {
+            throw new UsernameNotFoundException("User " + username + " was not found.");
+        }
+        return userId;
+    }
+
+	@Override
+	public User getUserById(int userId) {
+		String sql = "SELECT * FROM user WHERE user_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+		if (results.next()) {
+			return mapRowToUser(results);
+		} else {
+			throw new UserNotFoundException();
+		}
+	}
 
     @Override
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        String sql = "select * from user";
+        String sql = "select * from users";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
@@ -62,7 +62,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<User> findAllVols() {
         List<User> users = new ArrayList<>();
-        String sql = "select * from user where organization = false";
+        String sql = "select * from users where organization = false";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
@@ -75,7 +75,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<User> findAllOrgs() {
         List<User> users = new ArrayList<>();
-        String sql = "select * from user where organization = true";
+        String sql = "select * from users where organization = true";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
@@ -94,16 +94,16 @@ public class JdbcUserDao implements UserDao {
                 return user;
             }
         }
-        throw new UsernameNotFoundException("User " + username + " was not found.");
+        throw new UsernameNotFoundException("Users " + username + " was not found.");
    }
 
     @Override // I've added organization boolean
-    public boolean create(String username, String password, String role, boolean organization) {
-        String insertUserSql = "insert into user  (username,password_hash,role,organization) values (?,?,?, ?)";
+    public boolean create(String name, String username, String password, String role, boolean organization, String address, String birthDate) {
+        String insertUserSql = "insert into users  (name,username,password_hash,role,organization,address,birth_date) values (?,?,?,?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole, organization) == 1;
+        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole, organization, address, birthDate) == 1;
     }
 
     private User mapRowToUser(SqlRowSet rs) {

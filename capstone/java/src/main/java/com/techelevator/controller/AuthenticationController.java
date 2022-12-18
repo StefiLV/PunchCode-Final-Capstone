@@ -59,7 +59,7 @@ public class AuthenticationController {
             User user = userDao.findByUsername(newUser.getUsername());
             throw new UserAlreadyExistsException();
         } catch (UsernameNotFoundException e) {
-            userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole(), newUser.isOrganization());
+            userDao.create(newUser.getName(), newUser.getUsername(),newUser.getPassword(), newUser.getRole(), newUser.isOrganization(), newUser.getAddress(), newUser.getBirthDate());
         }
     }
 
@@ -85,7 +85,7 @@ public class AuthenticationController {
             this.token = token;
         }
 
-        @JsonProperty("user")
+        @JsonProperty("users")
 		public User getUser() {
 			return user;
 		}

@@ -71,29 +71,18 @@ public class JdbcEventDao implements EventDao {
         String sql = "DELETE FROM event WHERE id = ? ";
         jdbcEventTemplate.update(sql, id);
     }
-    @Override
-    public List<Event> usersForEvent() {
-        List<Event> allVols = new ArrayList<>();
-        String sql = "SELECT * FROM event " +
-                "JOIN event_user ON id.user_id = user.user_id " +
-                "JOIN user ON user.user_id = event_user.id";
-        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql);
-        while(results.next()){
-            usersForEvent().add(mapRowToEvent(results));
-        }
-        return allVols;
-    }
-    @Override
-    public List<Event> eventsByCause(){
-        List<Event> allEventsByCause = new ArrayList<>();
-        String sql = "SELECT * FROM event " +
-                "JOIN cause ON cause.id = event.id ";
-        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql);
-        while(results.next()){
-            eventsByCause().add(mapRowToEvent(results));
-        }
-        return allEventsByCause;
-    }
+
+//    @Override
+//    public List<Event> eventsByCause(){
+//        List<Event> allEventsByCause = new ArrayList<>();
+//        String sql = "SELECT * FROM event " +
+//                "JOIN cause ON cause.id = event.id ";
+//        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql);
+//        while(results.next()){
+//            eventsByCause().add(mapRowToEvent(results));
+//        }
+//        return allEventsByCause;
+//    }
 
 
     private Event mapRowToEvent(SqlRowSet rs) {
