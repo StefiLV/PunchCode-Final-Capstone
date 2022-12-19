@@ -1,3 +1,5 @@
+
+
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS event_user, users, event, hours, message, cause CASCADE;
