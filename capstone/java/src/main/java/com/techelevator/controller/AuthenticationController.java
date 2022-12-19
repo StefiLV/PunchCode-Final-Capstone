@@ -44,7 +44,7 @@ public class AuthenticationController {
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.createToken(authentication, false);
-        
+
         User user = userDao.findByUsername(loginDto.getUsername());
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -59,9 +59,9 @@ public class AuthenticationController {
             User user = userDao.findByUsername(newUser.getUsername());
             throw new UserAlreadyExistsException();
         } catch (UsernameNotFoundException e) {
-            userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole(), newUser.isOrganization(), newUser.getAddress(), newUser.getBirthDate());
+            userDao.create(newUser.getName(), newUser.getUsername(), newUser.getPassword(), newUser.getRole(), newUser.isOrganization(), newUser.getAddress(), newUser.getBirthDate());
         }
-    }// add newUser.getName(), above
+    }
 
     /**
      * Object to return as body in JWT Authentication.
