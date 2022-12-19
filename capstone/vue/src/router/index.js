@@ -7,7 +7,8 @@ import RegVol from "../views/RegVol.vue";
 import RegOrg from "../views/RegOrg.vue";
 import VolHome from "../views/VolHome.vue";
 import store from "../store/index";
-import NoMessages from "../views/NoMessages.vue";
+import EmptyMailbox from "../views/EmptyMailbox.vue";
+import Message from "../views/Message.vue";
 
 Vue.use(Router);
 
@@ -65,13 +66,21 @@ const router = new Router({
       },
     },
       {
-        path: "/noMessages", 
-        name: "noMessages",
-        component: NoMessages,
+        path: "/emptyMailbox", 
+        name: "emptyMailbox",
+        component: EmptyMailbox,
         meta: {
           requiresAuth: false,
       },
     },
+      {
+        path: "/message",
+        name: "message", 
+        component: Message, 
+        meta: {
+          requiresAuth: false,
+        },
+      },
     {
       path: "/volHome",
       name: "volHome",
