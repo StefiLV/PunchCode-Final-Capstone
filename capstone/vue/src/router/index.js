@@ -7,6 +7,7 @@ import RegVol from "../views/RegVol.vue";
 import RegOrg from "../views/RegOrg.vue";
 import VolHome from "../views/VolHome.vue";
 import store from "../store/index";
+import NoMessages from "../views/NoMessages.vue";
 
 Vue.use(Router);
 
@@ -63,14 +64,22 @@ const router = new Router({
         requiresAuth: false,
       },
     },
+      {
+        path: "/noMessages", 
+        name: "noMessages",
+        component: NoMessages,
+        meta: {
+          requiresAuth: false,
+      },
+    },
     {
       path: "/volHome",
       name: "volHome",
       component: VolHome,
       meta: {
+
         requiresAuth: true, //This will need to be changed to true. 
     },                       //False allows us to get around login. - Gabe
-    },
   ],
 });
 
