@@ -8,6 +8,8 @@ import RegVol from "../views/RegVol.vue";
 import RegOrg from "../views/RegOrg.vue";
 import VolHome from "../views/VolHome.vue";
 import store from "../store/index";
+import EmptyMailbox from "../views/EmptyMailbox.vue";
+import Message from "../views/Message.vue";
 
 Vue.use(Router);
 
@@ -64,12 +66,29 @@ const router = new Router({
         requiresAuth: false,
       },
     },
+      {
+        path: "/emptyMailbox", 
+        name: "emptyMailbox",
+        component: EmptyMailbox,
+        meta: {
+          requiresAuth: false,
+      },
+    },
+      {
+        path: "/message",
+        name: "message", 
+        component: Message, 
+        meta: {
+          requiresAuth: false,
+        },
+      },
     {
       path: "/volHome",
       name: "volHome",
       component: VolHome,
       meta: {
-        requiresAuth: false, //This will need to be changed to true. 
+
+        requiresAuth: true, //This will need to be changed to true. 
     },                       //False allows us to get around login. - Gabe
     },
     {

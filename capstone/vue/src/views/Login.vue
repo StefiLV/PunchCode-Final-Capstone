@@ -18,7 +18,7 @@
           id="email"
           class="form-control"
           placeholder="EMAIL"
-          v-model="user.email"
+          v-model="user.username"
           required
           autofocus
         /><br>
@@ -33,8 +33,8 @@
         /><br>
 
         <button id="sign-in-btn" type="submit">SIGN IN</button><br>
-        <router-link :to="{ name: 'register' }" id="forgot-pass">Forgot Password?</router-link><br><br>
-        <router-link :to="{ name: 'register' }" id="no-account">Don't have an account?</router-link>
+        <!-- <router-link :to="{ name: 'register' }" id="forgot-pass">Forgot Password?</router-link><br><br>
+        <router-link :to="{ name: 'register' }" id="no-account">Don't have an account?</router-link> -->
 
         </form>
       </div>
@@ -53,14 +53,13 @@ export default {
   data() {
     return {
       user: {
-        email: "",
+        username: "",
         password: ""
       },
       invalidCredentials: false
     };
   },
   methods: {
-    openBurger(){},
     login() {
       authService
         .login(this.user)
@@ -68,7 +67,13 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+            console.log(response.data.user)
+            if(response.data.user.organization == false){
+              this.$router.push("/volHome");
+            } else {
+              this.$router.push("/orgHome");
+            }
+            
           }
         })
         .catch(error => {

@@ -52,7 +52,7 @@
             id="address"
             class="form-control"
             placeholder="ADDRESS"
-            v-model="user.address"
+            v-model="add"
             required
           /><br />
           <input
@@ -60,7 +60,7 @@
             id="city"
             class="form-control"
             placeholder="CITY"
-            v-model="user.city"
+            v-model="city"
             required
           /><br />
           <input
@@ -68,7 +68,7 @@
             id="state"
             class="form-control"
             placeholder="STATE"
-            v-model="user.state"
+            v-model="state"
             required
           /><br />
           <input
@@ -76,7 +76,7 @@
             id="zipCode"
             class="form-control"
             placeholder="ZIP CODE"
-            v-model="user.zipCode"
+            v-model="zipCode"
             required
           /><br />
           <input
@@ -101,9 +101,14 @@ export default {
         username: "",
         password: "",
         confirmPassword: "",
+        address: "",
         role: "user",
         organization: true,
       },
+      add:"",
+      city: "",
+      state:"",
+      zipCode:"",
       registrationErrors: false,
       registrationErrorMsg:
         "There were problems registering this user.",
@@ -117,17 +122,18 @@ export default {
         this.registrationErrorMsg =
           "Password & Confirm Password do not match.";
       } else {
+        this.user.address = this.add + " " + this.city + ", " + this.state + " " + this.zipCode;
+        console.log(this.user);
         authService
           .register(this.user)
           .then((response) => {
             console.log("this shit work");
             if (response.status == 201) {
-              this.$router.push({
-                path: "/login",
-                query: { registration: "success" },
-              });
+              this.$router.push("/login");
+              window.location.reload();
             }
-          })
+            }
+          )
           .catch((error) => {
             const response = error.response;
             this.registrationErrors = true;
