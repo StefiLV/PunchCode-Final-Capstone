@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
+import OrgListing from "../views/OrgListing.vue";
 import RegVol from "../views/RegVol.vue";
 import RegOrg from "../views/RegOrg.vue";
 import VolHome from "../views/VolHome.vue";
@@ -67,6 +68,14 @@ const router = new Router({
       path: "/volHome",
       name: "volHome",
       component: VolHome,
+      meta: {
+        requiresAuth: false, //This will need to be changed to true. 
+    },                       //False allows us to get around login. - Gabe
+    },
+    {
+      path: "/orgListing",
+      name: "orgListing",
+      component: OrgListing,
       meta: {
         requiresAuth: false, //This will need to be changed to true. 
     },                       //False allows us to get around login. - Gabe
