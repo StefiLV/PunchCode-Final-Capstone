@@ -10,6 +10,8 @@ import VolHome from "../views/VolHome.vue";
 import store from "../store/index";
 import EmptyMailbox from "../views/EmptyMailbox.vue";
 import Message from "../views/Message.vue";
+import NoMessage from "../views/NoMessage.vue";
+import Mailbox from "../views/MailBox.vue";
 
 Vue.use(Router);
 
@@ -26,6 +28,22 @@ const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: "/mailbox", 
+      name: "mailbox", 
+      component: Mailbox, 
+      meta: {
+        requiresAuth: false,
+      }, 
+    },
+    {
+      path: "/noMessage", 
+      name: "noMessage",
+      component: NoMessage,
+      meta: {
+        requiresAuth: false,
+      },
+    },
     {
       path: "/",
       name: "home",
@@ -87,8 +105,8 @@ const router = new Router({
       name: "volHome",
       component: VolHome,
       meta: {
-
         requiresAuth: true, //This will need to be changed to true. 
+
     },                       //False allows us to get around login. - Gabe
     },
     {
