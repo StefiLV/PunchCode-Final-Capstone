@@ -21,46 +21,46 @@
       
       <form action="" id="search-bar">
         <input type="text" placeholder="SEARCH">
-        <input type="text" placeholder="ZIP CODE">
-        <button>Radius (mi)</button>
+        <input type="text" placeholder="ZIP CODE" id="zip-code">
+        <select name="radius" id="radius">
+                <option value="radius5">5 miles</option>
+                <option value="radius10">10 miles</option>
+                <option value="radius15">15 miles</option>
+                <option value="radius20">20 miles</option>
+                <option value="radius25+">25+ miles</option>
+            </select>
       </form>
 
       <div id="vol-events">
 
         <div class="event-box">
           <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
-          <h3>Instructor Assistant</h3>
           <h4>PunchCode<br/>401 S. 4th St<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
           <!-- <button class="expand-btn">See More</button> -->
         </div>
 
         <div class="event-box">
           <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
-          <h3>Software Developer</h3>
           <h4>Innovate For Vegas<br/>4th St and Lewis Ave<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
 
         <div class="event-box">
           <img class="event-box-logo" src="../img/ThreeSquareLogo.png"/>
-          <h3>Helper</h3>
           <h4>Three Square<br/>4190 N Pecos Rd<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
 
         <div class="event-box">
           <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
-          <h3>Instructor Assistant</h3>
           <h4>PunchCode<br/>401 S. 4th St<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
 
         <div class="event-box">
           <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
-          <h3>Software Developer</h3>
           <h4>Innovate For Vegas<br/>4th St and Lewis Ave<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
         
         <div class="event-box">
           <img class="event-box-logo" src="../img/ThreeSquareLogo.png"/>
-          <h3>Helper</h3>
           <h4>Three Square<br/>4190 N Pecos Rd<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
 
@@ -161,7 +161,7 @@ img {
 }
 
 .event-box-logo {
-  width: 160px;
+  width: 220px;
   float: right;
   position: relative;
   top: 20px;
@@ -173,7 +173,7 @@ img {
   float: right;
   position: relative;
   bottom: 15px;
-  right: 15px;
+  right: 30px;
 }
 
 #main-footer {
@@ -182,8 +182,9 @@ img {
   padding-top: 15px;
 }
 
-h3 {
-  text-decoration: underline;
+h4 {
+  position: relative;
+  top: 20px;
 }
 
 .expand-btn {
@@ -196,6 +197,10 @@ h3 {
   position: relative;
   right: 20px;
   bottom: 50px;
+}
+
+#zip-code {
+  width: 80px;
 }
 
 </style>
