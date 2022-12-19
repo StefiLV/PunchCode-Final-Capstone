@@ -26,47 +26,49 @@
       
       <form action="" id="search-bar">
         <input type="text" placeholder="SEARCH">
-        <button>Filter</button>
+        <input type="text" placeholder="ZIP CODE">
+        <button>Radius (mi)</button>
       </form>
 
       <div id="vol-events">
 
-        <div class="event-box">
-          <img id="Punch-Code-Logo" src="../img/PunchCodeLogo.png"/>
+                <div class="event-box">
+          <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
           <h3>Instructor Assistant</h3>
-          <h4>PunchCode</h4>
-          <h4>401 S. 4th St</h4>
+          <h4>PunchCode<br/>401 S. 4th St<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
+          <!-- <button class="expand-btn">See More</button> -->
         </div>
 
         <div class="event-box">
-          <img id="Innovate-For-Vegas" src="../img/InnovateForVegas.png"/>
+          <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
           <h3>Software Developer</h3>
-          <h4>Innovate For Vegas</h4>
-          <h4>4th St and Lewis Ave</h4>
-
+          <h4>Innovate For Vegas<br/>4th St and Lewis Ave<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
 
         <div class="event-box">
-          <img id="Three-Square" src="../img/ThreeSquareLogo.png"/>
+          <img class="event-box-logo" src="../img/ThreeSquareLogo.png"/>
           <h3>Helper</h3>
-          <h4>Three Square</h4>
-          <h4>4190 N Pecos Rd</h4>
+          <h4>Three Square<br/>4190 N Pecos Rd<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
 
         <div class="event-box">
-          <img id="Innovate-For-Vegas" src="../img/InnovateForVegas.png"/>
+          <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
+          <h3>Instructor Assistant</h3>
+          <h4>PunchCode<br/>401 S. 4th St<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
+        </div>
+
+        <div class="event-box">
+          <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
           <h3>Software Developer</h3>
-          <h4>Innovate For Vegas</h4>
-          <h4>4th St and Lewis Ave</h4>
-
+          <h4>Innovate For Vegas<br/>4th St and Lewis Ave<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
-
+        
         <div class="event-box">
-          <img id="Three-Square" src="../img/ThreeSquareLogo.png"/>
+          <img class="event-box-logo" src="../img/ThreeSquareLogo.png"/>
           <h3>Helper</h3>
-          <h4>Three Square</h4>
-          <h4>4190 N Pecos Rd</h4>
+          <h4>Three Square<br/>4190 N Pecos Rd<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
+
 
       </div>
 
@@ -81,7 +83,7 @@
 
 <script>
 export default {
-  name: "home"
+  name: "volHome"
 };
 </script>
 
@@ -163,30 +165,29 @@ img {
   padding-bottom: 5px;
 }
 
-#Punch-Code-Logo {
-  width: 50%;
+.event-box-logo {
+  width: 160px;
   float: right;
-  padding-top: 10px;
-  padding-right: 10px;
+  position: relative;
+  top: 20px;
+  right: 10px;
 }
 
-#Innovate-For-Vegas {
-  width: 25%;
+.innovate-for-vegas-logo {
+  width: 160px;
   float: right;
-  padding-right: 50px; 
-}
-
-#Three-Square {
-  width: 50%;
-  float: right;
-  padding-top: 10px;
-  padding-right: 10px;
+  position: relative;
+  bottom: 15px;
+  right: 15px;
 }
 
 #main-footer {
   border-top: 2px solid black;
   height: 5vh;
   padding-top: 15px;
+}
+h3 {
+  text-decoration: underline;
 }
 
 </style>

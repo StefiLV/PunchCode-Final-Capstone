@@ -27,7 +27,7 @@ public class LoginDTO {
    @Override
    public String toString() {
       return "LoginDTO{" +
-              "username='" + username + '\'' +
+              "email='" + username + '\'' +    //changed to email from username
               ", password='" + password + '\'' +
               '}';
    }

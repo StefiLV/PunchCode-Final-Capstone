@@ -6,7 +6,7 @@ CREATE TABLE users (
 	user_id SERIAL PRIMARY KEY,
 	name varchar(100),
 	username varchar (50) NOT NULL UNIQUE,
-	birth_date date,
+	birth_date varchar(10),
 	phone_number varchar (15),
 	description varchar(500),
 	address varchar (100),
@@ -60,3 +60,4 @@ CREATE TABLE cause(
 COMMIT;
 
 --ROLLBACK;
+

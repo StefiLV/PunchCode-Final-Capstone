@@ -1,10 +1,8 @@
 <template>
   <div id="regOrg" class="text-center">
     <div id="regOrgNav">
-      <div id="to-go-box">
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
+      <div id="to-go-box" v-on:click="openBurger">
+        <img src="../img/Hamburger.png" id="hamburger" />
       </div>
     </div>
 
@@ -16,6 +14,14 @@
     <div id="regOrgBody">
       <div id="regOrgForm">
         <form class="form-register" @submit.prevent="register">
+          <input
+            type="name"
+            id="name"
+            class="form-control"
+            placeholder="NAME"
+            v-model="user.name"
+            required
+          /><br />
           <input
             type="text"
             id="username"
@@ -46,7 +52,7 @@
             id="address"
             class="form-control"
             placeholder="ADDRESS"
-            v-model="user.address"
+            v-model="add"
             required
           /><br />
           <input
@@ -54,7 +60,7 @@
             id="city"
             class="form-control"
             placeholder="CITY"
-            v-model="user.city"
+            v-model="city"
             required
           /><br />
           <input
@@ -62,7 +68,7 @@
             id="state"
             class="form-control"
             placeholder="STATE"
-            v-model="user.state"
+            v-model="state"
             required
           /><br />
           <input
@@ -70,7 +76,7 @@
             id="zipCode"
             class="form-control"
             placeholder="ZIP CODE"
-            v-model="user.zipCode"
+            v-model="zipCode"
             required
           /><br />  
           <input 
@@ -104,29 +110,35 @@ export default {
         username: "",
         password: "",
         confirmPassword: "",
+        address: "",
         role: "user",
         organization: false,
       },
+      add:"",
+      city: "",
+      state:"",
+      zipCode:"",
       registrationErrors: false,
       registrationErrorMsg:
         "There were problems registering this user.",
     };
   },
   methods: {
+
     register() {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg =
           "Password & Confirm Password do not match.";
       } else {
+        this.user.address = this.add + " " + this.city + ", " + this.state + " " + this.zipCode;
+        console.log(this.user);
         authService
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
-              this.$router.push({
-                path: "/login",
-                query: { registration: "success" },
-              });
+              this.$router.push("/login");
+              window.location.reload();
             }
           })
           .catch((error) => {
@@ -145,6 +157,11 @@ export default {
         "There were problems registering this user.";
     },
   },
+  // computed: {
+  //   concat(){
+  //     this.addy.add + " " + this.addy.city + ", " + this.addy.state + " " + this.addy.zipCode;
+  // },
+  
 };
 </script>
 
@@ -173,7 +190,7 @@ h2 {
   height: 70vh;
   background-image: url("../img/RegBG.png");
   background-repeat: no-repeat;
-  background-position: 43% 30%;
+  background-position: 43% 40%;
 }
 
 #regOrgForm {
@@ -186,7 +203,7 @@ h2 {
 .form-control {
   width: 65vw;
   height: 35px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   border-radius: 5px;
   border: 1px solid white;
 }
@@ -221,5 +238,10 @@ h2 {
   height: 5px;
   background-color: black;
   margin: 6px 0;
+}
+#hamburger {
+  width: 6%;
+  float: right;
+  margin-top: 5px;
 }
 </style>
