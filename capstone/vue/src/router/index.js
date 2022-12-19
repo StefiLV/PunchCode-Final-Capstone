@@ -7,6 +7,7 @@ import RegVol from "../views/RegVol.vue";
 import RegOrg from "../views/RegOrg.vue";
 import VolHome from "../views/VolHome.vue";
 import store from "../store/index";
+import VolProfile from "../views/VolProfile.vue";
 
 Vue.use(Router);
 
@@ -68,8 +69,16 @@ const router = new Router({
       name: "volHome",
       component: VolHome,
       meta: {
-        requiresAuth: false, //This will need to be changed to true. 
-    },                       //False allows us to get around login. - Gabe
+        requiresAuth: false, //This will need to be changed to true.
+      }, //False allows us to get around login. - Gabe
+    },
+    {
+      path: "/volProfile",
+      name: "volProfile",
+      component: VolProfile,
+      meta: {
+        requiresAuth: false,
+      },
     },
   ],
 });
