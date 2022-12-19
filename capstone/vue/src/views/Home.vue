@@ -25,16 +25,20 @@
         <button>Radius (mi)</button>
       </form>
 
-      <div id="vol-events">
+      <div id="vol-events"
+      v-for="event in events"
+      v-bind:key="event.id"
+      >
 
-        <div class="event-box">
+        <div class="event-box"
+        >
           <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
-          <h3>Instructor Assistant</h3>
-          <h4>PunchCode<br/>401 S. 4th St<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
+          <h3>{{event.name}}</h3>
+          <h4>{{event.address}}<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
           <!-- <button class="expand-btn">See More</button> -->
         </div>
 
-        <div class="event-box">
+        <!-- <div class="event-box">
           <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
           <h3>Software Developer</h3>
           <h4>Innovate For Vegas<br/>4th St and Lewis Ave<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
@@ -62,7 +66,7 @@
           <img class="event-box-logo" src="../img/ThreeSquareLogo.png"/>
           <h3>Helper</h3>
           <h4>Three Square<br/>4190 N Pecos Rd<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
-        </div>
+        </div> -->
 
       </div>
 
@@ -76,8 +80,25 @@
 </template>
 
 <script>
+import eventService from '../services/EventService';
+
 export default {
-  name: "home"
+  name: "home",
+  data(){
+    return { events: [] };
+  },
+
+  created() {
+  eventService
+    .list()
+    .then((res) => {
+      this.events = res.data;
+    })
+    .catch((err) => {
+      console.error(err + ' uh oh missing product');
+    });
+},
+
 };
 </script>
 

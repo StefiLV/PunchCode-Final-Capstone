@@ -80,9 +80,9 @@ const router = new Router({
 
         requiresAuth: true, //This will need to be changed to true. 
     },                       //False allows us to get around login. - Gabe
-  ],
+  },
+],
 });
-
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);

@@ -39,7 +39,7 @@
           <!-- <button class="expand-btn">See More</button> -->
         </div>
 
-        <div class="event-box">
+        <!-- <div class="event-box">
           <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
           <h3>Software Developer</h3>
           <h4>Innovate For Vegas<br/>4th St and Lewis Ave<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
@@ -68,7 +68,7 @@
           <h3>Helper</h3>
           <h4>Three Square<br/>4190 N Pecos Rd<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
-
+ -->
 
       </div>
 

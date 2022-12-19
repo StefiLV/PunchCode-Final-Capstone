@@ -40,11 +40,11 @@
             required
           /><br />
           <input
-            type="orgName"
-            id="orgName"
+            type="name"
+            id="name"
             class="form-control"
             placeholder="ORGANIZATION NAME"
-            v-model="user.orgName"
+            v-model="user.name"
             required
           /><br />
           <input
@@ -102,6 +102,7 @@ export default {
         password: "",
         confirmPassword: "",
         address: "",
+        name: "",
         role: "user",
         organization: true,
       },
@@ -132,8 +133,7 @@ export default {
               this.$router.push("/login");
               window.location.reload();
             }
-            }
-          )
+          })
           .catch((error) => {
             const response = error.response;
             this.registrationErrors = true;
