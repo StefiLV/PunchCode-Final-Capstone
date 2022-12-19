@@ -162,7 +162,7 @@ export default {
 #main-logo {
   display: block;
   margin-right: auto;
-  width: 15%;
+  width: 27%;
   padding-top: 5px;
   padding-bottom: 5px;
 }
