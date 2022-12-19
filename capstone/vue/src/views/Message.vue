@@ -20,7 +20,7 @@
             
             <div id="msg-title">
                 <h2 id="msg-h2">MESSAGES</h2>
-                <h3 id="msg-h3">Lance Amolo</h3>
+                <h3 id="msg-h3">Name</h3>
             </div>
   
             <div id="msg-body1">
