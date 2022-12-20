@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.techelevator.dao.UserDao;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -61,10 +62,20 @@ public class AuthenticationController {
             userDao.create(newUser.getName(), newUser.getUsername(), newUser.getPassword(), newUser.getRole(), newUser.isOrganization(), newUser.getAddress(), newUser.getBirthDate());
         }
     }
-    @RequestMapping(path = "/user", method = RequestMethod.GET)
+    @RequestMapping(path = "/api/users", method = RequestMethod.GET)
     public List<User> findAll() {
         List<User> allUsers = userDao.findAll();
         return allUsers;
+    }
+
+    @RequestMapping(path = "/api/users/{id}", method = RequestMethod.GET)
+    public User get(@PathVariable int id) {
+        User users = userDao.getUserById(id);
+        if (users == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Event Not Found");
+        } else {
+            return userDao.getUserById(id);
+        }
     }
     /**
      * Object to return as body in JWT Authentication.

@@ -10,7 +10,11 @@ export default {
     },
     get(id) {
         return axios.get(`/events/${id}`)
-      }
-      
+      },
+
+      getUsers(){
+        return axios.get('/api/users')
+    },
+    
 
 }

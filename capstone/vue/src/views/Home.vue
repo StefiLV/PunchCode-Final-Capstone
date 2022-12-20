@@ -31,13 +31,17 @@
             </select>
       </form>
     </div>
-       <div id="vol-events"
-       v-for="event in events"
+       <div id="event-box"
+       v-for="event in events" 
       v-bind:key="event.id"
       >
-      <div class="event-box">
-          <img class="event-box-logo"/>
-          <h3>{{event.name}}</h3> <p>{{user.profilePic}}</p>
+      <!-- <div id="vol-events"
+       v-for="user in users" 
+      v-bind:key="user.id"
+      > -->
+      <div class="event-box" >
+          <img class="event-box-logo" v-bind:src="event.orgLogo"/>
+          <h3>{{event.name}}</h3> 
           <h4>{{event.address}}</h4>
           <p>{{event.description}}</p>
           <p>Start Date: {{event.startDate}}</p>
@@ -45,14 +49,14 @@
           <!-- <button class="expand-btn">See More</button> -->
         </div>
 
-    <!-- <div class="event-box">
+   <!-- <div class="event-box">
           <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
         <h3>{{event.name}}</h3>
           <h4>{{event.address}}</h4>
           <p>{{event.description}}</p>
-        </div> -->
-    <!--
-        <div class="event-box">
+        </div> 
+    
+       <div class="event-box">
           <img class="event-box-logo" src="../img/ThreeSquareLogo.png"/>
           <h4>Three Square<br/>4190 N Pecos Rd<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
@@ -86,12 +90,12 @@
 <script>
 import axios from 'axios';
 import eventService from '../services/EventService.js';
-
+// import authService from '../services/AuthService.js';
 export default {
   name: "home",
   data(){
     return { 
-      user: null,
+      // users: null,
       events: null,
       userId: null,
       profilePic: null,
@@ -106,11 +110,11 @@ export default {
       console.error(err + ' uh oh missing product');
     })
     
-},
-userCreated(){
-      eventService.list().then((res) => {
-      this.user = res.data;
-    })},
+ },
+// userCreated(){
+//       eventService.getUsers().then((res) => {
+//       this.user = res.data;
+//     })},
 mounted(){
   axios
     .get('http://localhost:9000/api/events')
@@ -120,11 +124,12 @@ mounted(){
       console.log(this.events)
     ));
 
-  axios
-    .get('http://localhost:9000/api/user')
-    .then(resp => (
-      this.events = resp.data,
-      console.log(this.user)));
+  // axios
+  //   .get('http://localhost:9000/api/users')
+  //   .then(resp => (
+  //     this.users = resp.data,
+  //     // this.profilePic = user.profilePic,
+  //     console.log(this.user)));
 
   // axios
   //   .post('http://localhost:9000/api/events')
