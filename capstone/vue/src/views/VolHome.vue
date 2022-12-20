@@ -28,6 +28,13 @@
         <input type="text" placeholder="SEARCH">
         <input type="text" placeholder="ZIP CODE">
         <button>Radius (mi)</button>
+        <select name="radius" id="radius">
+                <option value="radius5">5 miles</option>
+                <option value="radius10">10 miles</option>
+                <option value="radius15">15 miles</option>
+                <option value="radius20">20 miles</option>
+                <option value="radius25+">25+ miles</option>
+            </select>
       </form>
 
       <div id="vol-events">
@@ -39,7 +46,7 @@
           <!-- <button class="expand-btn">See More</button> -->
         </div>
 
-        <!-- <div class="event-box">
+        <div class="event-box">
           <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
           <h3>Software Developer</h3>
           <h4>Innovate For Vegas<br/>4th St and Lewis Ave<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
@@ -68,7 +75,7 @@
           <h3>Helper</h3>
           <h4>Three Square<br/>4190 N Pecos Rd<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
         </div>
- -->
+
 
       </div>
 

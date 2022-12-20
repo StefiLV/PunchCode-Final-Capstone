@@ -1,8 +1,16 @@
 import axios from 'axios';
 
+// const http = axios.create({
+//     baseURL: "http://localhost:8080"
+// })
+
 export default {
     list(){
-        return axios.get('http://localhost:8080/api/events');
+        return axios.get('/api/events');
     },
+    get(id) {
+        return axios.get(`/events/${id}`)
+      }
+      
 
 }
