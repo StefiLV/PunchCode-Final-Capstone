@@ -67,10 +67,12 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            
+            this.$store.commit("SET_USER_ID", response.data.user.userId);
+            console.log(response.data.user)
             if(response.data.user.organization == false){
               this.$router.push("/volHome");
             } else {
+              this.$store.commit("SET_ORG_PIC", response.data.user.profilePic);
               this.$router.push("/orgHome");
             }
             

@@ -3,11 +3,17 @@ import Router from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
+import OrgListing from "../views/OrgListing.vue";
 import RegVol from "../views/RegVol.vue";
 import RegOrg from "../views/RegOrg.vue";
 import VolHome from "../views/VolHome.vue";
 import store from "../store/index";
 import VolProfile from "../views/VolProfile.vue";
+import EmptyMailbox from "../views/EmptyMailbox.vue";
+import Message from "../views/Message.vue";
+import NoMessage from "../views/NoMessage.vue";
+import Mailbox from "../views/MailBox.vue";
+
 
 Vue.use(Router);
 
@@ -24,6 +30,22 @@ const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: "/mailbox", 
+      name: "mailbox", 
+      component: Mailbox, 
+      meta: {
+        requiresAuth: false,
+      }, 
+    },
+    {
+      path: "/noMessage", 
+      name: "noMessage",
+      component: NoMessage,
+      meta: {
+        requiresAuth: false,
+      },
+    },
     {
       path: "/",
       name: "home",
@@ -64,6 +86,22 @@ const router = new Router({
         requiresAuth: false,
       },
     },
+      {
+        path: "/emptyMailbox", 
+        name: "emptyMailbox",
+        component: EmptyMailbox,
+        meta: {
+          requiresAuth: false,
+      },
+    },
+      {
+        path: "/message",
+        name: "message", 
+        component: Message, 
+        meta: {
+          requiresAuth: false,
+        },
+      },
     {
       path: "/volHome",
       name: "volHome",
@@ -79,9 +117,21 @@ const router = new Router({
       meta: {
         requiresAuth: false,
       },
+        requiresAuth: true, //This will need to be changed to true. 
+
+    },                       //False allows us to get around login. - Gabe
+  },
+    {
+      path: "/orgListing",
+      name: "orgListing",
+      component: OrgListing,
+      meta: {
+        requiresAuth: false, //This will need to be changed to true. 
+    },                       //False allows us to get around login. - Gabe
     },
-  ],
+  ]
 });
+  
 
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication

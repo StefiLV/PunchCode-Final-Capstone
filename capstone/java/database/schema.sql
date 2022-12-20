@@ -1,3 +1,5 @@
+
+
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS event_user, users, event, hours, message, cause CASCADE;
@@ -21,6 +23,7 @@ CREATE TABLE users (
 CREATE TABLE event (
 	id SERIAL PRIMARY KEY,
 	name varchar (50) NOT NULL,
+	org_owner int REFERENCES users(user_id),
 	address varchar (100),
 	start_date date NOT NULL,
 	end_date date NOT NULL,

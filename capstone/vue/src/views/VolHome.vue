@@ -35,6 +35,13 @@
         <input type="text" placeholder="SEARCH" />
         <input type="text" placeholder="ZIP CODE" />
         <button>Radius (mi)</button>
+        <select name="radius" id="radius">
+                <option value="radius5">5 miles</option>
+                <option value="radius10">10 miles</option>
+                <option value="radius15">15 miles</option>
+                <option value="radius20">20 miles</option>
+                <option value="radius25+">25+ miles</option>
+            </select>
       </form>
 
       <div id="vol-events">

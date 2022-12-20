@@ -2,28 +2,28 @@ package com.techelevator.controller;
 import com.techelevator.model.Event;
 import java.util.List;
 import com.techelevator.dao.EventDao;
-import com.techelevator.model.EventNotFoundException;
-import com.techelevator.model.Message;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/events")
+@RequestMapping("/api")
 public class EventController {
 
-    private final EventDao eventDao;
+    @Autowired EventDao eventDao;
 
     public EventController(EventDao eventDao) {
         this.eventDao = eventDao;
     }
 
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping(path = {"/events"})
     public List<Event> list() {
-        return eventDao.list();
+        List<Event> allEvents = eventDao.list();
+        return allEvents;
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)

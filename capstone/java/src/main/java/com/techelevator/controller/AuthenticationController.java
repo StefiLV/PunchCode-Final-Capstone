@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import javax.validation.Valid;
 
+import com.techelevator.model.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.techelevator.dao.UserDao;
-import com.techelevator.model.LoginDTO;
-import com.techelevator.model.RegisterUserDTO;
-import com.techelevator.model.User;
-import com.techelevator.model.UserAlreadyExistsException;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -44,7 +43,7 @@ public class AuthenticationController {
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.createToken(authentication, false);
-        
+
         User user = userDao.findByUsername(loginDto.getUsername());
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -59,10 +58,14 @@ public class AuthenticationController {
             User user = userDao.findByUsername(newUser.getUsername());
             throw new UserAlreadyExistsException();
         } catch (UsernameNotFoundException e) {
-            userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole(), newUser.isOrganization(), newUser.getAddress(), newUser.getBirthDate());
+            userDao.create(newUser.getName(), newUser.getUsername(), newUser.getPassword(), newUser.getRole(), newUser.isOrganization(), newUser.getAddress(), newUser.getBirthDate());
         }
-    }// add newUser.getName(), above
-
+    }
+    @RequestMapping(path = "/user", method = RequestMethod.GET)
+    public List<User> findAll() {
+        List<User> allUsers = userDao.findAll();
+        return allUsers;
+    }
     /**
      * Object to return as body in JWT Authentication.
      */
