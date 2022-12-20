@@ -8,11 +8,12 @@ import RegVol from "../views/RegVol.vue";
 import RegOrg from "../views/RegOrg.vue";
 import VolHome from "../views/VolHome.vue";
 import store from "../store/index";
+import VolProfile from "../views/VolProfile.vue";
 import EmptyMailbox from "../views/EmptyMailbox.vue";
 import Message from "../views/Message.vue";
 import NoMessage from "../views/NoMessage.vue";
 import Mailbox from "../views/MailBox.vue";
-import Events from "../views/Home.vue";//might delete
+
 
 Vue.use(Router);
 
@@ -62,14 +63,6 @@ const router = new Router({
       },
     },
     {
-      path: '/:id',
-      name: 'Events',//might delete
-      component: Events,
-      meta:{
-        requiresAuth: true,
-      }
-    },
-    {
       path: "/logout",
       name: "logout",
       component: Logout,
@@ -114,6 +107,16 @@ const router = new Router({
       name: "volHome",
       component: VolHome,
       meta: {
+        requiresAuth: false, //This will need to be changed to true.
+      }, //False allows us to get around login. - Gabe
+    },
+    {
+      path: "/volProfile",
+      name: "volProfile",
+      component: VolProfile,
+      meta: {
+        requiresAuth: false,
+      },
         requiresAuth: true, //This will need to be changed to true. 
 
     },                       //False allows us to get around login. - Gabe
