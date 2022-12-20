@@ -21,7 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api")
 
 public class HoursController {
 
