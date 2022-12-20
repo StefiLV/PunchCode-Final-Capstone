@@ -12,6 +12,7 @@ import EmptyMailbox from "../views/EmptyMailbox.vue";
 import Message from "../views/Message.vue";
 import NoMessage from "../views/NoMessage.vue";
 import Mailbox from "../views/MailBox.vue";
+import Events from "../views/Home.vue";//might delete
 
 Vue.use(Router);
 
@@ -61,6 +62,14 @@ const router = new Router({
       },
     },
     {
+      path: '/:id',
+      name: 'Events',//might delete
+      component: Events,
+      meta:{
+        requiresAuth: true,
+      }
+    },
+    {
       path: "/logout",
       name: "logout",
       component: Logout,
@@ -108,7 +117,7 @@ const router = new Router({
         requiresAuth: true, //This will need to be changed to true. 
 
     },                       //False allows us to get around login. - Gabe
-    },
+  },
     {
       path: "/orgListing",
       name: "orgListing",
@@ -117,8 +126,9 @@ const router = new Router({
         requiresAuth: false, //This will need to be changed to true. 
     },                       //False allows us to get around login. - Gabe
     },
-  ],
+  ]
 });
+  
 
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication

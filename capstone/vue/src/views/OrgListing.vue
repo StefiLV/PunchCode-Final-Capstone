@@ -80,8 +80,25 @@
 
 <script>
 export default {
-  name: "home"
+  name: "home",
+  data(){
+
+  },
+//   mounted(){
+//   this.userId = localStorage.userId;
+//   axios
+//     .get('http://localhost:9000/api/events')
+//     .then(resp => (this.events = resp.data));
+
+//   axios
+//     .get('http://localhost:9000/api/')
+
+//   // axios
+//   //   .post('http://localhost:9000/api/events')
+//   //   .then()
+// },
 };
+
 </script>
 
 <style scoped>
