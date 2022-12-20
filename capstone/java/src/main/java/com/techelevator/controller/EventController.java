@@ -26,7 +26,7 @@ public class EventController {
         return allEvents;
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/events/{id}", method = RequestMethod.GET)
     public Event get(@PathVariable int id) {
         Event event = eventDao.findById(id);
         if (event == null) {

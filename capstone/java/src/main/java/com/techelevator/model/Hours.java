@@ -7,7 +7,7 @@ public class Hours {
     private int hours;
     private String approval_status;
 
-    public Hours(){};
+    public Hours(){}
 
     public Hours(int id, int user_id, int event_id, int hours, String approval_status){
         this.id = id;

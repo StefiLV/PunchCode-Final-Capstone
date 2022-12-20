@@ -4,6 +4,7 @@ public class Event {
 
     private int eventId;
     private String name;
+    private String orgLogo;
     private int ownerId;
     private String address;
     private String startDate;
@@ -15,9 +16,10 @@ public class Event {
 
     public Event(){ }
 
-    public Event(int eventId, String name, int ownerId, String address, String startDate, String endDate, String startTime, String endTime, String description, int counter){
+    public Event(int eventId, String name, String orgLogo, int ownerId, String address, String startDate, String endDate, String startTime, String endTime, String description, int counter){
         this.eventId = eventId;
         this.name = name;
+        this.orgLogo = orgLogo;
         this.ownerId = ownerId;
         this.address = address;
         this.startDate = startDate;
@@ -33,6 +35,9 @@ public class Event {
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+
+    public String getOrgLogo() { return orgLogo; }
+    public void setOrgLogo(String orgLogo) { this.orgLogo = orgLogo; }
 
     public int getownerId() { return ownerId; }
     public void setownerId(int ownerId){ this.ownerId = ownerId; }
