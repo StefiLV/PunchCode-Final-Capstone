@@ -48,7 +48,7 @@
           <p>End Date: {{event.endDate}}</p>
           <!-- <button class="expand-btn">See More</button> -->
         </div>
-
+ 
    <!-- <div class="event-box">
           <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
         <h3>{{event.name}}</h3>
