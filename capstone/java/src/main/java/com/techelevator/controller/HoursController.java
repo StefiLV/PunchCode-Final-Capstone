@@ -82,8 +82,4 @@ public class HoursController {
     public void delete(@PathVariable int id){
         dao.deleteId(id);
     }
-
-
-
-
 }
