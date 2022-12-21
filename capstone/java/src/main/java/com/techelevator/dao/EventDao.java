@@ -14,9 +14,9 @@ public interface EventDao {
 
     boolean updateEvent(Event event, int id);
 
-    void createEvent(Event eventToCreate);
+    boolean createEvent(Event newEvent);
 
-    void deleteEvent(int id);
+    boolean deleteEvent(int id);
 
 
 

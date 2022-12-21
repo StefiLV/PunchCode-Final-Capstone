@@ -65,14 +65,14 @@ public class JdbcEventDao implements EventDao {
     }
 
     @Override
-    public void createEvent(Event eventToCreate){
-        String sql = "INSERT INTO event (id, name, org_owner, org_logo, address, start_date, end_date, start_time, end_time, description, user_counter) VALUES ( DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcEventTemplate.update(sql, eventToCreate.getName(), eventToCreate.getownerId(), eventToCreate.getOrgLogo(), eventToCreate.getAddress(), eventToCreate.getStartDate(), eventToCreate.getEndDate(), eventToCreate.getStartTime(), eventToCreate.getEndTime(), eventToCreate.getDescription(), eventToCreate.getCounter());
+    public boolean createEvent(Event newEvent){
+        String sql = "INSERT INTO event (id, name, org_owner, org_logo, address, start_date, end_date, start_time, end_time, description, user_counter) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        return jdbcEventTemplate.update(sql, newEvent.getName(), newEvent.getownerId(), newEvent.getOrgLogo(), newEvent.getAddress(), newEvent.getStartDate(), newEvent.getEndDate(), newEvent.getStartTime(), newEvent.getEndTime(), newEvent.getDescription(), newEvent.getCounter()) == 1;
     }
     @Override
-    public void deleteEvent(int id) {
+    public boolean deleteEvent(int id) {
         String sql = "DELETE FROM event WHERE id = ? ";
-        jdbcEventTemplate.update(sql, id);
+        return jdbcEventTemplate.update(sql, id) == 1;
     }
 
 //    @Override
