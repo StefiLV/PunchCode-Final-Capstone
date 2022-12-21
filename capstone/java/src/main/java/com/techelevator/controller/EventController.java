@@ -23,6 +23,7 @@ public class EventController {
     @GetMapping(path = {"/events"})
     public List<Event> list() {
         List<Event> allEvents = eventDao.list();
+
         return allEvents;
     }
 
@@ -36,19 +37,20 @@ public class EventController {
         }
     }
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "", method = RequestMethod.POST)
+    @RequestMapping(path = "/events", method = RequestMethod.POST)
     public void create(@Valid @RequestBody Event event){
         eventDao.createEvent(event);
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/events/{id}", method = RequestMethod.PUT)
     public void update(@Valid @RequestBody Event event, @Valid @PathVariable int id) {
         eventDao.updateEvent(event, id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/events/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable int id){
+        if(eventDao.findById(id) != null)
         eventDao.deleteEvent(id);
     }
 

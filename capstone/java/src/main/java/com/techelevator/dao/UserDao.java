@@ -16,7 +16,11 @@ public interface UserDao {
 
     User findByUsername(String username);
 
+    boolean update(User user, int id);
+
     int findIdByUsername(String username);
+
+    List<User> byEventId(int eventId);
 
     boolean create(String name, String username, String password, String role, boolean organization, String address, String birthDate);
 

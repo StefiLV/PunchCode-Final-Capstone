@@ -11,12 +11,17 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import com.techelevator.model.User;
+import com.techelevator.model.Event;
 
 @Component
 public class JdbcUserDao implements UserDao {
     private final JdbcTemplate jdbcTemplate;
+
+    @Autowired EventDao eventDao;
+//    @Override
+
 
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -106,6 +111,28 @@ public class JdbcUserDao implements UserDao {
 
         return jdbcTemplate.update(insertUserSql, name, username, password_hash, ssRole, organization, address, birthDate) == 1;
     }
+    @Override//still needs fix
+    public boolean update(User user, int id){
+        String sql = "UPDATE users SET name = ?, username = ?, birth_date = ?, phone_number = ?, description = ?, address = ?, profile_pic = ?, hero_banner = ?, password_hash = ?, organization = ?, verified = ?, minor = ? WHERE user_id = ?";
+        return jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getBirthDate(), user.getPhoneNumber(), user.getDescription(), user.getAddress(), user.getProfilePic(), user.getHeroBanner(), user.getPassword(), user.isOrganization(), user.isVerified(), user.isMinor(),  id) == 1;
+    }
+    @Override
+    public List<User> byEventId(int eventId){
+        List<User> users = new ArrayList<>();
+
+        Event eventModel;
+
+        String sql = "SELECT * FROM users u " +
+                "JOIN event_user eu ON u.user_id = eu.user_id " +
+                "JOIN event e ON e.id = eu.event_id " +
+                "WHERE e.id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, eventId);
+        while(results.next()) {
+            User event = mapRowToUser(results);
+            users.add(event);
+        }
+        return users;
+    }
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
@@ -114,11 +141,13 @@ public class JdbcUserDao implements UserDao {
         user.setName(rs.getString("name"));
         user.setBirthDate(rs.getString("birth_date"));
         user.setPhoneNumber(rs.getString("phone_number"));
+        user.setDescription(rs.getString("description"));
         user.setPhoneNumber(rs.getString("address"));
         user.setProfilePic(rs.getString("profile_pic"));
         user.setHeroBanner(rs.getString("hero_banner"));
         user.setOrganization(rs.getBoolean("organization"));
         user.setVerified(rs.getBoolean("verified"));
+        user.setMinor(rs.getBoolean("minor"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
         user.setActivated(true);
