@@ -1,7 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Event;
-
+import com.techelevator.model.User;
 import java.util.List;
 
 public interface EventDao {
@@ -17,6 +17,7 @@ public interface EventDao {
     void createEvent(Event eventToCreate);
 
     void deleteEvent(int id);
+
 
 
 

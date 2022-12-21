@@ -30,7 +30,7 @@ public class Event {
         this.counter = counter;
     }
 
-    public int getEventId() { return eventId; }
+    public int getEventId(int id) { return eventId; }
     public void setEventId(int id) { this.eventId = id; }
 
     public String getName() { return name; }

@@ -18,6 +18,8 @@ public interface UserDao {
 
     int findIdByUsername(String username);
 
+    List<User> byEventId(int eventId);
+
     boolean create(String name, String username, String password, String role, boolean organization, String address, String birthDate);
 
     // I've added organization boolean

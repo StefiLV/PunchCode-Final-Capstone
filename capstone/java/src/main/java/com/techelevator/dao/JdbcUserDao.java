@@ -11,12 +11,17 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import com.techelevator.model.User;
+import com.techelevator.model.Event;
 
 @Component
 public class JdbcUserDao implements UserDao {
     private final JdbcTemplate jdbcTemplate;
+
+    @Autowired EventDao eventDao;
+//    @Override
+
 
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -105,6 +110,23 @@ public class JdbcUserDao implements UserDao {
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
         return jdbcTemplate.update(insertUserSql, name, username, password_hash, ssRole, organization, address, birthDate) == 1;
+    }
+    @Override
+    public List<User> byEventId(int eventId){
+        List<User> users = new ArrayList<>();
+
+        Event eventModel;
+
+        String sql = "SELECT * FROM users u " +
+                "JOIN event_user eu ON u.user_id = eu.user_id " +
+                "JOIN event e ON e.id = eu.event_id " +
+                "WHERE e.id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, eventId);
+        while(results.next()) {
+            User event = mapRowToUser(results);
+            users.add(event);
+        }
+        return users;
     }
 
     private User mapRowToUser(SqlRowSet rs) {
