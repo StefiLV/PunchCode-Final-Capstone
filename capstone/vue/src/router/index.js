@@ -8,11 +8,11 @@ import RegVol from "../views/RegVol.vue";
 import RegOrg from "../views/RegOrg.vue";
 import VolHome from "../views/VolHome.vue";
 import store from "../store/index";
-import VolProfile from "../views/VolProfile.vue";
 import EmptyMailbox from "../views/EmptyMailbox.vue";
 import Message from "../views/Message.vue";
 import NoMessage from "../views/NoMessage.vue";
 import Mailbox from "../views/MailBox.vue";
+// import Events from "../views/Home.vue";//might delete
 
 Vue.use(Router);
 
@@ -30,15 +30,15 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/mailbox",
-      name: "mailbox",
-      component: Mailbox,
+      path: "/mailbox", 
+      name: "mailbox", 
+      component: Mailbox, 
       meta: {
         requiresAuth: false,
-      },
+      }, 
     },
     {
-      path: "/noMessage",
+      path: "/noMessage", 
       name: "noMessage",
       component: NoMessage,
       meta: {
@@ -61,6 +61,14 @@ const router = new Router({
         requiresAuth: false,
       },
     },
+    // {
+    //   path: '/:id',
+    //   name: 'Events',//might delete
+    //   component: Events,
+    //   meta:{
+    //     requiresAuth: true,
+    //   }
+    // },
     {
       path: "/logout",
       name: "logout",
@@ -85,48 +93,42 @@ const router = new Router({
         requiresAuth: false,
       },
     },
-    {
-      path: "/emptyMailbox",
-      name: "emptyMailbox",
-      component: EmptyMailbox,
-      meta: {
-        requiresAuth: false,
+      {
+        path: "/emptyMailbox", 
+        name: "emptyMailbox",
+        component: EmptyMailbox,
+        meta: {
+          requiresAuth: false,
       },
     },
-    {
-      path: "/message",
-      name: "message",
-      component: Message,
-      meta: {
-        requiresAuth: false,
+      {
+        path: "/message",
+        name: "message", 
+        component: Message, 
+        meta: {
+          requiresAuth: false,
+        },
       },
-    },
     {
       path: "/volHome",
       name: "volHome",
       component: VolHome,
       meta: {
-        requiresAuth: false, //This will need to be changed to true.
-      }, //False allows us to get around login. - Gabe
-    },
-    {
-      path: "/volProfile",
-      name: "volProfile",
-      component: VolProfile,
-      meta: {
-        requiresAuth: false,
-      },
-    },
+        requiresAuth: true, //This will need to be changed to true. 
+
+    },                       //False allows us to get around login. - Gabe
+  },
     {
       path: "/orgListing",
       name: "orgListing",
       component: OrgListing,
       meta: {
-        requiresAuth: false, //This will need to be changed to true.
-      }, //False allows us to get around login. - Gabe
+        requiresAuth: false, //This will need to be changed to true. 
+    },                       //False allows us to get around login. - Gabe
     },
-  ],
+  ]
 });
+  
 
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication

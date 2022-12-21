@@ -79,24 +79,19 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "home",
   data(){
 
   },
-//   mounted(){
-//   this.userId = localStorage.userId;
-//   axios
-//     .get('http://localhost:9000/api/events')
-//     .then(resp => (this.events = resp.data));
+  mounted(){
+  this.userId = localStorage.userId;
+  axios
+    .get('http://localhost:9000/api/events')
+    .then(resp => (this.events = resp.data));
 
-//   axios
-//     .get('http://localhost:9000/api/')
-
-//   // axios
-//   //   .post('http://localhost:9000/api/events')
-//   //   .then()
-// },
+},
 };
 
 </script>

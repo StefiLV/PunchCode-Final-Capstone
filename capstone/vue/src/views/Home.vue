@@ -35,10 +35,7 @@
        v-for="event in events" 
       v-bind:key="event.id"
       >
-      <!-- <div id="vol-events"
-       v-for="user in users" 
-      v-bind:key="user.id"
-      > -->
+    
       <div class="event-box" >
           <img class="event-box-logo" v-bind:src="event.orgLogo"/>
           <h3>{{event.name}}</h3> 
@@ -47,34 +44,7 @@
           <p>Start Date: {{event.startDate}}</p>
           <p>End Date: {{event.endDate}}</p>
           <!-- <button class="expand-btn">See More</button> -->
-        </div>
-
-   <!-- <div class="event-box">
-          <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
-        <h3>{{event.name}}</h3>
-          <h4>{{event.address}}</h4>
-          <p>{{event.description}}</p>
-        </div> 
-    
-       <div class="event-box">
-          <img class="event-box-logo" src="../img/ThreeSquareLogo.png"/>
-          <h4>Three Square<br/>4190 N Pecos Rd<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
-        </div>
-
-        <div class="event-box">
-          <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
-          <h4>PunchCode<br/>401 S. 4th St<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
-        </div>
-
-        <div class="event-box">
-          <img class="innovate-for-vegas-logo" src="../img/InnovateForVegas.png"/>
-          <h4>Innovate For Vegas<br/>4th St and Lewis Ave<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
-        </div>
-        
-        <div class="event-box">
-          <img class="event-box-logo" src="../img/ThreeSquareLogo.png"/>
-          <h4>Three Square<br/>4190 N Pecos Rd<br/>Nov. 1, 2022 - Dec. 23, 2022</h4>
-        </div> -->
+        </div>   
 
       </div> 
 

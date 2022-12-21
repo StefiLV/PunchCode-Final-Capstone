@@ -6,7 +6,7 @@
 
         <img src="../img/AppLogo.png" id="main-logo" alt="logo" />
 
-        <div id="to-go-box" v-on:click="openBurger">
+        <div id="to-go-box">
           <img
             src="../img/Message.png"
             id="message"
@@ -43,93 +43,65 @@
                 <option value="radius25+">25+ miles</option>
             </select>
       </form>
-
-      <div id="vol-events">
-        <div class="event-box">
-          <img
-            class="event-box-logo"
-            src="../img/PunchCodeLogo.png"
-          />
-          <h3>Instructor Assistant</h3>
-          <h4>
-            PunchCode<br />401 S. 4th St<br />Nov. 1, 2022 - Dec. 23,
-            2022
-          </h4>
+    </div>
+       <div id="event-box"
+       v-for="event in events" 
+      v-bind:key="event.id"
+      >
+    
+      <div class="event-box" >
+          <img class="event-box-logo" v-bind:src="event.orgLogo"/>
+          <h3>{{event.name}}</h3> 
+          <h4>{{event.address}}</h4>
+          <p>{{event.description}}</p>
+          <p>Start Date: {{event.startDate}}</p>
+          <p>End Date: {{event.endDate}}</p>
           <!-- <button class="expand-btn">See More</button> -->
-        </div>
+        </div>  
+        
+      </div> 
 
-        <div class="event-box">
-          <img
-            class="innovate-for-vegas-logo"
-            src="../img/InnovateForVegas.png"
-          />
-          <h3>Software Developer</h3>
-          <h4>
-            Innovate For Vegas<br />4th St and Lewis Ave<br />Nov. 1,
-            2022 - Dec. 23, 2022
-          </h4>
-        </div>
-
-        <div class="event-box">
-          <img
-            class="event-box-logo"
-            src="../img/ThreeSquareLogo.png"
-          />
-          <h3>Helper</h3>
-          <h4>
-            Three Square<br />4190 N Pecos Rd<br />Nov. 1, 2022 - Dec.
-            23, 2022
-          </h4>
-        </div>
-
-        <div class="event-box">
-          <img
-            class="event-box-logo"
-            src="../img/PunchCodeLogo.png"
-          />
-          <h3>Instructor Assistant</h3>
-          <h4>
-            PunchCode<br />401 S. 4th St<br />Nov. 1, 2022 - Dec. 23,
-            2022
-          </h4>
-        </div>
-
-        <div class="event-box">
-          <img
-            class="innovate-for-vegas-logo"
-            src="../img/InnovateForVegas.png"
-          />
-          <h3>Software Developer</h3>
-          <h4>
-            Innovate For Vegas<br />4th St and Lewis Ave<br />Nov. 1,
-            2022 - Dec. 23, 2022
-          </h4>
-        </div>
-
-        <div class="event-box">
-          <img
-            class="event-box-logo"
-            src="../img/ThreeSquareLogo.png"
-          />
-          <h3>Helper</h3>
-          <h4>
-            Three Square<br />4190 N Pecos Rd<br />Nov. 1, 2022 - Dec.
-            23, 2022
-          </h4>
-        </div>
-      </div>
-
-      <div id="main-footer">
+      <div id="main-footer"> 
         COPYRIGHT © 2022 PUNCHCODE COHORT 3
       </div>
+
     </div>
-  </div>
+
+  <!-- </div> -->
 </template>
 
 <script>
+import axios from 'axios';
+import eventService from '../services/EventService.js';
+
 export default {
   name: "volHome",
-};
+  data(){
+    return {
+      events: null,
+      userId: null,
+      profilePic: null,
+    }
+  },
+  created() {
+  eventService.list().then((res) => {
+      this.event = res.data;
+    })
+    .catch((err) => {
+      console.error(err + ' uh oh missing product');
+    })
+    
+ },
+ mounted(){
+  axios
+    .get('http://localhost:9000/api/events')
+    .then(resp => (
+      this.events = resp.data,
+      console.log(this.events)
+    ));
+ }
+}
+
 </script>
 
 <style scoped>
