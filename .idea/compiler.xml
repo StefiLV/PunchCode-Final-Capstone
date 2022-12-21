@@ -6,10 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-<<<<<<< HEAD
         <module name="final-capstone-starter" />
-=======
->>>>>>> 8c3a98edb1af45bc752c9b765303290aaf4102a3
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
