@@ -24,6 +24,7 @@ CREATE TABLE event (
 	id SERIAL PRIMARY KEY,
 	name varchar (50) NOT NULL,
 	org_owner int REFERENCES users(user_id),
+	org_logo varchar(200),
 	address varchar (100),
 	start_date date NOT NULL,
 	end_date date NOT NULL,
