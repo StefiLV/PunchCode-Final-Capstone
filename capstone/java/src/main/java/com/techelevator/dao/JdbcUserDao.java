@@ -111,6 +111,11 @@ public class JdbcUserDao implements UserDao {
 
         return jdbcTemplate.update(insertUserSql, name, username, password_hash, ssRole, organization, address, birthDate) == 1;
     }
+    @Override//still needs fix
+    public boolean update(User user, int id){
+        String sql = "UPDATE users SET name = ?, username = ?, birth_date = ?, phone_number = ?, description = ?, address = ?, profile_pic = ?, hero_banner = ?, password_hash = ?, organization = ?, verified = ?, minor = ? WHERE user_id = ?";
+        return jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getBirthDate(), user.getPhoneNumber(), user.getDescription(), user.getAddress(), user.getProfilePic(), user.getHeroBanner(), user.getPassword(), user.isOrganization(), user.isVerified(), user.isMinor(),  id) == 1;
+    }
     @Override
     public List<User> byEventId(int eventId){
         List<User> users = new ArrayList<>();
@@ -136,11 +141,13 @@ public class JdbcUserDao implements UserDao {
         user.setName(rs.getString("name"));
         user.setBirthDate(rs.getString("birth_date"));
         user.setPhoneNumber(rs.getString("phone_number"));
+        user.setDescription(rs.getString("description"));
         user.setPhoneNumber(rs.getString("address"));
         user.setProfilePic(rs.getString("profile_pic"));
         user.setHeroBanner(rs.getString("hero_banner"));
         user.setOrganization(rs.getBoolean("organization"));
         user.setVerified(rs.getBoolean("verified"));
+        user.setMinor(rs.getBoolean("minor"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
         user.setActivated(true);

@@ -83,7 +83,12 @@ public class AuthenticationController {
             return userDao.getUserById(id);
         }
     }
-    @RequestMapping(path = "/api/event/user/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/api/users/{id}", method = RequestMethod.PUT)
+    public void update(@Valid @RequestBody User user, @Valid @PathVariable int id){
+        userDao.update(user, id);
+    }
+
+    @RequestMapping(path = "/api/users/events/{id}", method = RequestMethod.GET)
     public List<User> getEventId(@PathVariable int id) {
         Event event = new Event();
         int eventId = event.getEventId(id);
