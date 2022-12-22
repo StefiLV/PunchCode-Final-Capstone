@@ -12,6 +12,7 @@ import EmptyMailbox from "../views/EmptyMailbox.vue";
 import Message from "../views/Message.vue";
 import NoMessage from "../views/NoMessage.vue";
 import Mailbox from "../views/MailBox.vue";
+import VolProfile from "../views/VolProfile";
 // import Events from "../views/Home.vue";//might delete
 
 Vue.use(Router);
@@ -125,6 +126,14 @@ const router = new Router({
       meta: {
         requiresAuth: false, //This will need to be changed to true. 
     },                       //False allows us to get around login. - Gabe
+    },
+    {
+      path: "/volProfile",
+      name: "volProfile", 
+      component: VolProfile, 
+      meta: {
+        requiresAuth: false,
+      },
     },
   ]
 });

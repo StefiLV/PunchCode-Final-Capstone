@@ -39,7 +39,7 @@
       <div class="event-box" >
           <img class="event-box-logo" v-bind:src="event.orgLogo"/>
           <h3>{{event.name}}</h3> 
-          <h4>{{event.address}}</h4>
+          <h4>{{event.name}}</h4>
           <p>{{event.description}}</p>
           <p>Start Date: {{event.startDate}}</p>
           <p>End Date: {{event.endDate}}</p>
@@ -90,7 +90,7 @@ mounted(){
     .get('http://localhost:9000/api/events')
     .then(resp => (
       this.events = resp.data,
-      this.profilePic = localStorage.orgPic,
+
       console.log(this.events)
     ));
 

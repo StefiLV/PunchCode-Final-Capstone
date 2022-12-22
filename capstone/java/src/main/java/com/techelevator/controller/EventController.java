@@ -22,9 +22,8 @@ public class EventController {
 
     @GetMapping(path = {"/events"})
     public List<Event> list() {
-        List<Event> allEvents = eventDao.list();
 
-        return allEvents;
+        return eventDao.list();
     }
 
     @RequestMapping(path = "/events/{id}", method = RequestMethod.GET)

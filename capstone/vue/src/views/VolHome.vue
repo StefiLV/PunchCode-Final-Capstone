@@ -1,40 +1,27 @@
 <template>
   <div id="home">
+
     <div id="home-head">
+
       <div id="home-nav-bar">
-        <img src="" alt="" />
-
-        <img src="../img/AppLogo.png" id="main-logo" alt="logo" />
-
+        <img src="../img/AppLogo.png" id="main-logo" alt="logo">
         <div id="to-go-box">
-          <img
-            src="../img/Message.png"
-            id="message"
-            class="nav-icons"
-          />
-          <img src="../img/Bell.png" id="bell" class="nav-icons" />
-          <img
-            src="../img/Hamburger.png"
-            id="hamburger"
-            class="nav-icons"
-          />
+          <img src="../img/Hamburger.png" id="hamburger" class="nav-icons">
+
         </div>
       </div>
 
       <div id="home-banner">
-        <img
-          id="main-hero-banner"
-          src="../img/VegasSign.jpg"
-          alt="Vegas Sign"
-        />
+        <img id="main-hero-banner" src="../img/VegasSign.jpg" alt="Vegas Sign"/>
       </div>
+
     </div>
 
     <div id="home-body">
+      
       <form action="" id="search-bar">
-        <input type="text" placeholder="SEARCH" />
-        <input type="text" placeholder="ZIP CODE" />
-        <button>Radius (mi)</button>
+        <input type="text" placeholder="SEARCH">
+        <input type="text" placeholder="ZIP CODE" id="zip-code">
         <select name="radius" id="radius">
                 <option value="radius5">5 miles</option>
                 <option value="radius10">10 miles</option>
@@ -57,8 +44,8 @@
           <p>Start Date: {{event.startDate}}</p>
           <p>End Date: {{event.endDate}}</p>
           <!-- <button class="expand-btn">See More</button> -->
-        </div>  
-        
+        </div>   
+
       </div> 
 
       <div id="main-footer"> 
@@ -73,16 +60,18 @@
 <script>
 import axios from 'axios';
 import eventService from '../services/EventService.js';
-
+// import authService from '../services/AuthService.js';
 export default {
-  name: "volHome",
+  name: "home",
   data(){
-    return {
+    return { 
+      // users: null,
       events: null,
       userId: null,
       profilePic: null,
     }
   },
+  
   created() {
   eventService.list().then((res) => {
       this.event = res.data;
@@ -92,14 +81,28 @@ export default {
     })
     
  },
- mounted(){
+// userCreated(){
+//       eventService.getUsers().then((res) => {
+//       this.user = res.data;
+//     })},
+mounted(){
   axios
     .get('http://localhost:9000/api/events')
     .then(resp => (
       this.events = resp.data,
+      this.profilePic = localStorage.orgPic,
       console.log(this.events)
     ));
- }
+  // axios
+  //   .get('http://localhost:9000/api/users')
+  //   .then(resp => (
+  //     this.users = resp.data,
+  //     // this.profilePic = user.profilePic,
+  //     console.log(this.user)));
+  // axios
+  //   .post('http://localhost:9000/api/events')
+  //   .then()
+}
 }
 
 </script>
@@ -116,10 +119,7 @@ export default {
 
 #to-go-box {
   float: right;
-  display: flex;
-  width: 110px;
-  justify-content: space-between;
-  align-items: center;
+  padding-top: 15px;
   padding-right: 10px;
 }
 
@@ -140,8 +140,8 @@ export default {
 }
 
 #vol-events {
-  height: 55vh;
-  overflow: scroll;
+  height: 36vh;
+  /* overflow: scroll; */
   width: 90vw;
   margin: auto;
   padding-top: 15px;
@@ -160,15 +160,17 @@ img {
 
 .event-box {
   width: 80vw;
-  height: 15vh;
+  height: 35vh;
   border: 2px solid black;
   text-align: left;
-  padding-left: 15px;
+  padding-left: 10px;
   border-radius: 10px;
   margin-left: 15px;
   margin-bottom: 15px;
 }
-
+.event-date {
+  float: right;
+}
 .expanded-box {
   height: 30vh;
 }
@@ -182,7 +184,7 @@ img {
 }
 
 .event-box-logo {
-  width: 160px;
+  width: 220px;
   float: right;
   position: relative;
   top: 20px;
@@ -194,7 +196,7 @@ img {
   float: right;
   position: relative;
   bottom: 15px;
-  right: 15px;
+  right: 30px;
 }
 
 #main-footer {
@@ -202,7 +204,22 @@ img {
   height: 5vh;
   padding-top: 15px;
 }
-h3 {
-  text-decoration: underline;
+h4 {
+  position: relative;
+  top: 20px;
+}
+.expand-btn {
+  width: 70px;
+  height: 30px;
+  background: lightblue;
+  border: none;
+  border-radius: 10px;
+  float: right;
+  position: relative;
+  right: 20px;
+  bottom: 50px;
+}
+#zip-code {
+  width: 80px;
 }
 </style>

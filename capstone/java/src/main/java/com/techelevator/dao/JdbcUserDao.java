@@ -113,8 +113,8 @@ public class JdbcUserDao implements UserDao {
     }
     @Override//still needs fix
     public boolean update(User user, int id){
-        String sql = "UPDATE users SET name = ?, username = ?, birth_date = ?, phone_number = ?, description = ?, address = ?, profile_pic = ?, hero_banner = ?, password_hash = ?, organization = ?, verified = ?, minor = ? WHERE user_id = ?";
-        return jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getBirthDate(), user.getPhoneNumber(), user.getDescription(), user.getAddress(), user.getProfilePic(), user.getHeroBanner(), user.getPassword(), user.isOrganization(), user.isVerified(), user.isMinor(),  id) == 1;
+        String sql = "UPDATE users SET name = ?, username = ?, birth_date = ?, phone_number = ?, description = ?, address = ?, profile_pic = ?, hero_banner = ?, minor = ? WHERE user_id = ?";
+        return jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getBirthDate(), user.getPhoneNumber(), user.getDescription(), user.getAddress(), user.getProfilePic(), user.getHeroBanner(), user.isMinor(), id) == 1;
     }
     @Override
     public List<User> byEventId(int eventId){
@@ -140,9 +140,9 @@ public class JdbcUserDao implements UserDao {
         user.setUsername(rs.getString("username"));
         user.setName(rs.getString("name"));
         user.setBirthDate(rs.getString("birth_date"));
-        user.setPhoneNumber(rs.getString("phone_number"));
+        user.setAddress(rs.getString("address"));
         user.setDescription(rs.getString("description"));
-        user.setPhoneNumber(rs.getString("address"));
+        user.setPhoneNumber(rs.getString("phone_number"));
         user.setProfilePic(rs.getString("profile_pic"));
         user.setHeroBanner(rs.getString("hero_banner"));
         user.setOrganization(rs.getBoolean("organization"));

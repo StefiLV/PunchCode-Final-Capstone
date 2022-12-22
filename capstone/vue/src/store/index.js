@@ -12,7 +12,7 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 const currentUserId = localStorage.getItem('userId')
-const currentOrgPic = localStorage.getItem('orgPic')
+// const currentOrgPic = localStorage.getItem('orgPic')
 
 
 if(currentToken != null) {
@@ -24,7 +24,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     userId: currentUserId || '',
-    orgPic: currentOrgPic || '',
+    // orgPic: currentOrgPic || '',
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -48,7 +48,7 @@ export default new Vuex.Store({
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       localStorage.removeItem('user_Id');
-      localStorage.removeItem('orgPic');
+      // localStorage.removeItem('orgPic');
       state.token = '';
       state.userId = '';
       state.orgPic = '';
