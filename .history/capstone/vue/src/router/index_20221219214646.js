@@ -13,7 +13,6 @@ import EmptyMailbox from "../views/EmptyMailbox.vue";
 import Message from "../views/Message.vue";
 import NoMessage from "../views/NoMessage.vue";
 import Mailbox from "../views/MailBox.vue";
-import CreateEvent from "../views/CreateEvent.vue";
 
 Vue.use(Router);
 
