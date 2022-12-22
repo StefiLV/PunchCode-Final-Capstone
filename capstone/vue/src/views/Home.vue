@@ -1,6 +1,5 @@
 <template>
   <div id="home">
-
     <div id="home-head">
       <div id="home-nav-bar">
         <img src="../img/AppLogo.png" id="main-logo" alt="logo">
@@ -25,68 +24,37 @@
             </select>
       </form>
     </div>
-
-      <div id="event-container">
-      <!-- <div id="event-box"
-       v-for="event in events" 
-      v-bind:key="event.id"
-      >
-    
+    <div id="event-container"
+      v-for="event in events" 
+      v-bind:key="event.id">
       <div class="event-box" >
-          <img class="event-box-logo" v-bind:src="event.orgLogo"/>
-          <h3>{{event.name}}</h3> 
-          <h4>{{event.name}}</h4>
-          <p>{{event.description}}</p>
-          <p>Start Date: {{event.startDate}}</p>
-          <p>End Date: {{event.endDate}}</p>
-          <button class="expand-btn">See More</button>
-      </div>  -->
-        <div class="event-box" >
-          <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
-          <h3>PunchCode BBQ For The Community</h3>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-          <p>12/29/2022 - 12/30/2022</p>
-          <p>09:00am - 05:00pm</p>
-          <button class="volunteer-btn" @click="menuOpen = !menuOpen">Volunteer For Event</button>
-        </div>
-        <div class="event-box" >
-          <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
-          <h3>PunchCode BBQ For The Community</h3>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-          <p>12/29/2022 - 12/30/2022</p>
-          <p>09:00am - 05:00pm</p>
-          <button class="volunteer-btn" @click="menuOpen = !menuOpen">Volunteer For Event</button>
-        </div>  
-        <div class="event-box" >
-          <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
-          <h3>PunchCode BBQ For The Community</h3>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-          <p>12/29/2022 - 12/30/2022</p>
-          <p>09:00am - 05:00pm</p>
-          <button class="volunteer-btn" @click="menuOpen = !menuOpen">Volunteer For Event</button>
-        </div>     
-        
-
-      </div> 
-      <div id="main-footer"> 
-        COPYRIGHT © 2022 PUNCHCODE COHORT 3
+        <img class="event-box-logo" v-bind:src="event.orgLogo"/>
+        <h3>{{event.name}}</h3>
+        <p>{{event.description}}</p>
+        <p>{{event.startDate}} - {{event.endDate}}</p>
+        <p>{{event.startTime}} - {{event.endTime}}</p>
+        <button class="volunteer-btn" @click="menuOpen = !menuOpen">Volunteer For Event</button>
       </div>
-      <!-- This code below is the hamburger opened -->
-      <div class="row dropdown" :class="{ 'dropdown-after' : menuOpen }">
-        <div class="navlist">
-          <p id="dd-title">PLEASE SIGN IN OR CREATE AN ACCOUNT</p>
-        <br/>
-          <label for="vol">Volunteers</label>
-          <br>
-          <button class=dd-btn><router-link :to="{ name: 'regVol' }">Sign Up</router-link></button>
-          <button class=dd-btn><router-link :to="{ name: 'login' }">Sign In</router-link></button>
-          <br>
-          <label for="org">Organization</label>
-          <br>
-          <button class=dd-btn><router-link :to="{ name: 'regOrg' }">Sign Up</router-link></button>
-          <button class=dd-btn><router-link :to="{ name: 'login' }">Sign In</router-link></button>
-        </div>
+    </div> 
+    <div id="main-footer"> 
+      COPYRIGHT © 2022 PUNCHCODE COHORT 3
+    </div>
+    <!-- This code below is the hamburger opened -->
+    <div class="row dropdown" :class="{ 'dropdown-after' : menuOpen }">
+      <div class="navlist">
+        <p id="dd-title">PLEASE SIGN IN OR CREATE AN ACCOUNT</p>
+      <br/>
+        <label for="vol">Volunteers</label>
+        <br>
+        <button class=dd-btn><router-link :to="{ name: 'regVol' }">Sign Up</router-link></button>
+        <button class=dd-btn><router-link :to="{ name: 'login' }">Sign In</router-link></button>
+        <br>
+        <label for="org">Organization</label>
+        <br>
+        <button class=dd-btn><router-link :to="{ name: 'regOrg' }">Sign Up</router-link></button>
+        <button class=dd-btn><router-link :to="{ name: 'login' }">Sign In</router-link></button>
       </div>
+    </div>
   </div>
 </template>
 
