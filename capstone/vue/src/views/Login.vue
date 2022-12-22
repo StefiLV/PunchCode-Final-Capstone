@@ -2,7 +2,7 @@
   <div id="login-page" class="text-center">
 
     <div id="sign-in-nav">
-      <img src="../img/Hamburger.png" id="hamburger">
+      <img src="../img/Hamburger.png" id="hamburger" class="nav-icons" @click="menuOpen = !menuOpen">
     </div>  
 
     <div id="sign-in-head">
@@ -40,7 +40,10 @@
       </div>
 
     </div>
-
+<!-- This code below is the hamburger opened -->
+    <div class="row dropdown" :class="{ 'dropdown-after' : menuOpen }">
+        <button class=dd-btn><router-link :to="{ name: 'home' }">Home</router-link></button>
+    </div>
   </div>
 </template>
 
@@ -54,9 +57,10 @@ export default {
     return {
       user: {
         username: "",
-        password: ""
+        password: "",
       },
-      invalidCredentials: false
+      invalidCredentials: false,
+      menuOpen: false,
     };
   },
   methods: {
@@ -180,4 +184,46 @@ export default {
   padding-right: 10px;
 }
 
+.dropdown {
+  text-align: center;
+  height: 0px;
+  background: lightblue;
+  transition: height 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 20vw;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
+.dropdown-after {
+  text-align: center;
+  height: calc(100vh - 50px);
+  transition: height 0.2s ease;
+  width: 20vw;
+  height: 10vh;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
+
+.dd-btn {
+  border-radius: 10px;
+  border: none;
+  padding: 5px;
+  margin: 2px;
+  letter-spacing: .7px;
+  cursor: pointer;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
 </style>

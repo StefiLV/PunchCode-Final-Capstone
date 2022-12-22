@@ -6,8 +6,7 @@
       <div id="home-nav-bar">
         <img src="../img/AppLogo.png" id="main-logo" alt="logo">
         <div id="to-go-box">
-          <img src="../img/Hamburger.png" id="hamburger" class="nav-icons">
-
+          <img src="../img/Hamburger.png" id="hamburger" class="nav-icons" @click="menuOpen = !menuOpen">
         </div>
       </div>
 
