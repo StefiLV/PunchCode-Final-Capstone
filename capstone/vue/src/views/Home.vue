@@ -1,24 +1,17 @@
 <template>
   <div id="home">
-
     <div id="home-head">
-
       <div id="home-nav-bar">
         <img src="../img/AppLogo.png" id="main-logo" alt="logo">
         <div id="to-go-box">
-          <img src="../img/Hamburger.png" id="hamburger" class="nav-icons">
-
+          <img src="../img/Hamburger.png" id="hamburger" class="nav-icons" @click="menuOpen = !menuOpen">
         </div>
       </div>
-
       <div id="home-banner">
         <img id="main-hero-banner" src="../img/VegasSign.jpg" alt="Vegas Sign"/>
       </div>
-
     </div>
-
     <div id="home-body">
-      
       <form action="" id="search-bar">
         <input type="text" placeholder="SEARCH">
         <input type="text" placeholder="ZIP CODE" id="zip-code">
@@ -31,82 +24,63 @@
             </select>
       </form>
     </div>
-       <div id="event-box"
-       v-for="event in events" 
-      v-bind:key="event.id"
-      >
-    
+    <div id="event-container"
+      v-for="event in events" 
+      v-bind:key="event.id">
       <div class="event-box" >
-          <img class="event-box-logo" v-bind:src="event.orgLogo"/>
-          <h3>{{event.name}}</h3> 
-          <h4>{{event.name}}</h4>
-          <p>{{event.description}}</p>
-          <p>Start Date: {{event.startDate}}</p>
-          <p>End Date: {{event.endDate}}</p>
-          <!-- <button class="expand-btn">See More</button> -->
-        </div>   
-
-      </div> 
-
-      <div id="main-footer"> 
-        COPYRIGHT © 2022 PUNCHCODE COHORT 3
+        <img class="event-box-logo" v-bind:src="event.orgLogo"/>
+        <h3>{{event.name}}</h3>
+        <p>{{event.description}}</p>
+        <p>{{event.startDate}} - {{event.endDate}}</p>
+        <p>{{event.startTime}} - {{event.endTime}}</p>
+        <button class="volunteer-btn" @click="menuOpen = !menuOpen">Volunteer For Event</button>
       </div>
-
+    </div> 
+    <div id="main-footer"> 
+      COPYRIGHT © 2022 PUNCHCODE COHORT 3
     </div>
-
-  <!-- </div> -->
+    <!-- This code below is the hamburger opened -->
+    <div class="row dropdown" :class="{ 'dropdown-after' : menuOpen }">
+      <div class="navlist">
+        <p id="dd-title">PLEASE SIGN IN OR CREATE AN ACCOUNT</p>
+      <br/>
+        <label for="vol">Volunteers</label>
+        <br>
+        <button class=dd-btn><router-link :to="{ name: 'regVol' }">Sign Up</router-link></button>
+        <button class=dd-btn><router-link :to="{ name: 'login' }">Sign In</router-link></button>
+        <br>
+        <label for="org">Organization</label>
+        <br>
+        <button class=dd-btn><router-link :to="{ name: 'regOrg' }">Sign Up</router-link></button>
+        <button class=dd-btn><router-link :to="{ name: 'login' }">Sign In</router-link></button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios';
-import eventService from '../services/EventService.js';
-// import authService from '../services/AuthService.js';
+
 export default {
   name: "home",
   data(){
     return { 
-      // users: null,
+      users: null,
       events: null,
       userId: null,
       profilePic: null,
+      logInMessage: "Please Sign In or Create an Account.",
+      menuOpen: false,
     }
-  },
-  
-  created() {
-  eventService.list().then((res) => {
-      this.event = res.data;
-    })
-    .catch((err) => {
-      console.error(err + ' uh oh missing product');
-    })
-    
  },
-// userCreated(){
-//       eventService.getUsers().then((res) => {
-//       this.user = res.data;
-//     })},
-mounted(){
-  axios
-    .get('http://localhost:9000/api/events')
-    .then(resp => (
-      this.events = resp.data,
-
-      console.log(this.events)
-    ));
-
-  // axios
-  //   .get('http://localhost:9000/api/users')
-  //   .then(resp => (
-  //     this.users = resp.data,
-  //     // this.profilePic = user.profilePic,
-  //     console.log(this.user)));
-
-  // axios
-  //   .post('http://localhost:9000/api/events')
-  //   .then()
-}
-
-
+  mounted(){
+    axios
+      .get('http://localhost:9000/api/events')
+      .then(resp => (
+        this.events = resp.data,
+        console.log(this.events)
+      ));
+  },
 }
 
 </script>
@@ -114,6 +88,7 @@ mounted(){
 <style scoped>
 #home {
   overflow: no-scroll;
+  height: 100vh;
 }
 #home-nav-bar {
   max-height: 15vh;
@@ -137,14 +112,7 @@ mounted(){
 #home-body {
   text-align: center;
 }
-#vol-events {
-  height: 36vh;
-  /* overflow: scroll; */
-  width: 90vw;
-  margin: auto;
-  padding-top: 15px;
-}
-img {
+#main-hero-banner {
   max-width: 100%;
   height: auto;
 }
@@ -153,22 +121,25 @@ img {
   padding-bottom: 10px;
   border-bottom: 2px solid black;
 }
+#event-container {
+  height: 53vh;
+  overflow: scroll;
+  padding: auto;
+  padding-top: 20px;
+}
+
 .event-box {
   width: 80vw;
-  height: 35vh;
-  border: 2px solid black;
+  height: 32vh;
+  /* border: 2px solid black; */
   text-align: left;
-  padding-left: 10px;
+  padding: 20px 0 0 15px;
   border-radius: 10px;
-  margin-left: 15px;
-  margin-bottom: 15px;
+  margin: auto;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
-.event-date {
-  float: right;
-}
-.expanded-box {
-  height: 30vh;
-}
+
 #main-logo {
   display: block;
   margin-right: auto;
@@ -177,40 +148,87 @@ img {
   padding-bottom: 5px;
 }
 .event-box-logo {
-  width: 220px;
+  width: 175px;
   float: right;
   position: relative;
   top: 20px;
   right: 10px;
-}
-.innovate-for-vegas-logo {
-  width: 160px;
-  float: right;
-  position: relative;
-  bottom: 15px;
-  right: 30px;
+  margin-left: 20px;
 }
 #main-footer {
   border-top: 2px solid black;
-  height: 5vh;
   padding-top: 15px;
+  text-align: center;
 }
 h4 {
   position: relative;
   top: 20px;
 }
-.expand-btn {
-  width: 70px;
-  height: 30px;
+.volunteer-btn {
+  width: 180px;
+  height: 55px;
   background: lightblue;
   border: none;
   border-radius: 10px;
-  float: right;
   position: relative;
-  right: 20px;
-  bottom: 50px;
+  left: 210px;
+  bottom: 70px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  letter-spacing: 1.4px;
+  cursor: pointer;
 }
 #zip-code {
   width: 80px;
+}
+
+ #dd-title {
+   letter-spacing: .8px;
+ }
+
+label {
+  letter-spacing: 1px;
+}
+
+.dd-btn {
+  border-radius: 10px;
+  border: none;
+  padding: 5px;
+  margin: 2px;
+  letter-spacing: .7px;
+  cursor: pointer;
+}
+
+.dropdown {
+  text-align: center;
+  height: 0px;
+  background: lightblue;
+  transition: height 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 40vw;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
+.dropdown-after {
+  text-align: center;
+  height: calc(100vh - 50px);
+  transition: height 0.2s ease;
+  width: 40vw;
+  height: 25vh;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 </style>
