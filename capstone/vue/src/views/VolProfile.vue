@@ -4,11 +4,13 @@
       <img src="../img/AppLogo.png" id="main-logo" alt="logo" />
 
       <div id="to-go-box">
-        <img
+        
+        <router-link :to="{ name: 'emptyMailbox' }" id="no-account">
+          <img
           src="../img/Message.png"
           id="message"
           class="nav-icons"
-        />
+        ></router-link>
         <img src="../img/Bell.png" id="bell" class="nav-icons" />
         <img
           src="../img/Hamburger.png"
@@ -19,7 +21,7 @@
     </div>
 
     <div id="profile-title">
-      <h2 id="my-profile">MY PROFILE</h2>
+      <h2 id="my-profile">MY PROFILE</h2> 
     </div>
 
     <div id="personal-info">
@@ -32,7 +34,7 @@
     </div>
 
     <div id="profile-bio">
-      <div id="bio-box">
+      <div id="bio-box"> 
         <h3>ADD BIO (Optional)</h3>
         <textarea
           id="textarea-bio"
