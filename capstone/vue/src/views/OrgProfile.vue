@@ -90,7 +90,6 @@ export default {
   axios
     .get('http://localhost:9000/api/events')
     .then(resp => (this.events = resp.data));
-
 },
 };
 

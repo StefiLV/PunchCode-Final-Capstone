@@ -6,7 +6,7 @@
       <div id="home-nav-bar">
         <img src="../img/AppLogo.png" id="main-logo" alt="logo">
         <div id="to-go-box">
-          <img src="../img/Hamburger.png" id="hamburger" class="nav-icons">
+          <img src="../img/Hamburger.png" id="hamburger" class="nav-icons" @click="menuOpen = !menuOpen">
 
         </div>
       </div>
@@ -43,7 +43,7 @@
           <p>{{event.description}}</p>
           <p>Start Date: {{event.startDate}}</p>
           <p>End Date: {{event.endDate}}</p>
-          <!-- <button class="expand-btn">See More</button> -->
+          <router-link :to="{ name: '' }" id="no-account"> <button class="expand-btn">SIGN UP BUTTON</button></router-link>
         </div>   
 
       </div> 
@@ -51,7 +51,22 @@
       <div id="main-footer"> 
         COPYRIGHT © 2022 PUNCHCODE COHORT 3
       </div>
-
+  <!-- This code below is the hamburger opened -->
+    <div class="row dropdown" :class="{ 'dropdown-after' : menuOpen }">
+      <div class="navlist">
+        <p id="dd-title">PLEASE SIGN IN OR CREATE AN ACCOUNT</p>
+      <br/>
+        <label for="vol">Volunteers</label>
+        <br>
+        <button class=dd-btn><router-link :to="{ name: 'regVol' }">Sign Up</router-link></button>
+        <button class=dd-btn><router-link :to="{ name: 'login' }">Sign In</router-link></button>
+        <br>
+        <label for="org">Organization</label>
+        <br>
+        <button class=dd-btn><router-link :to="{ name: 'regOrg' }">Sign Up</router-link></button>
+        <button class=dd-btn><router-link :to="{ name: 'login' }">Sign In</router-link></button>
+      </div>
+    </div>
     </div>
 
   <!-- </div> -->
@@ -221,5 +236,39 @@ h4 {
 }
 #zip-code {
   width: 80px;
+}
+
+.dropdown {
+  text-align: center;
+  height: 0px;
+  background: lightblue;
+  transition: height 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 40vw;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
+.dropdown-after {
+  text-align: center;
+  height: calc(100vh - 50px);
+  transition: height 0.2s ease;
+  width: 40vw;
+  height: 25vh;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 </style>
