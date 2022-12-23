@@ -55,6 +55,9 @@
         <button class=dd-btn><router-link :to="{ name: 'login' }">Sign In</router-link></button>
       </div>
     </div>
+    <img src="../img/ThreeSquareLogo.png" class="hide" alt="">
+    <img src="../img/InnovateForVegas.png" class="hide" alt="">
+    <img src="../img/PunchCodeLogo.png" class="hide" alt="">
   </div>
 </template>
 
@@ -189,6 +192,10 @@ h4 {
 }
 #zip-code {
   width: 80px;
+}
+
+.hide {
+  display: none;
 }
 
  #dd-title {

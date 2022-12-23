@@ -37,6 +37,7 @@
       </form>
 
       <div id="vol-events">
+
         <div class="org-events">
           <h2>Events</h2>
 
@@ -163,6 +164,7 @@ export default {
       // this.$router.push("/mailbox");
     },
   },
+
 };
 </script>
 
@@ -234,7 +236,7 @@ img {
 
 .event-box {
   width: 80vw;
-  height: 15vh;
+  height: 40vh;
   border: 2px solid black;
   text-align: left;
   padding-left: 15px;
@@ -310,6 +312,7 @@ h3 {
 .right-status {
   position: relative;
   bottom: 80px;
+
 }
 
 #add-listing {
@@ -324,6 +327,32 @@ h3 {
 /* this code below is for the dropdown */
 #dd-title {
   letter-spacing: 0.8px;
+}
+.dropdown {
+  height: 0px;
+  background: lightgrey;
+  transition: height 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 30vw;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
+.dropdown-after {
+  height: calc(100vh - 50px);
+  transition: height 0.2s ease;
+  width: 30vw;
+  height: 20vh;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
 }
 
 label {
