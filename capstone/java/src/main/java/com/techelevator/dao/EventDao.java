@@ -9,7 +9,7 @@ public interface EventDao {
 
     Event findById(int eventId);
 
-    Event 
+
 
 //    Event findByName(String name);
 

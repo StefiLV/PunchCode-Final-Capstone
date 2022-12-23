@@ -31,14 +31,16 @@
           <div class="org-events">
               <h2>Events</h2>
                 <div class="event-box" 
-                        v-for="event in events" 
-                        v-bind:key="event.id">
-                          <img class="event-box-logo-loop" v-bind:src="localStorage.orgPic"/>
-                          <h3 id="org-name">{{event.name}}</h3>
+                        v-for="event in ownerEvents" 
+                        v-bind:key="event.id"
+                        >
+                          <img class="event-box-logo" v-bind:src="event.orgLogo"/>
+                          <h3 class="org-name">{{event.name}}</h3>
                           <p class="eb-desc">{{event.description}}</p>
                           <p>{{event.startDate}} - {{event.endDate}}</p>
                           <p>{{event.startTime}} am - {{event.endTime}} pm</p>
-                          <button class="volunteer-btn" @click="menuOpen = !menuOpen, mustSignIn()">Volunteer For Event</button>
+                          <button class="volunteer-btn" @click="mustSignIn()">Edit Event</button>
+                          <button class="volunteer-btn" @click="deleteEvent()">Delete Event</button>
                         </div>
             <!-- <div class="event-box">
             <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
@@ -58,27 +60,27 @@
             </div> -->
         </div>
         <div class="applied-volunteers">
-            <h2>Volunteers</h2>
-            <div class="event-box">
-
-            <h3><img class="profile-pic" src="../img/ProfilePic.png"/>John Doe<br/>"My Bio"<br/><button>Message Me</button></h3>
+          <h2>Volunteers</h2>
+          <div class="event-box"
+            v-for="volunteer in volunteers"
+            v-bind:key="volunteer.id">
+            <h3><img class="profile-pic" src="../img/ProfilePic.png"/>{{volunteer.name}}<br/>"My Bio"<br/><button @click="messageRoute()">Message Me</button></h3>
             <div class="right-status">
-            <p class="status-hours">Volunteer Status:
-            <select name="status" id="status">
-                <option value="Accepted">Accepted</option>
+              <p class="status-hours">Volunteer Status:
+                <select name="status" id="status">
+                <option value="Accepted">Pending</option>
                 <option value="Rejected">Rejected</option>
-                <option value="Pending">Pending</option>
-            </select><br/>
-            Volunteer Hours: 0</p>
+                <option value="Pending">Accepted</option>
+              </select><br/>
+              Volunteer Hours: 0</p>
             </div>
 
-        </div>
+          </div>
         </div>
       </div>
       <div id="main-footer">
         COPYRIGHT © 2022 PUNCHCODE COHORT 3
       </div>
-
     </div>
       <!-- This code below is the hamburger opened -->
       <div class="row dropdown" :class="{ 'dropdown-after' : menuOpen }">
@@ -90,30 +92,71 @@
        </div>
     </div>
 </template>
-
 <script>
-
 import axios from 'axios';
 export default {
   name: "home",
   data(){
       return {
-        users: null,
-      events: null,
-      userId: null,
-      profilePic: null,
-          menuOpen: false,
+        volunteers: null,
+        events: null,
+        ownerEvents: [],
+        userId: null,
+        profilePic: null,
+        menuOpen: false,
+        users: null
       }
   },
   mounted(){
   this.userId = localStorage.userId;
   axios
     .get('http://localhost:9000/api/events')
-    .then(resp => (this.events = resp.data,
-    this.profilePic = localStorage.orgPic,
-    console.log(this.events)
-));
-},
+    .then(resp => {
+      if(resp.status == 200){
+        (this.events = resp.data);
+        console.log(this.events)
+
+        for(let i = 0; i < this.events.length; i++){
+          
+          if(this.events[i].ownerId == localStorage.userId){
+          this.ownerEvents.push(this.events[i])
+          }
+        }
+        console.log(this.ownerEvents)
+      }
+    });
+  axios
+    .get('http://localhost:9000/api/users/events/1', )
+      .then(resp => {
+        if(resp.status == 200){
+          (this.volunteers = resp.data);
+          console.log(this.volunteers)
+        }
+      });
+    
+  },
+  methods: {
+    showEventId(){
+      console.log(this.events);
+    },
+    messageRoute(){
+      this.$router.push("/message");
+    },
+    deleteEvent(){
+      prompt("Type `DELETE` to delete event")
+      .then(alert("Event has been deleted!"))
+        axios
+      .delete('http://localhost:9000/api/events/6')
+      .then(resp => {
+        if(resp.status == 200){
+          (this.events = resp.data);
+          console.log(this.events)
+        }
+      });
+      location.reload();
+    },  
+  }
+
 };
 
 </script>
@@ -127,6 +170,11 @@ export default {
 #home-nav-bar {
   max-height: 15vh;
   display: flex;
+}
+
+.org-name {
+  position: relative;
+  bottom: 60px;
 }
 
 #to-go-box {
@@ -182,19 +230,23 @@ img {
     border: 2px solid black;
     height: 38vh;
     padding-top: 10px;
+    overflow: scroll;
 }
 
 .event-box {
   width: 80vw;
-  height: 40vh;
-  border: 2px solid black;
+  height: 30vh;
+  /* border: 2px solid black; */
   text-align: left;
-  padding-left: 15px;
+  padding: 20px 0 0 15px;
   border-radius: 10px;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  position: relative;
-  bottom: 30px;
+  margin: auto;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.applied-volunteers > .event-box {
+  height: 15vh;
 }
 
 .expanded-box {
@@ -210,11 +262,12 @@ img {
 }
 
 .event-box-logo {
-  width: 220px;
+  width: 10em;
   float: right;
   position: relative;
   top: 20px;
   right: 10px;
+  margin-left: 20px;
 }
 
 .profile-pic {
@@ -301,8 +354,5 @@ h3 {
 
 .org-events{
   overflow:  scroll;
-}
-.event-box-logo-loop{
-
 }
 </style>

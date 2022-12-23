@@ -96,6 +96,7 @@ public class AuthenticationController {
         return userDao.byEventId(id);
 
     }
+
     /**
      * Object to return as body in JWT Authentication.
      */

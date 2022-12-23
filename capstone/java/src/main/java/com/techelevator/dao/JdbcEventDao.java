@@ -7,6 +7,17 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import com.techelevator.model.Event;
 
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+//import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
+//
+//@Configuration
+//public class RepositoryConfig extends RepositoryRestConfigurerAdapter {
+//    @Override
+//    public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+//        config.exposeIdsFor(Event.class);
+//    }
+//}
 
 @Component
 public class JdbcEventDao implements EventDao {
@@ -30,6 +41,8 @@ public class JdbcEventDao implements EventDao {
         }
         return events;
     }
+
+
     @Override
     public Event findById(int id){
         Event event = null;
@@ -42,6 +55,7 @@ public class JdbcEventDao implements EventDao {
         }
         return event;
     }
+
 
 
 

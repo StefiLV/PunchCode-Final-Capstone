@@ -26,6 +26,8 @@ public class EventController {
         return eventDao.list();
     }
 
+
+
     @RequestMapping(path = "/events/{id}", method = RequestMethod.GET)
     public Event get(@PathVariable int id) {
         Event event = eventDao.findById(id);
@@ -52,6 +54,7 @@ public class EventController {
         if(eventDao.findById(id) != null)
         eventDao.deleteEvent(id);
     }
+
 
 
 //    @RequestMapping(method = RequestMethod.GET)
