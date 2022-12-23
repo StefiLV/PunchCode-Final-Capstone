@@ -47,7 +47,7 @@ const router = new Router({
       },
     },
     {
-      path: "/",
+      path: "/home",
       name: "home",
       component: Home,
       meta: {
@@ -62,14 +62,6 @@ const router = new Router({
         requiresAuth: false,
       },
     },
-    // {
-    //   path: '/:id',
-    //   name: 'Events',//might delete
-    //   component: Events,
-    //   meta:{
-    //     requiresAuth: true,
-    //   }
-    // },
     {
       path: "/logout",
       name: "logout",
