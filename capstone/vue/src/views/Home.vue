@@ -33,7 +33,7 @@
           <p class="eb-desc">{{event.description}}</p>
           <p>{{event.startDate}} - {{event.endDate}}</p>
           <p>{{event.startTime}} am - {{event.endTime}} pm</p>
-          <button class="volunteer-btn" @click="menuOpen = !menuOpen">Volunteer For Event</button>
+          <button class="volunteer-btn" @click="menuOpen = !menuOpen, mustSignIn()">Volunteer For Event</button>
         </div>
     </div> 
     <div id="main-footer"> 
@@ -81,6 +81,12 @@ export default {
         console.log(this.events)
       ));
   },
+  methods: {
+    mustSignIn(){
+      alert("Please sign in or Create an Account!")
+    }
+  }
+
 }
 
 </script>
@@ -152,7 +158,7 @@ export default {
   padding-bottom: 5px;
 }
 .event-box-logo {
-  width: 175px;
+  width: 10em;
   float: right;
   position: relative;
   top: 20px;
@@ -237,6 +243,6 @@ a {
 }
 
 #org-name{
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>
