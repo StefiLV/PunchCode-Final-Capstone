@@ -45,13 +45,13 @@ public class JdbcMessageDao implements MessageDao {
     }
     @Override
     public void createMsg(Message newMsg){
-        String sql = "INSERT INTO message (id, sender_id, receiver_id, time_stamp, message_text, attachment, archive) VALUES (DEFAULT, DEFAULT, DEFAULT, ?, ?, ?, ?)";
-        jdbcMsgTemplate.update(sql, newMsg.getTimeStamp(), newMsg.getMessage_text(), newMsg.getAttachment(), newMsg.isArchive());
+        String sql = "INSERT INTO message (id, sender_id, receiver_id, time_stamp, message_text, attachment, archive) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        jdbcMsgTemplate.update(sql, newMsg.getMsgId(), newMsg.getSenderId(), newMsg.getReceiverId(), newMsg.getTime_stamp(), newMsg.getMessage_text(), newMsg.getAttachment(), newMsg.isArchive());
     }
     @Override
     public boolean updateMsg(Message msg, int id){
         String sql = "UPDATE message SET time_stamp = ?, message_text = ?, attachment = ?, archive = ? ";
-        return jdbcMsgTemplate.update(msg.getMessage_text(), msg.getTimeStamp(), msg.getAttachment(), msg.isArchive()) == 1;
+        return jdbcMsgTemplate.update(sql, msg.getTime_stamp(), msg.getMessage_text(),  msg.getAttachment(), msg.isArchive()) == 1;
     }
     @Override
     public void deleteMsg(int msgId){
@@ -64,7 +64,7 @@ public class JdbcMessageDao implements MessageDao {
         io.setMsgId(mg.getInt("id"));
         io.setSenderId(mg.getInt("sender_id"));
         io.setReceiverId(mg.getInt("receiver_id"));
-        io.setTimeStamp(mg.getString("time_stamp"));
+        io.setTime_stamp(mg.getString("time_stamp"));
         io.setMessage_text(mg.getString("message_text"));
         io.setAttachment(mg.getString("attachment"));
         io.setArchive(mg.getBoolean("archive"));

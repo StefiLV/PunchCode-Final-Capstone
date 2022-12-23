@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c56c85bd-4e01-4dd6-a0b4-dee0ce667b8e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/capstone/java/src/main/java/com/techelevator/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/capstone/java/src/main/java/com/techelevator/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/capstone/java/src/main/java/com/techelevator/dao/JdbcHoursDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/capstone/java/src/main/java/com/techelevator/dao/JdbcHoursDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/capstone/java/src/main/java/com/techelevator/dao/JdbcMessageDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/capstone/java/src/main/java/com/techelevator/dao/JdbcMessageDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/capstone/java/src/main/java/com/techelevator/dao/MessageDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/capstone/java/src/main/java/com/techelevator/dao/MessageDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/capstone/java/src/main/java/com/techelevator/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/capstone/java/src/main/java/com/techelevator/model/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/capstone/java/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/capstone/java/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
