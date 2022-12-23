@@ -46,12 +46,16 @@ public class JdbcMessageDao implements MessageDao {
     @Override
     public void createMsg(Message newMsg){
         String sql = "INSERT INTO message (id, sender_id, receiver_id, time_stamp, message_text, attachment, archive) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        jdbcMsgTemplate.update(sql,newMsg.getMsgId(), newMsg.getSenderId(), newMsg.getReceiverId(), newMsg.getTime_stamp(), newMsg.getMessage_text(), newMsg.getAttachment(), newMsg.isArchive());
+
+        jdbcMsgTemplate.update(sql, newMsg.getMsgId(), newMsg.getSenderId(), newMsg.getReceiverId(), newMsg.getTime_stamp(), newMsg.getMessage_text(), newMsg.getAttachment(), newMsg.isArchive());
+
     }
     @Override
     public boolean updateMsg(Message msg, int id){
         String sql = "UPDATE message SET time_stamp = ?, message_text = ?, attachment = ?, archive = ? ";
-        return jdbcMsgTemplate.update(msg.getMessage_text(), msg.getTime_stamp(), msg.getAttachment(), msg.isArchive()) == 1;
+
+        return jdbcMsgTemplate.update(sql, msg.getTime_stamp(), msg.getMessage_text(),  msg.getAttachment(), msg.isArchive()) == 1;
+
     }
     @Override
     public void deleteMsg(int msgId){

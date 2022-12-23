@@ -32,7 +32,9 @@ public class Message {
     public void setReceiverId(int receiverId){ this.receiverId = receiverId; }
 
     public String getTime_stamp(){ return time_stamp; }
-    public void setTime_stamp(String timeStamp){ this.time_stamp = timeStamp; }
+
+    public void setTime_stamp(String time_stamp){ this.time_stamp = time_stamp; }
+
 
     public String getMessage_text(){ return message_text; }
     public void setMessage_text(String message_text){ this.message_text = message_text; }
