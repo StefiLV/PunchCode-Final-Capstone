@@ -24,10 +24,10 @@
             </select>
       </form>
     </div>
-    <div id="event-container"
-      v-for="event in events" 
-      v-bind:key="event.id">
-      <div class="event-box" >
+    <div id="event-container">
+      <div class="event-box" 
+        v-for="event in events" 
+        v-bind:key="event.id">
         <img class="event-box-logo" v-bind:src="event.orgLogo"/>
         <h3>{{event.name}}</h3>
         <p>{{event.description}}</p>

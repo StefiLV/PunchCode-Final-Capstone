@@ -12,11 +12,7 @@
           class="nav-icons"
         ></router-link>
         <img src="../img/Bell.png" id="bell" class="nav-icons" />
-        <img
-          src="../img/Hamburger.png"
-          id="hamburger"
-          class="nav-icons"
-        />
+        <img src="../img/Hamburger.png" id="hamburger" class="nav-icons" @click="menuOpen = !menuOpen">
       </div>
     </div>
 
@@ -114,6 +110,13 @@
         </div>
       </div>
     </div>
+     <div class="row dropdown" :class="{ 'dropdown-after' : menuOpen }">
+        <div>
+          <button class=dd-btn><router-link :to="{ name: 'volHome' }">View Profile</router-link></button>
+          <br/>
+          <button class=dd-btn><router-link :to="{ name: 'home' }" @click="clear()">Log Out</router-link></button>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -124,6 +127,17 @@ export default {
     name: "",
     phone: "",
   },
+  data() {
+    return {
+      menuOpen: false,
+    }
+  },
+  methods: {
+    clear(){
+      // localStorage.clear();
+      console.log("hahaha");
+    }
+  }
 };
 </script>
 
@@ -272,5 +286,57 @@ export default {
   width: 25%;
   height: 28%;
   float: right;
+}
+
+ #dd-title {
+   letter-spacing: .8px;
+ }
+
+label {
+  letter-spacing: 1px;
+}
+
+.dd-btn {
+  border-radius: 10px;
+  border: none;
+  padding: 5px;
+  margin: 2px;
+  margin-bottom: 10px;
+  letter-spacing: .7px;
+  cursor: pointer;
+}
+
+.dropdown {
+  text-align: center;
+  height: 0px;
+  background: lightblue;
+  transition: height 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 25vw;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
+.dropdown-after {
+  text-align: center;
+  height: calc(100vh - 50px);
+  transition: height 0.2s ease;
+  width: 25vw;
+  height: 20vh;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 </style>
