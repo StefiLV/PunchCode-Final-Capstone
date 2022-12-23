@@ -1,31 +1,40 @@
 <template>
   <div id="home">
-
     <div id="home-head">
-
       <div id="home-nav-bar">
-        <img src="" alt="">
+        <img src="" alt="" />
 
-        <img src="../img/AppLogo.png" id="main-logo" alt="logo">
+        <img src="../img/AppLogo.png" id="main-logo" alt="logo" />
+
         <div id="to-go-box">
-          <img src="../img/Message.png" id="message" class="nav-icons">
-          <img src="../img/Bell.png" id="bell" class="nav-icons">
-          <img src="../img/Hamburger.png" id="hamburger" class="nav-icons" @click="menuOpen = !menuOpen">
+          <img
+            src="../img/Message.png"
+            id="message"
+            class="nav-icons"
+            @click="mailbox()"
+          />
+          <img src="../img/Bell.png" id="bell" class="nav-icons" />
+          <img
+            src="../img/Hamburger.png"
+            id="hamburger"
+            class="nav-icons"
+            @click="menuOpen = !menuOpen"
+          />
         </div>
       </div>
-
     </div>
 
     <div id="home-body">
-
       <form action="" id="my-tabs">
         <!-- <button>LISTINGS</button>
         <button>APPLIED</button><br/> -->
       </form>
 
-        <form action="">
-            <button id="add-listing">+ New Listing</button>
-        </form>
+      <form action="">
+        <button id="add-listing" @click.prevent="showModal = true">
+          + New Listing
+        </button>
+      </form>
 
       <div id="vol-events">
           <div class="org-events">
@@ -49,15 +58,48 @@
             <button class="expand-btn">Delete</button>
             <button class="expand-btn">Edit</button>
 
-            </div>
-                <div class="event-box">
-                <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
+        <div class="org-events">
+          <h2>Events</h2>
 
-                <h3>PunchCode BBQ<br/>401 S. 4th St<br/>Nov. 1, 2022 - Dec. 23, 2022</h3>
-                <button class="expand-btn">Delete</button>
-                <button class="expand-btn">Edit</button>
+          <div class="event-box">
+            <img
+              class="event-box-logo"
+              src="../img/PunchCodeLogo.png"
+            />
 
-            </div> -->
+            <h3>
+              PunchCode Tech Alley Meet<br />401 S. 4th St<br />Nov.
+              1, 2022 - Dec. 23, 2022
+            </h3>
+            <button class="expand-btn">Delete</button>
+            <button class="expand-btn">Edit</button>
+          </div>
+          <div class="event-box">
+            <img
+              class="event-box-logo"
+              src="../img/PunchCodeLogo.png"
+            />
+
+            <h3>
+              PunchCode Tech Alley Meet<br />401 S. 4th St<br />Nov.
+              1, 2022 - Dec. 23, 2022
+            </h3>
+            <button class="expand-btn">Delete</button>
+            <button class="expand-btn">Edit</button>
+          </div>
+          <div class="event-box">
+            <img
+              class="event-box-logo"
+              src="../img/PunchCodeLogo.png"
+            />
+
+            <h3>
+              PunchCode BBQ<br />401 S. 4th St<br />Nov. 1, 2022 -
+              Dec. 23, 2022
+            </h3>
+            <button class="expand-btn">Delete</button>
+            <button class="expand-btn">Edit</button>
+          </div>
         </div>
         <div class="applied-volunteers">
           <h2>Volunteers</h2>
@@ -82,20 +124,30 @@
         COPYRIGHT © 2022 PUNCHCODE COHORT 3
       </div>
     </div>
-      <!-- This code below is the hamburger opened -->
-      <div class="row dropdown" :class="{ 'dropdown-after' : menuOpen }">
-        <div class="navlist">
-          <button>VIEW/EDIT PROFILE</button>
-          <br>
-          <button>SIGN OUT</button>
-        </div>
-       </div>
+
+    <div class="row dropdown" :class="{ 'dropdown-after': menuOpen }">
+      <div class="navlist">
+        <button class="dd-btn">
+          <router-link :to="{ name: 'orgProfile' }"
+            >Edit Profile</router-link
+          >
+        </button>
+        <br />
+        <button class="dd-btn">
+          <router-link :to="{ name: 'home' }" @click="logOut()"
+            >Log Out</router-link
+          >
+        </button>
+      </div>
     </div>
+  </div>
 </template>
 <script>
 import axios from 'axios';
+import Modal from "../components/Modal.vue";
+
 export default {
-  name: "home",
+  name: "orgProfile",
   data(){
       return {
         volunteers: null,
@@ -105,7 +157,11 @@ export default {
         profilePic: null,
         menuOpen: false,
         users: null
+        showModal: false,
       }
+  },
+  components: {
+    Modal,
   },
   mounted(){
   this.userId = localStorage.userId;
@@ -154,15 +210,23 @@ export default {
         }
       });
       location.reload();
-    },  
+    },
+    mailBox() {
+      this.$router.push("/emptyMailbox");
+    },
+    logOut() {
+      localStorage.clear();
+      console.log("We logged out...kinda");
+    },    
   }
 
 };
 
+
+};
 </script>
 
 <style scoped>
-
 #home {
   overflow: no-scroll;
 }
@@ -222,15 +286,18 @@ img {
 }
 
 .org-events {
-    border: 2px solid black;
-    height: 38vh;
+  border: 2px solid black;
+  height: 38vh;
+  overflow: scroll;
 }
 
 .applied-volunteers {
+
     border: 2px solid black;
     height: 38vh;
     padding-top: 10px;
     overflow: scroll;
+
 }
 
 .event-box {
@@ -271,7 +338,7 @@ img {
 }
 
 .profile-pic {
-    width: 30px;
+  width: 30px;
 }
 
 .innovate-for-vegas-logo {
@@ -288,8 +355,8 @@ img {
   padding-top: 15px;
 }
 h2 {
-    position: relative;
-    bottom: 15px;
+  position: relative;
+  bottom: 15px;
 }
 h3 {
   position: relative;
@@ -297,33 +364,39 @@ h3 {
 }
 
 .expand-btn {
-    float: right;
-    position: relative;
-    bottom: 20px;
-    right: 40px;
+  float: right;
+  position: relative;
+  bottom: 20px;
+  right: 40px;
 }
 
 .status-hours {
-    float: right;
-    position: relative;
-    bottom: 20px;
-    right: 20px;
-    /* border-left: 2px solid black;
+  float: right;
+  position: relative;
+  bottom: 20px;
+  right: 20px;
+  /* border-left: 2px solid black;
     height: 140px; */
 }
 
 .right-status {
-    position: relative;
-    bottom: 80px;
+  position: relative;
+  bottom: 80px;
+
 }
 
 #add-listing {
-    background: blue;
-    color: white;
-    width: 35vw;
-    height: 45px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  background: blue;
+  color: white;
+  width: 35vw;
+  height: 45px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* this code below is for the dropdown */
+#dd-title {
+  letter-spacing: 0.8px;
 }
 .dropdown {
   height: 0px;
@@ -352,7 +425,51 @@ h3 {
   border-radius: 10px 0 0 10px;
 }
 
-.org-events{
-  overflow:  scroll;
+label {
+  letter-spacing: 1px;
+}
+
+.dd-btn {
+  border-radius: 10px;
+  border: none;
+  padding: 5px;
+  margin: 2px;
+  letter-spacing: 0.7px;
+  cursor: pointer;
+}
+
+.dropdown {
+  text-align: center;
+  height: 0px;
+  background: lightblue;
+  transition: height 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 40vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 45px;
+  border-radius: 10px 0 0 10px;
+}
+.dropdown-after {
+  text-align: center;
+  height: calc(100vh - 50px);
+  transition: height 0.2s ease;
+  width: 40vw;
+  height: 25vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 45px;
+  border-radius: 10px 0 0 10px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 </style>
+

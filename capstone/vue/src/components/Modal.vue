@@ -1,7 +1,34 @@
 <script>
+// import axios from "axios";
+
 export default {
   data() {
-    // event: {},
+    return {
+      event: {
+        name: "",
+        org_owner: "",
+        org_logo: "",
+        address: "",
+        start_date: "",
+        end_date: "",
+        start_time: "",
+        end_time: "",
+        description: "",
+        user_counter: 0,
+      },
+    };
+  },
+  methods: {
+    // createEvent() {
+    //   axios
+    //     .post("http://localhost:9000/api/events", this.event)
+    //     .then((response) => {
+    //       if (response.status == 201) {
+    //         alert("EVENT HAS BEEN CREATED");
+    //         window.location.reload();
+    //       }
+    //     });
+    // },
   },
   props: {
     show: Boolean,
@@ -23,16 +50,16 @@ export default {
             <!-- <slot name="body">default body</slot> -->
           </div>
           <div class="event-namebox">
-            <input placeholder="Event Name" />
+            <input placeholder="Event Name" v-model="event.name" />
           </div>
 
           <div class="location-box">
-            <input placeholder="Location" />
+            <input placeholder="Location" v-model="event.address" />
           </div>
 
-          <div class="cont-infobox">
+          <!-- <div class="cont-infobox">
             <input placeholder="Contact Info" />
-          </div>
+          </div> -->
 
           <div class="date-rows">
             <input
@@ -42,6 +69,7 @@ export default {
               onfocus="(this.type='date')"
               onblur="(this.type='text')"
               id="sDate"
+              v-model="event.start_date"
             />
             <input
               placeholder="End Date"
@@ -50,6 +78,7 @@ export default {
               onfocus="(this.type='date')"
               onblur="(this.type='text')"
               id="eDate"
+              v-model="event.end_date"
             />
           </div>
 
@@ -61,6 +90,7 @@ export default {
               onfocus="(this.type='time')"
               onblur="(this.type='text')"
               id="sTime"
+              v-model="event.start_date"
             />
             <input
               placeholder="End Time"
@@ -69,6 +99,7 @@ export default {
               onfocus="(this.type='time')"
               onblur="(this.type='text')"
               id="eTime"
+              v-model="event.end_date"
             />
           </div>
 
@@ -79,14 +110,10 @@ export default {
                 type="text"
                 placeholder="Description"
                 name="name"
+                v-model="event.description"
               />
 
-              <button
-                class="modal-default-button"
-                @click="$emit('close')"
-              >
-                SUBMIT
-              </button>
+              <button class="modal-default-button">SUBMIT</button>
             </slot>
           </div>
         </div>
@@ -161,13 +188,13 @@ export default {
 .event-namebox {
   position: relative;
   right: 70px;
-  bottom: 70px;
+  bottom: 85px;
 }
 
 .location-box {
   position: relative;
   right: 70px;
-  bottom: 65px;
+  bottom: 80px;
 }
 
 .cont-infobox {
