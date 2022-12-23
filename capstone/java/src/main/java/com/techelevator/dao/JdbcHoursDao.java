@@ -81,7 +81,7 @@ public List<Hours> getAllHours(){
     @Override
     public Hours createId(Hours newId){ //creating a new id for hours
         String sql = "INSERT INTO hours ( user_id, event_id, hours, approval_status)" +
-                " VALUE(?,?,?,?) RETURNING id;";
+                " VALUES (?,?,?,?) RETURNING id;";
      Integer newid = jdbcTemplate.queryForObject(sql, Integer.class, newId.getUser_id(), newId.getEvent_id(), newId.getHours(), newId.getApproval_status());
 
      return getId(newid);
