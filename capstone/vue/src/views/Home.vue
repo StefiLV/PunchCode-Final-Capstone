@@ -57,7 +57,6 @@
     </div>
     <img src="../img/ThreeSquareLogo.png" class="hide" alt="">
     <img src="../img/InnovateForVegas.png" class="hide" alt="">
-    <img src="../img/PunchCodeLogo.png" class="hide" alt="">
   </div>
 </template>
 
