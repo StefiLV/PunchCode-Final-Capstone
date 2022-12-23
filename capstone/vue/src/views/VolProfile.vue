@@ -4,44 +4,42 @@
       <img src="../img/AppLogo.png" id="main-logo" alt="logo" />
 
       <div id="to-go-box">
-        
         <router-link :to="{ name: 'emptyMailbox' }" id="no-account">
           <img
-          src="../img/Message.png"
-          id="message"
-          class="nav-icons"
-        ></router-link>
+            src="../img/Message.png"
+            id="message"
+            class="nav-icons"
+        /></router-link>
         <img src="../img/Bell.png" id="bell" class="nav-icons" />
-        <img src="../img/Hamburger.png" id="hamburger" class="nav-icons" @click="menuOpen = !menuOpen">
+        <img
+          src="../img/Hamburger.png"
+          id="hamburger"
+          class="nav-icons"
+          @click="menuOpen = !menuOpen"
+        />
       </div>
     </div>
 
     <div id="profile-title">
-      <h2 id="my-profile">MY PROFILE</h2> 
+      <h2 id="my-profile">MY PROFILE</h2>
     </div>
 
     <div id="personal-info">
       <div class="event-box">
         <img class="event-box-logo" src="../img/ProfilePic.png" />
-        <h3>NAME</h3>
-        <p>EMAIL<br />PHONE NUMBER<br />ADDRESS</p>
-        <button class="prof-edit">EDIT</button>
-      </div>
-    </div>
-
-    <div id="profile-bio">
-      <div id="bio-box"> 
-        <h3>ADD BIO (Optional)</h3>
-        <textarea
-          id="textarea-bio"
-          type="text"
-          placeholder="Bio (Optional)"
-          name="name"
-        />
+        <h3 id="vol-name">CHRIS GOMEZ</h3>
+        <p id="vol-info">Email: <br />Phone Number: <br />Address:</p>
+        <h3>My Bio:</h3>
+        <p id="textarea-bio">
+          Lorem Ipsum is simply dummy text of the printing and
+          typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown
+          printer took a galley of type and scrambled it to make a
+          type specimen book.
+        </p>
         <button class="edit-nameBio">EDIT</button>
       </div>
     </div>
-    <!-- <button class="edit-nameBio">EDIT</button> -->
 
     <div id="bottom-half">
       <h3 id="my-hours">MY HOURS</h3>
@@ -110,13 +108,19 @@
         </div>
       </div>
     </div>
-     <div class="row dropdown" :class="{ 'dropdown-after' : menuOpen }">
-        <div>
-          <button class=dd-btn><router-link :to="{ name: 'volHome' }">View Profile</router-link></button>
-          <br/>
-          <button class=dd-btn><router-link :to="{ name: 'home' }" @click="clear()">Log Out</router-link></button>
-        </div>
+    <div class="row dropdown" :class="{ 'dropdown-after': menuOpen }">
+      <div>
+        <button class="dd-btn">
+          <router-link :to="{ name: 'volHome' }"
+            >View Profile</router-link
+          >
+        </button>
+        <br />
+        <button class="dd-btn">
+          <router-link :to="{ name: 'home' }">Log Out</router-link>
+        </button>
       </div>
+    </div>
   </div>
 </template>
 
@@ -130,14 +134,9 @@ export default {
   data() {
     return {
       menuOpen: false,
-    }
+    };
   },
-  methods: {
-    clear(){
-      // localStorage.clear();
-      console.log("hahaha");
-    }
-  }
+  methods: {},
 };
 </script>
 
@@ -178,11 +177,12 @@ export default {
   text-decoration: underline;
 }
 .prof-edit {
-  float: right;
+  position: relative;
+  bottom: 10px;
 }
 
 #personal-info {
-  height: 20vh;
+  height: 37vh;
   width: 90vw;
   margin: auto;
   display: flex;
@@ -196,6 +196,12 @@ export default {
   display: flex;
   align-items: center;
 }
+
+#vol-info {
+  font-style: italic;
+  font-size: 14px;
+}
+
 #bio-box {
   width: 80vw;
   height: 15vh;
@@ -207,23 +213,31 @@ export default {
   margin-bottom: 15px;
 }
 
-#textarea-bio {
-  width: 85%;
-  height: 40%;
+#vol-name {
+  letter-spacing: 1px;
+  text-decoration: underline;
 }
 
 .edit-nameBio {
+  position: relative;
+  bottom: 30px;
+  left: 395px;
+}
+
+#textarea-bio {
+  width: 80%;
+  height: 40%;
+  border: 2px solid yellow;
+  border-radius: 10px;
 }
 
 .event-box {
-  width: 80vw;
-  height: 15vh;
-  border: 2px solid yellow;
+  width: 90vw;
+  height: 90%;
+  border: 2px solid red;
   text-align: left;
   padding-left: 15px;
   border-radius: 10px;
-  margin-left: 15px;
-  margin-bottom: 15px;
 }
 
 #main-logo {
@@ -288,9 +302,9 @@ export default {
   float: right;
 }
 
- #dd-title {
-   letter-spacing: .8px;
- }
+#dd-title {
+  letter-spacing: 0.8px;
+}
 
 label {
   letter-spacing: 1px;
@@ -302,7 +316,7 @@ label {
   padding: 5px;
   margin: 2px;
   margin-bottom: 10px;
-  letter-spacing: .7px;
+  letter-spacing: 0.7px;
   cursor: pointer;
 }
 
@@ -318,8 +332,8 @@ label {
   width: 25vw;
   position: absolute;
   top: 0;
-  right:0;
-  margin-top:45px;
+  right: 0;
+  margin-top: 45px;
   border-radius: 10px 0 0 10px;
 }
 .dropdown-after {
@@ -330,8 +344,8 @@ label {
   height: 20vh;
   position: absolute;
   top: 0;
-  right:0;
-  margin-top:45px;
+  right: 0;
+  margin-top: 45px;
   border-radius: 10px 0 0 10px;
 }
 
