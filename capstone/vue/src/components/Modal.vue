@@ -1,5 +1,5 @@
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   data() {
@@ -19,16 +19,16 @@ export default {
     };
   },
   methods: {
-    createEvent() {
-      axios
-        .post("http://localhost:9000/api/events", this.event)
-        .then((response) => {
-          if (response.status == 201) {
-            alert("EVENT HAS BEEN CREATED");
-            window.location.reload();
-          }
-        });
-    },
+    // createEvent() {
+    //   axios
+    //     .post("http://localhost:9000/api/events", this.event)
+    //     .then((response) => {
+    //       if (response.status == 201) {
+    //         alert("EVENT HAS BEEN CREATED");
+    //         window.location.reload();
+    //       }
+    //     });
+    // },
   },
   props: {
     show: Boolean,
@@ -113,12 +113,7 @@ export default {
                 v-model="event.description"
               />
 
-              <button
-                class="modal-default-button"
-                @click="createEvent()"
-              >
-                SUBMIT
-              </button>
+              <button class="modal-default-button">SUBMIT</button>
             </slot>
           </div>
         </div>
