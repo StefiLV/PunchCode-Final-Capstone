@@ -107,9 +107,10 @@ const router = new Router({
       name: "volHome",
       component: VolHome,
       meta: {
-        requiresAuth: true, //This will need to be changed to true.
-      }, //False allows us to get around login. - Gabe
-    },
+        requiresAuth: false, //This will need to be changed to true. 
+
+    },                       //False allows us to get around login. - Gabe
+  },
     {
       path: "/orgProfile",
       name: "orgProfile",

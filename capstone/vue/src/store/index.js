@@ -45,15 +45,17 @@ export default new Vuex.Store({
       localStorage.setItem('orgPic', orgPic)
     },
     LOGOUT(state) {
+      console.log("logout1")
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       localStorage.removeItem('user_Id');
-      // localStorage.removeItem('orgPic');
+      localStorage.removeItem('orgPic');
       state.token = '';
       state.userId = '';
       state.orgPic = '';
       state.user = {};
       axios.defaults.headers.common = {};
+      console.log("logout2")
     }
   }
 })
