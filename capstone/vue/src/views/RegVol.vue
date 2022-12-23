@@ -1,7 +1,7 @@
 <template>
   <div id="regOrg" class="text-center">
     <div id="regOrgNav">
-      <div id="to-go-box" v-on:click="openBurger">
+      <div id="to-go-box">
         <img src="../img/Hamburger.png" id="hamburger" />
       </div>
     </div>
