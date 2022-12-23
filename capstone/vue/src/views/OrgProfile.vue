@@ -11,12 +11,14 @@
             src="../img/Message.png"
             id="message"
             class="nav-icons"
+            @click="mailbox()"
           />
           <img src="../img/Bell.png" id="bell" class="nav-icons" />
           <img
             src="../img/Hamburger.png"
             id="hamburger"
             class="nav-icons"
+            @click="menuOpen = !menuOpen"
           />
         </div>
       </div>
@@ -111,6 +113,22 @@
         </template>
       </modal>
     </div>
+
+    <div class="row dropdown" :class="{ 'dropdown-after': menuOpen }">
+      <div class="navlist">
+        <button class="dd-btn">
+          <router-link :to="{ name: 'orgProfile' }"
+            >Edit Profile</router-link
+          >
+        </button>
+        <br />
+        <button class="dd-btn">
+          <router-link :to="{ name: 'home' }" @click="logOut()"
+            >Log Out</router-link
+          >
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -126,13 +144,24 @@ export default {
   data() {
     return {
       showModal: false,
+      menuOpen: false,
     };
   },
-  mounted() {
-    // this.userId = localStorage.userId;
-    // axios
-    //   .get("http://localhost:9000/api/events")
-    //   .then((resp) => (this.events = resp.data));
+  // mounted() {
+  //   this.userId = localStorage.userId;
+  //   axios
+  //     .get("http://localhost:9000/api/events")
+  //     .then((resp) => (this.events = resp.data));
+  // },
+  methods: {
+    logOut() {
+      localStorage.clear();
+      console.log("We logged out...kinda");
+    },
+    mailBox() {
+      this.$router.push("/emptyMailbox");
+      // this.$router.push("/mailbox");
+    },
   },
 };
 </script>
@@ -290,5 +319,57 @@ h3 {
   height: 45px;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+
+/* this code below is for the dropdown */
+#dd-title {
+  letter-spacing: 0.8px;
+}
+
+label {
+  letter-spacing: 1px;
+}
+
+.dd-btn {
+  border-radius: 10px;
+  border: none;
+  padding: 5px;
+  margin: 2px;
+  letter-spacing: 0.7px;
+  cursor: pointer;
+}
+
+.dropdown {
+  text-align: center;
+  height: 0px;
+  background: lightblue;
+  transition: height 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 40vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 45px;
+  border-radius: 10px 0 0 10px;
+}
+.dropdown-after {
+  text-align: center;
+  height: calc(100vh - 50px);
+  transition: height 0.2s ease;
+  width: 40vw;
+  height: 25vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 45px;
+  border-radius: 10px 0 0 10px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 </style>
