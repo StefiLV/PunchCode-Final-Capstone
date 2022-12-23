@@ -7,19 +7,17 @@
         <img src="" alt="">
 
         <img src="../img/AppLogo.png" id="main-logo" alt="logo">
-
-        <div id="to-go-box" v-on:click="openBurger">
+        <div id="to-go-box">
           <img src="../img/Message.png" id="message" class="nav-icons">
           <img src="../img/Bell.png" id="bell" class="nav-icons">
-          <img src="../img/Hamburger.png" id="hamburger" class="nav-icons">
-
+          <img src="../img/Hamburger.png" id="hamburger" class="nav-icons" @click="menuOpen = !menuOpen">
         </div>
       </div>
 
     </div>
 
     <div id="home-body">
-      
+
       <form action="" id="my-tabs">
         <!-- <button>LISTINGS</button>
         <button>APPLIED</button><br/> -->
@@ -32,8 +30,17 @@
       <div id="vol-events">
           <div class="org-events">
               <h2>Events</h2>
-          
-            <div class="event-box">
+                <div class="event-box" 
+                        v-for="event in events" 
+                        v-bind:key="event.id">
+                          <img class="event-box-logo-loop" v-bind:src="localStorage.orgPic"/>
+                          <h3 id="org-name">{{event.name}}</h3>
+                          <p class="eb-desc">{{event.description}}</p>
+                          <p>{{event.startDate}} - {{event.endDate}}</p>
+                          <p>{{event.startTime}} am - {{event.endTime}} pm</p>
+                          <button class="volunteer-btn" @click="menuOpen = !menuOpen, mustSignIn()">Volunteer For Event</button>
+                        </div>
+            <!-- <div class="event-box">
             <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
 
             <h3>PunchCode Tech Alley Meet<br/>401 S. 4th St<br/>Nov. 1, 2022 - Dec. 23, 2022</h3>
@@ -48,12 +55,12 @@
                 <button class="expand-btn">Delete</button>
                 <button class="expand-btn">Edit</button>
 
-            </div>
+            </div> -->
         </div>
         <div class="applied-volunteers">
             <h2>Volunteers</h2>
             <div class="event-box">
-            
+
             <h3><img class="profile-pic" src="../img/ProfilePic.png"/>John Doe<br/>"My Bio"<br/><button>Message Me</button></h3>
             <div class="right-status">
             <p class="status-hours">Volunteer Status:
@@ -63,34 +70,49 @@
                 <option value="Pending">Pending</option>
             </select><br/>
             Volunteer Hours: 0</p>
-            
             </div>
+
         </div>
         </div>
       </div>
-
-      <div id="main-footer"> 
+      <div id="main-footer">
         COPYRIGHT © 2022 PUNCHCODE COHORT 3
       </div>
 
     </div>
-
-  </div>
+      <!-- This code below is the hamburger opened -->
+      <div class="row dropdown" :class="{ 'dropdown-after' : menuOpen }">
+        <div class="navlist">
+          <button>VIEW/EDIT PROFILE</button>
+          <br>
+          <button>SIGN OUT</button>
+        </div>
+       </div>
+    </div>
 </template>
 
 <script>
+
 import axios from 'axios';
 export default {
-  name: "orgProfile",
+  name: "home",
   data(){
-
+      return {
+        users: null,
+      events: null,
+      userId: null,
+      profilePic: null,
+          menuOpen: false,
+      }
   },
   mounted(){
   this.userId = localStorage.userId;
   axios
     .get('http://localhost:9000/api/events')
-    .then(resp => (this.events = resp.data));
-
+    .then(resp => (this.events = resp.data,
+    this.profilePic = localStorage.orgPic,
+    console.log(this.events)
+));
 },
 };
 
@@ -164,7 +186,7 @@ img {
 
 .event-box {
   width: 80vw;
-  height: 15vh;
+  height: 40vh;
   border: 2px solid black;
   text-align: left;
   padding-left: 15px;
@@ -239,8 +261,7 @@ h3 {
 
 .right-status {
     position: relative;
-    bottom: 80px;    
-    
+    bottom: 80px;
 }
 
 #add-listing {
@@ -251,5 +272,37 @@ h3 {
     border-radius: 5px;
     margin-bottom: 10px;
 }
+.dropdown {
+  height: 0px;
+  background: lightgrey;
+  transition: height 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 30vw;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
+.dropdown-after {
+  height: calc(100vh - 50px);
+  transition: height 0.2s ease;
+  width: 30vw;
+  height: 20vh;
+  position: absolute;
+  top: 0;
+  right:0;
+  margin-top:45px;
+  border-radius: 10px 0 0 10px;
+}
 
+.org-events{
+  overflow:  scroll;
+}
+.event-box-logo-loop{
+
+}
 </style>

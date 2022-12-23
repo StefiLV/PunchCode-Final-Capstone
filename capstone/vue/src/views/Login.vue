@@ -77,7 +77,7 @@ export default {
               this.$router.push("/volHome");
             } else {
               this.$store.commit("SET_ORG_PIC", response.data.user.profilePic);
-              this.$router.push("/orgHome");
+              this.$router.push("/orgProfile");
             }
             
           }
