@@ -2,7 +2,6 @@ package com.techelevator.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;

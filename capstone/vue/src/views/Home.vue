@@ -24,17 +24,17 @@
             </select>
       </form>
     </div>
-    <div id="event-container"
-      v-for="event in events" 
-      v-bind:key="event.id">
-      <div class="event-box" >
-        <img class="event-box-logo" v-bind:src="event.orgLogo"/>
-        <h3>{{event.name}}</h3>
-        <p>{{event.description}}</p>
-        <p>{{event.startDate}} - {{event.endDate}}</p>
-        <p>{{event.startTime}} - {{event.endTime}}</p>
-        <button class="volunteer-btn" @click="menuOpen = !menuOpen">Volunteer For Event</button>
-      </div>
+    <div id="event-container">
+        <div class="event-box" 
+        v-for="event in events" 
+        v-bind:key="event.id">
+          <img class="event-box-logo" v-bind:src="event.orgLogo"/>
+          <h3 id="org-name">{{event.name}}</h3>
+          <p class="eb-desc">{{event.description}}</p>
+          <p>{{event.startDate}} - {{event.endDate}}</p>
+          <p>{{event.startTime}} am - {{event.endTime}} pm</p>
+          <button class="volunteer-btn" @click="menuOpen = !menuOpen, mustSignIn()">Volunteer For Event</button>
+        </div>
     </div> 
     <div id="main-footer"> 
       COPYRIGHT © 2022 PUNCHCODE COHORT 3
@@ -81,6 +81,12 @@ export default {
         console.log(this.events)
       ));
   },
+  methods: {
+    mustSignIn(){
+      alert("Please sign in or Create an Account!")
+    }
+  }
+
 }
 
 </script>
@@ -130,7 +136,7 @@ export default {
 
 .event-box {
   width: 80vw;
-  height: 32vh;
+  height: 30vh;
   /* border: 2px solid black; */
   text-align: left;
   padding: 20px 0 0 15px;
@@ -138,6 +144,10 @@ export default {
   margin: auto;
   margin-bottom: 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.eb-desc {
+  padding-top: 20px;
 }
 
 #main-logo {
@@ -148,7 +158,7 @@ export default {
   padding-bottom: 5px;
 }
 .event-box-logo {
-  width: 175px;
+  width: 10em;
   float: right;
   position: relative;
   top: 20px;
@@ -230,5 +240,9 @@ label {
 a {
   color: black;
   text-decoration: none;
+}
+
+#org-name{
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>
