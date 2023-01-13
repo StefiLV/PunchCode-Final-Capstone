@@ -135,23 +135,6 @@ public class JdbcUserDao implements UserDao {
         }
         return users;
     }
-//    @Override
-//    public List<User> findUserByEvent(int eventId){
-//        List<User> allUsers = new ArrayList<>();
-//
-//        Event eventModel;
-//
-//        String sql = "SELECT u.name FROM event e " +
-//                "JOIN event_user eu ON e.id = eu.id " +
-//                "JOIN users u ON u.user_id = eu.user_id " +
-//                "where event_id = ?";
-//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, eventId);
-//        while(results.next()) {
-//            User user = mapRowToUser(results);
-//            allUsers.add();
-//        }
-//        return events;
-//    }
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();

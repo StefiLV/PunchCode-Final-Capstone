@@ -56,21 +56,6 @@ public class JdbcEventDao implements EventDao {
         return event;
     }
 
-
-
-
-    //    @Override
-//    public Event findByName(String name){
-//        Event event = null;
-//        String sql = "SELECT * FROM event WHERE name = ? ";
-//        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql, name);
-//        if(results.next()){
-//            event = mapRowToEvent(results);
-//        } else {
-//            throw new EventNotFoundException();
-//        }
-//        return event;
-//    }
     @Override
     public boolean updateEvent(Event event, int id){
         String sql = "UPDATE event SET name = ?, org_owner = ?, org_logo = ?, address = ?, start_date = ?, end_date = ?, start_time = ?, end_time = ?, description = ?, user_counter = ? WHERE id = ? ";
@@ -87,19 +72,6 @@ public class JdbcEventDao implements EventDao {
         String sql = "DELETE FROM event WHERE id = ? ";
         return jdbcEventTemplate.update(sql, id) == 1;
     }
-
-//    @Override
-//    public String getProfilePic(){
-//        String picFromUser = "";
-//        String sql = "SELECT * FROM event " +
-//                "JOIN cause ON cause.id = event.id ";
-//        SqlRowSet results = jdbcEventTemplate.queryForRowSet(sql);
-//        while(results.next()){
-//            getProfilePic().add(mapRowToEvent(results));
-//        }
-//        return picFromUser;
-//    }
-
 
     private Event mapRowToEvent(SqlRowSet rs) {
         Event ev = new Event();
