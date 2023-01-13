@@ -10,9 +10,7 @@ public interface HoursDao {
 
      Hours getId(int id); //gets the specific id
 
-//     List<Hours> getAllHours(int user_id); //get all hours by a specific user
-//
-//     List<Hours> getAllIds(int event_id); //get all hours in an event
+
 
      Hours createId(Hours newId); //creating new id
 

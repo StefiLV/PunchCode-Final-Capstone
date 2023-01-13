@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JdbcEventUserDao implements EventUserDao {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public JdbcEventUserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;}

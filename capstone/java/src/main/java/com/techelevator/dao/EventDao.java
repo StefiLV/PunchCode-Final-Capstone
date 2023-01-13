@@ -11,7 +11,7 @@ public interface EventDao {
 
 
 
-//    Event findByName(String name);
+
 
     boolean updateEvent(Event event, int id);
 
