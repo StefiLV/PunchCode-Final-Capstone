@@ -9,18 +9,10 @@ public interface EventDao {
 
     Event findById(int eventId);
 
-
-
-
-
     boolean updateEvent(Event event, int id);
 
     boolean createEvent(Event newEvent);
 
     boolean deleteEvent(int id);
 
-
-
-
-//    List<Event> eventsByCause();
 }

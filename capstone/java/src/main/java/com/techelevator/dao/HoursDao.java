@@ -10,8 +10,6 @@ public interface HoursDao {
 
      Hours getId(int id); //gets the specific id
 
-
-
      Hours createId(Hours newId); //creating new id
 
      void deleteId (int id); //deletes hours by id

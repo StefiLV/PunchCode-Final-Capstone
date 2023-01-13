@@ -46,38 +46,6 @@ public List<Hours> getAllHours(){
         return hours;
     }
 
-
-
-//    @Override
-//    public List<Hours> getAllIds(int event_id){ //getting all hours from a specific event
-//        List<Hours> hours = new ArrayList<>();
-//        String sql = "SELECT * " +
-//                "FROM hours " +
-//                "JOIN event ON event.event_id = hours.event_id " +
-//                "JOIN user ON user.user_id = hours.user_id " +
-//                "WHERE event.event_id = ?;";
-//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, event_id);
-//        while(results.next()){
-//            hours.add(mapRowToHours(results));
-//        }
-//        return hours;
-//
-//    }
-//
-//    @Override
-//    public List<Hours> getAllHours(int user_id){ //getting all hours from a specific user
-//        List<Hours> hours = new ArrayList<>();
-//        String sql = "SELECT * " +
-//                "FROM hours " +
-//                "JOIN users ON users.user_id = event.user_id " +
-//                "WHERE user_id = ?;";
-//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, user_id);
-//        while(results.next()){
-//            hours.add(mapRowToHours(results));
-//        }
-//        return hours;
-//
-//    }
     @Override
     public Hours createId(Hours newId){ //creating a new id for hours
         String sql = "INSERT INTO hours ( user_id, event_id, hours, approval_status)" +
