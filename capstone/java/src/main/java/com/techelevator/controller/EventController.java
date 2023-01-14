@@ -55,8 +55,4 @@ public class EventController {
         eventDao.deleteEvent(id);
     }
 
-
-
-//    @RequestMapping(method = RequestMethod.GET)
-//    public List<Event> eventsCause() { return eventDao.eventsByCause(); }
 }
