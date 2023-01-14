@@ -44,28 +44,6 @@ public class HoursController {
         }
     }
 
-//    @RequestMapping(path = "/{id}", method = RequestMethod.GET) // getting all the hours by a user
-//    public List<Hours> getHours(@PathVariable int user_id){
-//        List<Hours> hours = dao.getAllHours(user_id);
-//        if(hours == null){
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Hours not found.");
-//        }
-//        else {
-//            return dao.getAllHours(user_id);
-//        }
-//    }
-//
-//    @RequestMapping(path = "/{event_id}", method = RequestMethod.GET) //getting all ids in an event
-//    public List<Hours> getIds(@PathVariable int event_id){
-//        List<Hours> ids = dao.getAllIds(event_id);
-//        if(ids == null){
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found.");
-//        }
-//        else {
-//            return dao.getAllIds(event_id);
-//        }
-//    }
-
     @ResponseStatus(HttpStatus.CREATED) //creating new hours
     @RequestMapping( method = RequestMethod.POST)
     public void create(@Valid @RequestBody Hours hours){
