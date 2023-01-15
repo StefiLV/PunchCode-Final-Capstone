@@ -51,7 +51,7 @@
                           <button class="volunteer-btn" @click="mustSignIn()">Edit Event</button>
                           <button class="volunteer-btn" @click="deleteEvent()">Delete Event</button>
                         </div>
-            <!-- <div class="event-box">
+             <div class="event-box">
             <img class="event-box-logo" src="../img/PunchCodeLogo.png"/>
 
             <h3>PunchCode Tech Alley Meet<br/>401 S. 4th St<br/>Nov. 1, 2022 - Dec. 23, 2022</h3>
@@ -156,10 +156,11 @@ export default {
         userId: null,
         profilePic: null,
         menuOpen: false,
-        users: null
+        users: null,
         showModal: false,
       }
-  },
+    },
+  
   components: {
     Modal,
   },
@@ -472,4 +473,3 @@ a {
   text-decoration: none;
 }
 </style>
-
