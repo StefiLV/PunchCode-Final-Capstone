@@ -50,9 +50,9 @@ public class EventController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/events/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id){
-        if(eventDao.findById(id) != null)
-        eventDao.deleteEvent(id);
+    public void delete(@PathVariable int id) {
+        if (eventDao.findById(id) != null) {
+            eventDao.deleteEvent(id);
+        }
     }
-
 }
