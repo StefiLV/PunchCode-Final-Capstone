@@ -157,10 +157,6 @@ export default {
         "There were problems registering this user.";
     },
   },
-  // computed: {
-  //   concat(){
-  //     this.addy.add + " " + this.addy.city + ", " + this.addy.state + " " + this.addy.zipCode;
-  // },
   
 };
 </script>
