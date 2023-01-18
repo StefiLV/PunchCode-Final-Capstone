@@ -118,7 +118,7 @@ public class JdbcUserDao implements UserDao {
         String sql = "UPDATE users SET name = ?, username = ?, birth_date = ?, phone_number = ?, description = ?, address = ?, profile_pic = ?, hero_banner = ?, minor = ? WHERE user_id = ?";
         return jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getBirthDate(), user.getPhoneNumber(), user.getDescription(), user.getAddress(), user.getProfilePic(), user.getHeroBanner(), user.isMinor(), id) == 1;
     }
-    @Override
+    @Override //gets users signed up to a specific event.
     public List<User> byEventId(int eventId){
         List<User> users = new ArrayList<>();
 
