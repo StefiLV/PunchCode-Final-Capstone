@@ -16,8 +16,8 @@ CREATE TABLE users (
 	hero_banner varchar(300),
 	password_hash varchar(200) NOT NULL,
 	organization boolean,
-	verified boolean,
-	minor boolean,
+	verified boolean, --figure out how to verify a business
+	minor boolean, --will be used to filter underage users
 	role varchar(50) NOT NULL
 );
 CREATE TABLE event (
